@@ -1,4 +1,5 @@
 ## Concetti di partenza
+#database #dbms #transazione #schema #istanze #viste #modello-relazionale #entity-relationship #ddl #dml
 
 <center> <mark> Basi di dati </mark> </center>
 
@@ -36,7 +37,7 @@ Sono <u>concorrenti</u>, sono <u>permanenti</u>.
 
 ---
 ## Schema, istanze e viste
-`esempio di tabella`
+`esempi di tabelle`
 
 | insegnamento | docente     | aula | ora   |
 | ------------ | ----------- | ---- | ----- |
@@ -45,11 +46,26 @@ Sono <u>concorrenti</u>, sono <u>permanenti</u>.
 | fondamenti   | luigi rossi | n1   | 10:00 |
 | ...          | ...         | ...  | ...   | 
 
+| aula | piano | dipartimento        |
+| ---- | ----- | ------------------- |
+| n1   | T     | scienze matematiche |
+| n2   | T     | informatica         |
+| ...  | ...   | ...                 | 
+
 - **schema**, <u>intestazioni della tabella</u>, descrivono la struttura invariante nel tempo
 - **istanza**, i valori attuali che possono cambiare rapidamente, il <u>corpo di ogni tabella</u>
 
 **<center>schema esterno -> schema logico -> schema interno -> DATABASE</center>**
 Una <u>vista</u> è l'aggancio tra due tabelle che hanno una relazione.
+
+`esempio di vista`
+
+| insegnamento | docente     | aula | ora  | piano | dipartimento        |
+| ------------ | ----------- | ---- | ---- | ----- | ------------------- |
+| analisi      | luigi neri  | n1   | 8:00 | T     | scienze matematiche |
+| basi di dati | piero rossi | n2   | 9:45 | T     | informatica         |
+| ...          | ...         | ...  | ...  | ...   | ...                 | 
+
 
 ## Modelli dei dati
 - modelli **logici**
@@ -62,15 +78,18 @@ Una <u>vista</u> è l'aggancio tra due tabelle che hanno una relazione.
 ---
 
 ## Linguaggi per DATABASE
-- linguaggio testuale interattivo (==SQL==)
+- linguaggio testuale interattivo (==**SQL**==)
 - comandi SQL in linguaggio *ospite*
 - comandi SQL per interagire con linguaggio ad hoc (per grafici, istogrammi, quello che c'è dentro alla mia base di dati)
 - con interfacce grafiche
 
-### DDL data definition language
-per lo schema 
+### DDL (data definition language)
+per gli schemi 
 
 ```sql
+# creiamo una tabella nel database 'database_esempio'
+USE database_esempio;
+
 CREATE TABLE orario (
 	insegnamento CHAR(20),
 	docente CHAR(20),
@@ -79,5 +98,5 @@ CREATE TABLE orario (
 )
 ```
 
-### DML data manipulation language
-per l'istanza
+### DML (data manipulation language)
+per le istanze

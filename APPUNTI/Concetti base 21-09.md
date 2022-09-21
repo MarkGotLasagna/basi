@@ -1,3 +1,5 @@
+## Concetti di partenza
+
 <center> <mark> Basi di dati </mark> </center>
 
 Un insieme organizzato di dati utilizzati per il supporto allo svolgimento delle attività di un ente, gestiti da un DBMS (database management systems). Un sistema è qualcosa di complicato, non è semplicemente uno strumento ma sono tante funzioni unite.

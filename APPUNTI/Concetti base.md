@@ -95,8 +95,13 @@ CREATE TABLE orario (
 	docente CHAR(20),
 	aula CHAR(4),
 	ora CHAR(5)
-)
+);
 ```
 
 ### DML (data manipulation language)
 per le istanze
+
+
+
+---
+last revision: 21-09 22:57

@@ -55,7 +55,13 @@ Sono <u>concorrenti</u>, sono <u>permanenti</u>.
 - **schema**, <u>intestazioni della tabella</u>, descrivono la struttura invariante nel tempo
 - **istanza**, i valori attuali che possono cambiare rapidamente, il <u>corpo di ogni tabella</u>
 
-**<center>schema esterno -> schema logico -> schema interno -> DATABASE</center>**
+```mermaid
+flowchart TD
+	id(schema esterno) --> id1(schema logico)
+	id1 --> id2(schema interno)
+	id2 --> database[(database)]
+	style database fill:#FFFFFF,color:black
+```
 Una <u>vista</u> è l'aggancio tra due tabelle che hanno una relazione.
 
 `esempio di vista`

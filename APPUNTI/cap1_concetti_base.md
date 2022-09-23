@@ -1,5 +1,5 @@
-## Concetti di partenza
-#database #dbms #transazione #schema #istanze #viste #modello-relazionale #entity-relationship #ddl #dml
+# Concetti di base
+#database #dbms #transazione #schema #istanze #viste #modello-relazionale #entity-relationship #ddl #dml #amministratore-db 
 
 <center> <mark> Basi di dati </mark> </center>
 
@@ -106,8 +106,27 @@ CREATE TABLE orario (
 
 ### DML (data manipulation language)
 per le istanze
+```sql
+# inseriamo una nuova tupla nella tabella 'orario'
+INSERT INTO orario 
+	(insegnamento, docente, aula, ora)
+VALUES 
+	('informatica', 'mario rossi', 'N1', '11:00');
+```
+
+## Personaggi e interpreti
+
+- *progettisti* e realizzatori di DBMS
+- *progettisti della base di dati* e *amministratori* del DB
+- *progettisti* e *programmatori* di applicazioni
+- *utenti*
+	- finali terminalisti
+	- casuali, che interagiscono con la base di dati
+
+Le tecniche per fornire all'utente una funzione d'interesse, nella transazione, non è banale rispetto al DB.
+Di solito viene usato un linguaggio ad hoc per fornire funzioni.
 
 
 
 ---
-last revision: 21-09 22:57
+last revision: 23-09

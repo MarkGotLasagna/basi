@@ -1,4 +1,5 @@
 [[UNI/BASI/README]]
 
 Topic:
-- [[concetti_base21-09]]
+- [[cap1_concetti_base]]
+- [[cap2_modello_relazionale]]

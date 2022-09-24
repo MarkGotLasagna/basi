@@ -25,3 +25,7 @@ del corso di Laurea in Informatica
     ├── SQL_INTRO_INDEX.md
     └── SQL_SELECT.md
 ```
+
+---
+
+I file `.md` non vi interessano, seguite le Directory `PDF`, li trovate tutto il necessario.

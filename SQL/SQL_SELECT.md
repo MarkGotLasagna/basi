@@ -1,4 +1,4 @@
-# SELECT
+# SELECT_TEORIA
 
 ```sql
 # seleziona colonne dalla tabella
@@ -22,12 +22,12 @@ WHERE condizioni;
 le `condizioni` sono specificate dalla *clausola* `WHERE`.
 Li dentro mettiamo tutto quello che ci interessa per estrarre i dati che ci interessano.
 
-- Esiste un modo per il `SELECT` d'indicare <u>tutte le colonne</u> della tabella:
-> `*` indica tutte le colonne della tabella riferita
+- Esiste un modo per il `SELECT` d'indicare <u>tutte le colonne</u> della tabella usando `*`
+> tutte le colonne della tabella riferita
 	SELECT * FROM tabella;
 
-- Esiste un modo per il `SELECT` d'indicare solo <u>distinti</u> elementi della tabella:
-> `DISTINCT` serve per precisare solo elementi distinti della colonna riferita
+- Esiste un modo per il `SELECT` d'indicare solo <u>distinti</u> elementi della tabella usando `DISTINCT`
+> per precisare solo elementi distinti della colonna riferita
 	SELECT DISTINCT colonna FROM tabella;
 
 - Esistono *funzioni* per il `SELECT`:
@@ -42,8 +42,8 @@ Li dentro mettiamo tutto quello che ci interessa per estrarre i dati che ci inte
 	   FROM nome_tabella
 	   WHERE condizione;
 
-- Una colonna o tabella, puo' essere rinominata con la *parola chiave*.
-> `AS` per rinominare colonna o tabella o risultato funzione
+- Una colonna o tabella, puo' essere rinominata con la *parola chiave* `AS`.
+> per rinominare colonna o tabella o risultato funzione
 	SELECT nome_colonna AS variabile
 	FROM tabella;
 
@@ -61,8 +61,18 @@ Li dentro mettiamo tutto quello che ci interessa per estrarre i dati che ci inte
 | LIKE      | cerca per un pattern                |
 | IN        | specifica multipli valori possibili | 
 
+I record possono essere filtrati specificando piu' condizioni:
+- `AND` mostra un record *se tutte le condizioni* separate con esso vengono soddisfatte;
+- `OR` mostra record *se una qualsiasi delle condizioni* separate dallo stesso viene soddisfatta;
+- `NOT` mostra il record se il risultato della condizione e' "non vero".
+
+		SELECT colonna1, colonna2, ...
+		FROM tabella
+		WHERE condizione1 AND / OR / NOT condizione2 
+			AND / OR / NOT condizione3, ... ;
 
 # SELECT_ESEMPI
+## example1
 Immaginiamo di avere un db con al suo interno una tabella chiamata `Clienti`. Al suo interno ci sono 7 colonne e una di queste si chiama `paese`. Ora, immaginiamo di:
 
 `estrarre tutte le info dei clienti italiani`
@@ -71,24 +81,18 @@ SELECT * FROM Clienti
 WHERE paese='Italia';
 ```
 
-| ID  | nome                         | contatto         | indirizzo               | citta'        | cap   | paese  |
+| ID  | nome                         | contatto         | indirizzo               | citta        | cap   | paese  |
 | --- | ---------------------------- | ---------------- | ----------------------- | ------------- | ----- | ------ |
 | 27  | franchi s.p.a.               | Paolo Accorti    | Via Monte 34            | Torino        | 10100 | Italia |
 | 49  | magazzini alimentari riuniti | Giovanni Rovelli | Via Ludovico il Moro 22 | Bergamo       | 24100 | Italia |
 | 66  | Reggiani Caseifici           | Maurizio Moroni  | Strada Provinciale 124  | Reggio Emilia | 42100 | Italia |
 
-Il simbolo `*` serve a indicare <u>tutte le colonne</u> della tabella.
-Stiamo scrivendo una query che:
-- *seleziona* (`SELECT`) **tutte** (`*`) le colonne 
-- *dalla* (`FROM`) tabella `Clienti`
-- *dove* (`WHERE`) la condizione `paese='Italia'` viene rispettata
-
----
+## example2
 
 Immaginiamo ora di voler estrarre, sempre all'interno della stessa tabella `Clienti`, tutti i paesi che ne fanno parte.
 Per farlo ci serve un modo per fare distinzione tra duplicati (non vogliamo imbrogliare contando 2/3/4 volte il paese `Italia`).
 
-`contiamo il numero di paesi nella tabella`
+`estraiamo i paesi nella tabella`
 ```sql
 SELECT DISTINCT paese
 FROM Clienti;
@@ -105,16 +109,13 @@ FROM Clienti;
 | italia    | /   |
 | ...       | /   |
 
-Lo statement `SELECT DISTINCT` serve a estrarre soltanto i valori <u>non duplicati</u>:
-- *seleziona* (`SELECT`) **valori distinti** (`DISTINCT`) della colonna `paese`
-- *dalla* (`FROM`) tabella `Clienti`
-
----
+## example3
 
 Abbiamo una lista di `paesi`, vorremmo ora contarla.
 Gia' che ci siamo diamo un nome a quello che otteniamo.
 Facciamo uso della funzione `COUNT()` e di `AS`.
 
+`contiamo i paesi nella tabella e assegnamo variabile`
 ```sql
 SELECT COUNT(DISTINCT paese) AS numeroPaesi
 FROM Clienti;
@@ -124,6 +125,17 @@ FROM Clienti;
 | ----------- | --- |
 | 21          | /   | 
 
-Lo statement `SELECT COUNT(DISTINCT paese)`:
-- *seleziona* (`SELECT`) la **conta** (`COUNT`) delle istanze `paese` **distinte** (`DISTINCT`) **come** nuova variabile `numeroPaesi`
-- *dalla* (`FROM`) tabella `Clienti`
+## example4
+`estraiamo le info dei clienti in Germania ma solo dei paesi Munchen e Berlin`
+```sql
+SELECT * FROM Clienti
+WHERE paese = 'Germania' AND 
+	(citta = 'Berlin' OR citta = 'Munchen');
+```
+
+| ID  | nome                | contatto      | indirizzo         | citta   | cap   | paese    |
+| --- | ------------------- | ------------- | ----------------- | ------- | ----- | -------- |
+| 1   | alfreds futterkiste | Maria Anders  | Obere Str. 57     | Berlin  | 12209 | Germania |
+| 25  | Frankenversand      | Peter Franken | Berliner Platz 43 | Munchen | 80805 | Germania | 
+
+

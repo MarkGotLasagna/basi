@@ -87,8 +87,90 @@ Una *tabella* rappresenta una relazione (nel modello logico relazionale teorico)
 - le intestazioni delle colonne sono diverse tra loro
 - i valori di ogni colonna sono tra loro omogenei, sono valori del dominio (un numero non è una stringa)
 
+# Vincoli d'integrità
+Un *vincolo d'integrità* deve essere una proprietà di tutte le basi di dati, che deve essere rispettata. La base di dati viene presa per il suo intero e verificato che il vincolo restituisca VERO, ovvero sia corretta.
+Il compito del DBMS è quello di fare controlli in maniera più o meno efficiente, perché controllare tutto il DB è lento.
+
+Utilità:
+1) niente spazzatura nella base di dati, ho dati di qualità più alta
+2) sono effettivamente utili per il DBMS per eseguire interrogazioni in maniera efficiente
+3) utili nella progettazione
+
+I vincoli corrispondono a proprietà del mondo reale modellato dalla base di dati. A uno schema associamo un insieme di vincoli e consideriamo *corrette* le istanze che soddisfano tutti i vincoli.
+
+## Intrarelazionali
+Il vincolo riguarda *una sola* tabella/relazione e mi è sufficiente per verificare la veridicità del DB. I due vincoli non sono molto separati per quanto teoria, nei DBMS non c'è molta distinzione.
+
+### vincoli di $n$-upla 
+Controllo ogni singola $n$-upla. Indipendente una dalle altre.
+Ci dobbiamo immaginare tutti i valori possibili per il nostro dato: situazioni temporali, situazioni indefinite devono avere un comportamento da noi voluto.
+> [!example]
+Controllo se il voto è maggiore o uguale a 18 e sotto il 30.
+```sql
+(Voto >= 18) AND (Voto <= 30)
+(Voto = 30) AND NOT (Lode = "e lode")
+```
+
+### vincoli su valori (o dominio)
+Controllo il valore.
+
+### chiave
+Una **chiave** possiamo identificarla come un insieme di attributi per singola tabella/relazione, univoca, identificanti le $n$-uple di una relazione.
+Chiamiamo questo insieme di attributi $K$.
+Si chiama **superchiave** per $r$ se $r$ non contiene due $n$-uple distinte $t_1$ e $t_2$ con $t_1[K] = t_2[K]$.
 
 ---
-up to: 23-09
-last revision: 23-09
-seso pazo in unipr
+
+`Esempio`
+
+| Matricola | Congome | Nome | Corso | Nascita |
+| --------- | ------- | ---- | ----- | ------- |
+|           |         |      |       |         | 
+
+- Non esistono due persone con lo stesso numero `Matricola`, quindi questa sarà la nostra chiave.
+
+- `Congome`, `Nome`, `Nascita` potrebbe essere una chiave fintanto che non esista una persona che ha tutti e quanti gli stessi valori:
+	- è superchiave
+	- minimale
+
+---
+L'esistenza delle chiavi garantisce l'accessibilità a ciascun dato della base di dati; le chiavi permettono di correlare i dati in relazioni diverse (modello relazionale basato su valori).
+Nel caso di valori <u>NULL</u>, impedisce di usare chiavi, quindi da ricordare che una chiave non può avere questo valore.
+
+#### chiave primaria
+Sulla quale non sono MAI ammessi valori nulli, su nessun attributo componente la **chiave primaria** possiamo consentire il valore nullo.
+La <u>sottolineatura</u> identifica questa chiave.
+
+`Esempio`
+La `Matricola` e il `CodiceFiscale` possono fare chiave, ma primaria soltanto `Matricola` siccome uno studente potrebbe venire dall'estero e non avere il `CodiceFiscale`.
+
+## Interrelazionali
+Guardiamo *diverse* tabelle per verificare la veridicità.
+
+### integrità referenziale (di chiave esterna, foreign key)
+Quel vincolo che serve per dire che da *questa* tabella, scrivo un valore contenente in *un'altra* tabella.
+- informazioni in relazioni diverse sono correlate attraverso valori comuni
+- in particolare, valori delle chiavi (primarie), usiamo quasi sempre quelle
+- le correlazioni debbono essere "coerenti"
+
+---
+
+`Esempio`
+`Infrazioni`
+
+| Codice | Data | Vigile | Prov | Numero | 
+| ------ | ---- | ------ | ---- | ------ |
+
+`Vigili`
+
+| Matricola | Cognome | Nome | 
+| --------- | ------- | ---- |
+
+Il valore dell'attributo `Vigile` in tabella `Infrazioni`, deve essere un valore contenuto in tabella `Vigili`. Quindi c'è un vincolo di chiave esterna che lega `Vigile` -> `Matricola`.
+
+---
+
+Un vincolo di **integrità referenziale (foreign key)** fra gli attributi $X$ di una relazione $R_1$ e un'altra relazione $R_2$ impone ai valori su $X$ in $R_1$ di comparire come valori della chiave primaria di $R_2$.
+
+---
+up to: 27-09

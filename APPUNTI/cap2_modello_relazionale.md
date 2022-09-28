@@ -26,35 +26,30 @@ su insieme di attributi $X$, è una funzione che associa a ciascun attributo $A$
 **Base di dati**
 insieme di relazioni:
 $$r = \{r_1, \dots, r_n\}$$
-
-
-`esempio relazione su unico attributo:`
-
+> [!example] Esempio relazione su unico attributo
+> 
 | matricola |  /   | 
 | --------- | --- |
 | 6554      |   /  |
 | 3456      |    / |
 
-`esempio struttura nidificata:`
-Le strutture nidificate nel modello relazionale non sono consentite
-
+> [!example] Esempio di struttura nidificata
+> Le strutture nidificate non sono consentite nel modello ER
+> 
 | numero | data       | totale | quantità | descrizione |
 | ------ | ---------- | ------ | -------- | ----------- |
 | 1235   | 12/10/2002 | 39,20  | 3        | coperti     |
 |        |            |        | 2        | antipasti   |
 |        |            |        | 3        | primi       | 
-
-vengono piuttosto separate in 2 tabelle
-
-| numero | data | totale |
+> vengono piuttosto separate in 2 tabelle
+> 
+> | numero | data | totale |
 | ------ | ---- | ------ |
 | ...    | ...  | ...    | 
-
-| numero | quantità | descrizione |
+> 
+> | numero | quantità | descrizione |
 | ------ | -------- | ----------- |
 | ...    | ...      | ...         | 
-
-Situazioni in cui i valori dell'attributo non sono specificati, possono esistere e sono normali. 
 
 ### Relazione matematica
 $D_1 = \{a,b\}$
@@ -62,8 +57,10 @@ $D_2 = \{x, y, z\}$
 Il prodotto cartesiano sarebbe $D_1 * D_2$
 Una relazione $r \subseteq D_1 * D_2$
 
-`esempio:` $partite \subseteq string * string * int * int$
-
+> [!example] Esempio di tabella con nome "Partite"
+> 
+> $\mathtt{partite} \subseteq \mathtt{string} * \mathtt{string} * \mathtt{int} * \mathtt{int}$
+> 
 | casa  | fuori | reticasa | retifuori |
 | ----- | ----- | -------- | --------- |
 | Juve  | Lazio | 3        | 1         |
@@ -88,6 +85,7 @@ Una *tabella* rappresenta una relazione (nel modello logico relazionale teorico)
 - i valori di ogni colonna sono tra loro omogenei, sono valori del dominio (un numero non è una stringa)
 
 # Vincoli d'integrità
+#vincoli #chiavi 
 Un *vincolo d'integrità* deve essere una proprietà di tutte le basi di dati, che deve essere rispettata. La base di dati viene presa per il suo intero e verificato che il vincolo restituisca VERO, ovvero sia corretta.
 Il compito del DBMS è quello di fare controlli in maniera più o meno efficiente, perché controllare tutto il DB è lento.
 
@@ -104,12 +102,11 @@ Il vincolo riguarda *una sola* tabella/relazione e mi è sufficiente per verific
 ### vincoli di $n$-upla 
 Controllo ogni singola $n$-upla. Indipendente una dalle altre.
 Ci dobbiamo immaginare tutti i valori possibili per il nostro dato: situazioni temporali, situazioni indefinite devono avere un comportamento da noi voluto.
-> [!example]
-Controllo se il voto è maggiore o uguale a 18 e sotto il 30.
-```sql
-(Voto >= 18) AND (Voto <= 30)
-(Voto = 30) AND NOT (Lode = "e lode")
-```
+> [!example] Controllo se il voto è maggiore o uguale a 18 e sotto il 30.
+> ```sql
+> (Voto >= 18) AND (Voto <= 30)
+> (Voto = 30) AND NOT (Lode = "e lode")
+> ```
 
 ### vincoli su valori (o dominio)
 Controllo il valore.
@@ -119,21 +116,17 @@ Una **chiave** possiamo identificarla come un insieme di attributi per singola t
 Chiamiamo questo insieme di attributi $K$.
 Si chiama **superchiave** per $r$ se $r$ non contiene due $n$-uple distinte $t_1$ e $t_2$ con $t_1[K] = t_2[K]$.
 
----
+> [!example] Esempio di chiave
+> 
+> | <u>Matricola</u> | Congome | Nome | Corso | Nascita |
+> | --------- | ------- | ---- | ----- | ------- |
+> 
+> - Non esistono due persone con lo stesso numero `Matricola`, quindi questa sarà la nostra chiave.
+>   
+> - `Congome`, `Nome`, `Nascita` potrebbe essere una chiave fintanto che non esista una persona che ha tutti e quanti gli stessi valori:
+> 	- è superchiave
+> 	- minimale
 
-`Esempio`
-
-| Matricola | Congome | Nome | Corso | Nascita |
-| --------- | ------- | ---- | ----- | ------- |
-|           |         |      |       |         | 
-
-- Non esistono due persone con lo stesso numero `Matricola`, quindi questa sarà la nostra chiave.
-
-- `Congome`, `Nome`, `Nascita` potrebbe essere una chiave fintanto che non esista una persona che ha tutti e quanti gli stessi valori:
-	- è superchiave
-	- minimale
-
----
 L'esistenza delle chiavi garantisce l'accessibilità a ciascun dato della base di dati; le chiavi permettono di correlare i dati in relazioni diverse (modello relazionale basato su valori).
 Nel caso di valori <u>NULL</u>, impedisce di usare chiavi, quindi da ricordare che una chiave non può avere questo valore.
 
@@ -141,8 +134,8 @@ Nel caso di valori <u>NULL</u>, impedisce di usare chiavi, quindi da ricordare c
 Sulla quale non sono MAI ammessi valori nulli, su nessun attributo componente la **chiave primaria** possiamo consentire il valore nullo.
 La <u>sottolineatura</u> identifica questa chiave.
 
-`Esempio`
-La `Matricola` e il `CodiceFiscale` possono fare chiave, ma primaria soltanto `Matricola` siccome uno studente potrebbe venire dall'estero e non avere il `CodiceFiscale`.
+> [!example] Esempio
+La `Matricola` e il `CodiceFiscale` possono fare chiave, pero' sara' primaria soltanto `Matricola` siccome uno studente potrebbe venire dall'estero e non avere il `CodiceFiscale`.
 
 ## Interrelazionali
 Guardiamo *diverse* tabelle per verificare la veridicità.
@@ -153,24 +146,20 @@ Quel vincolo che serve per dire che da *questa* tabella, scrivo un valore conten
 - in particolare, valori delle chiavi (primarie), usiamo quasi sempre quelle
 - le correlazioni debbono essere "coerenti"
 
----
-
-`Esempio`
+> [!example]
 `Infrazioni`
-
+> 
+> 
 | Codice | Data | Vigile | Prov | Numero | 
 | ------ | ---- | ------ | ---- | ------ |
-
 `Vigili`
-
+> 
 | Matricola | Cognome | Nome | 
 | --------- | ------- | ---- |
-
 Il valore dell'attributo `Vigile` in tabella `Infrazioni`, deve essere un valore contenuto in tabella `Vigili`. Quindi c'è un vincolo di chiave esterna che lega `Vigile` -> `Matricola`.
-
----
 
 Un vincolo di **integrità referenziale (foreign key)** fra gli attributi $X$ di una relazione $R_1$ e un'altra relazione $R_2$ impone ai valori su $X$ in $R_1$ di comparire come valori della chiave primaria di $R_2$.
 
 ---
 up to: 27-09
+seso pazo in unipr

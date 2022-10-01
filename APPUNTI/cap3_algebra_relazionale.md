@@ -1,5 +1,5 @@
 # Algebra e calcolo relazionale
-#algebra-relazionale #procedurali #ridenominazione 
+#algebra-relazionale #procedurali #ridenominazione #selezione #proiezione #join 
 
 I linguaggi possono essere distinti in:
 - *dichiarativi*, specificano le proprietà del risultato("che cosa")
@@ -62,5 +62,132 @@ Possiamo usare selezione e proiezione insieme:
 
 Non possiamo correlare informazioni presenti in relazioni diverse, nè informazioni in $n$-upla diverse di una stessa relazione.
 
+### JOIN
+Permette di correlare dati in relazioni diverse.
+Cardinalita':
+- il join di $R_1$ e $R_2$ contiene un numero di $n$-uple:
+	- compreso fra 0 e il prodotto di $|R_1|$ e $|R_2|$
+- se coinvolge una chiave di $R_2$ allora il numero di $n$-uple è:
+	- compreso fra 0 e $|R_1|$
+- se il join coinvolge una chiave di $R_2$ e vincolo d'integrità referenziale, allora il numero di $n$-uple è
+	- pari a $|R_1$|
+
+$R_1\ \mathrm{JOIN}\ R_2$ e' una relazione su $X_1 X_2$ (intesa come unione):
+$$\{t\ \mathrm{su}\ X_1X_2\ |\ \mathrm{esistono}\ t_1 \in R_1 \wedge t_2 \in R_2\ \mathrm{con}\ t[X_1]=t_1 \wedge t[X_2]=t_2\}$$
+
+Per ogni riga che si trova nella tabella di sinistra, guardiamo quante di righe hanno un attributo in comune con la tabella di destra e uniamo nel caso in cui questa incidenza esista.
+
+#### JOIN NATURALE
+Immaginiamo di avere una due tabelle e volessimo unire le due, seguendo un criterio: `numero` deve essere contenuto in entrambe.
+Possiamo farlo con il **join naturale** dove i miei attributi coincidono su un attributo. Noi non dobbiamo fare nulla, il join e' automatico se l'attributo comune esiste.
+
+> [!example] JOIN NATURALE
+> 
+| numero | voto |
+| ------ | ---- |
+| 1      | 25   |
+| 2      | 13   |
+| 3      | 27   |
+| 4      | 28   | 
+> 
+| numero | candidato     |
+| ------ | ------------- |
+| 1      | mario rossi   |
+| 2      | nicola russo  |
+| 3      | mario bianchi |
+| 4      | remo neri     | 
+> 
+| numero | candidato    | voto |
+| ------ | ------------- | ---- |
+| 1      | mario rossi   | 25   |
+| 2      | nicola russo  | 13   |
+| 3      | mario bianchi | 27   |
+| 4      | remo neri     | 28   | 
+
+Produce un risultato:
+- sull'unione degli attributi degli operandi
+- con $n$-uple costruite ciascuna a partire da una $n$-upla di ognuno degli operandi
+
+#### JOIN COMPLETO
+Ogni $n$-upla contribuisce al risultato. Nessuna viene eliminata.
+Tuttavia se non troviamo attributi uguali, il join diventa *incompleto*.
+>[!example] JOIN COMPLETO tuttavia vuoto
+>
+> | impiegato | reparto |
+> | --------- | ------- |
+> | Rossi     | A       |
+> | Neri      | B       |
+> | Binachi   | B       |
+>
+> | reparto | capo |
+> | ------- | ---- |
+> | B       | Mori |
+> | C       | Bruni     |
+>
+> | impiegato | reparto | capo | 
+> | --------- | ------- | ---- |
+
+#### JOIN ESTERNO
+Estende con *valori NULL* le $n$-uple che verrebbero tagliate fuori da un join interno, si può fare sulla sinistra, destra o completo: tutte le $n$-uple dell'argomento di sinistra vengono prese e per gli argomenti di destra, se non ci sono, vanno a NULL (*outer left join*).
+- *sinistro* mantiene tutte le $n$-uple del primo operando, estendendo con NULL se necessario;
+- *destro* del secondo operando;
+- *completo* su entrambi gli operandi
+
+> [!example] JOIN LEFT con le tabelle di prima
+> 
+> | impiegato | reparto |
+> | --------- | ------- |
+> | Rossi     | A       |
+> | Neri      | B       |
+> | Binachi   | B       |
+>
+> | reparto | capo |
+> | ------- | ---- |
+> | B       | Mori |
+> | C       | Bruni     |
+> $\mathrm{impiegati}\ \mathrm{JOIN}_{LEFT}\ \mathrm{reparti}$
+> 
+| impiegato | reparto | capo |
+| --------- | ------- | ---- |
+| neri      | B       | mori |
+| bianchi   | B       | mori |
+| rossi     | A       | NULL | 
+> $\mathrm{impiegati}\ \mathrm{JOIN}_{RIGHT}\ \mathrm{reparti}$
+> 
+| impiegato | reparto | capo  |
+| --------- | ------- | ----- |
+| neri      | B       | mori  |
+| bianchi   | B       | mori  |
+| NULL      | C       | bruni | 
+> $\mathrm{impiegati}\ \mathrm{JOIN}_{FULL}\ \mathrm{reparti}$
+>
+| impiegato | reparto | capo  |
+| --------- | ------- | ----- |
+| neri      | B       | mori  |
+| bianchi   | B       | mori  |
+| rossi     | A       | NULL  |
+| NULL      | C       | bruni | 
+
+#### JOIN E PROIEZIONI
+Se prendessimo due tabelle e facessimo INNER JOIN (JOIN NATURALE), con una successiva PROIEZIONE, non e' detto che si ritorni alla tabella originale. Quando il JOIN non e' completo, allora accade.
+
+$$\mathrm{PROJ}_{X_1}(R_1\ \mathrm{JOIN}\ R_2)\subseteq R_1$$
+Se facessimo l'operazione inversa (prima due PROIEZIONI e poi il JOIN), otterremmo piu' $n$-uple di quelle di partenza. 
+
+$$(\mathrm{PROJ}_{X_1}(R))\ \mathrm{JOIN}\ (\mathrm{PROJ}_{X_2}(R)) \supseteq R$$
+#### PRODOTTO CARTESIANO
+Sarebbe un JOIN NATURALE su relazioni senza attributi in comune.
+Contiene sempre un numero di $n$-uple pari al prodotto delle cardinalita' degli operandi (tutte combinabili).
+
+![[Pasted image 20221001123517.png|500]]
+
+Di solito viene susseguito con un SELECT se vogliamo dargli un senso:
+$$\mathrm{SEL}_{condizione}(R_1\ \mathrm{JOIN}\ R_2)$$
+L'operazione viene chiamata *theta-join*, JOIN con condizione:
+$$R_1\ \mathrm{JOIN}_{condizione}\ R_2$$
+Se l'operazione di confronto (condizione) nel theta-join e' sempre l'uguaglianza (=) allora di parla di *equi-join*:
+
+![[Pasted image 20221001124510.png|500]]
+
 ---
-up to: 28-09
+up to: 30-09

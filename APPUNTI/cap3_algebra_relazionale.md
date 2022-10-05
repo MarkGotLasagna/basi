@@ -1,5 +1,5 @@
 # Algebra e calcolo relazionale
-#algebra-relazionale #procedurali #ridenominazione #selezione #proiezione #join 
+#algebra-relazionale #procedurali #ridenominazione #selezione #proiezione #join #viste 
 
 I linguaggi possono essere distinti in:
 - *dichiarativi*, specificano le proprietà del risultato("che cosa")
@@ -34,9 +34,10 @@ Operatore monadico (su una tabella) che *modifica lo schema*, non l'istanza, cam
 
 ### Selezione
 Operatore monadico (su una sola tabella) che produce un risultato con lo stesso schema dell'operando e contiene una *selezione* delle $n$-uple che soddisfano un *predicato* (VERO o FALSO).
+Semplicemente: prende una `condizione` e ritorna i risultati soddisfacenti la condizione, contenuti nella tabella `operando`.
 
 $$\mathrm{SEL}_{Condizione}(\mathrm{Operando})$$
-dove <sub>condizione</sub> è una espressione booleana
+dove $Condizione$ è una espressione booleana
 
 > [!example] Impiegati che guadagnano più di 50
 > SEL<sub>stipendio > 50</sub>(Impiegati)
@@ -47,6 +48,7 @@ dove <sub>condizione</sub> è una espressione booleana
 ### Proiezione
 Decomposizione verticale, operatore ortogonale.
 Anche lui operatore monadico, parametrico.
+Semplicemente: prende una `lista di attributi` riguardante a una tabella (`operando`) e restituisce solo quelli specificati.
 
 $$\mathrm{PROJ}_{ListaAttributi}(\mathrm{Operando})$$
 > [!example] Cognome e filiale di tutti gli impiegati
@@ -55,7 +57,7 @@ $$\mathrm{PROJ}_{ListaAttributi}(\mathrm{Operando})$$
 Una proiezione contiene al più tante $n$-uple quante l'operando e può contenerne di meno. 
 Se $X$ è una superchiave di $R$, allora $\mathrm{PROJ}_X(R)$ contiene esattamente tante $n$-uple quante $R$.
 
-Possiamo usare selezione e proiezione insieme:
+Possiamo usare selezione e proiezione insieme, per restituire risultati di una selezione per delle colonne specifiche solo del SELECT:
 
 > [!example] Matricola e cognome degli impiegati che guadagnano più di 50
 > PROJ<sub>matricola,cognome</sub>(SEL<sub>stipendio > 50</sub>(Impiegati))
@@ -189,5 +191,20 @@ Se l'operazione di confronto (condizione) nel theta-join e' sempre l'uguaglianza
 
 ![[Pasted image 20221001124510.png|500]]
 
+### VISTE
+Sono rappresentazioni dei dati per *schema esterno*.
+- relazioni derivate, cui contenuto è funzione di altre relazioni;
+- relazioni di base, a contenuto autonomo.
+
+Ci sono 2 tipi di relazioni derivate:
+- <u>viste materializzate</u>, funzionano molto bene fintanto che le relazioni rimangono costanti nel tempo, ovvero non cambiano troppo frequentemente (che non vedremo);
+- <u>relazioni virtuali (viste)</u>, supportate da tutti i DBMS, un'interrogazione su una vista viene eseguita "ricalcolando" la vista;
+
+Rimpiazzare pezzi grossi in un nome che mi dà significato, aiuta nella comprensione delle interrogazioni da farsi. Nello schema esterno ogni utente vede solo:
+- ciò che gli interessa;
+- ciò che è autorizzato a vedere.
+
+![[Pasted image 20221005115904.png]]
+
 ---
-up to: 30-09
+up to: 10-05

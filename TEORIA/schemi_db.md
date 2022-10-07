@@ -2,7 +2,7 @@
 > [!note]
 > *pk* è <u>primary key</u>
 > *fk* foreign key
-> `*` indica opzionale
+> `*` indica opzionale, quindi annullabile
 
 Per il nome delle tabelle ci concentriamo sul plurale.
 

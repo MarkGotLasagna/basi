@@ -17,3 +17,6 @@ La sintassi per `mariadb` e' pressoche' uguale a quella di `postgresql`.
 # INDEX
 - [[SQL_SELECT]]
 - 
+
+# ESEMPI
+- [[SQL_ISCRIZIONI_UNIVERSITARIE]]

@@ -22,7 +22,6 @@ Nell'interfaccia grafica possiamo fare JOIN tra *schemi* (collezione di tabelle)
 > [!note]
 > Personalmente non uso GUI perche' faccio prima da Visual Studio
 
-
 ## CREATE TABLE
 Per creare porzioni di schema usiamo l'istruzione `CREATE TABLE`:
 - definisce uno schema di relazione e ne crea un'istanza vuota;
@@ -100,6 +99,8 @@ CREATE TABLE infrazioni (
 
 Ci sono casi in cui il DBMS si rifiuta di cancellare le tabelle nel caso in cui siano referenziate da altre tabelle da diverse, usiamo in quel caso la parola chiave `CASCADE`.
 `es.:` non posso cancellare `vigili` siccome nella tabella delle `infrazioni` c'è un vincolo di chiave esterna che ne fa indice. Usiamo in questo caso `CASCADE` e il vincolo di chiave esterna sparisce.
+
+
 
 ---
 lezione: 2022-10-11

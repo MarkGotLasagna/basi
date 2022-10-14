@@ -1,10 +1,10 @@
 [[UNI/BASI/README]]
 
 Topic:
-- [[cap1_concetti_base]]
-- [[cap2_modello_relazionale]]
-- [[cap3_algebra_relazionale]]
-- [[cap4_SQL]]
+- [[CAP1_CONCETTI_BASE]]
+- [[CAP2_MODELLO_RELAZIONALE]]
+- [[CAP3_ALGEBRA_RELAZIONALE]]
+- [[CAP4_SQL]]
 
 SQL
 - [[SQL_INTRO_INDEX]]

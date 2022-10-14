@@ -1,7 +1,7 @@
 # Concetti di base
 #database #dbms #transazione #schema #istanze #viste #modello-relazionale #entity-relationship #ddl #dml #amministratore-db 
 
-<center> <mark> Basi di dati </mark> </center>
+<center> Che cosa e' una <mark> Basi di dati</mark> ? </center>
 
 Un insieme organizzato di dati utilizzati per il supporto allo svolgimento delle attività di un ente, gestiti da un DBMS (database management systems). Un sistema è qualcosa di complicato, non è semplicemente uno strumento ma sono tante funzioni unite.
 
@@ -18,7 +18,7 @@ Esistono modelli diversi di dati, ma ci occuperemo solamente del #modello-relazi
 Si parla d'*indipendenza fisica* per tutti i DBMS,
 si parla d'*indipendenza logica* delle tabelle di base.
 
-<center> <mark> DBMS </mark> </center>
+<center> Che cosa e' un <mark> DBMS</mark> ?</center>
 
 - privatezza
 - affidabilità, mettendo in gioco politiche per recuperare dati per malfunzionamenti, con gestione delle *transazioni*
@@ -28,7 +28,7 @@ I *file system* estendono quelli tradizionali, fornendo più servizi in maniera 
 Esiste all'interno dello stesso una porzione che contiene *descrizione centralizzata dei dati*, che può essere utilizzata dai vari programmi
 (catalogo o dizionario), che serve come indice.
 
-<center> <mark> Transazione </mark> </center>
+<center> Che cosa e' una <mark> Transazione</mark> ?</center>
 
 O vanno tutte a buon fine, oppure vengono riprese.
 Un insieme *indivisibile* (<u>atomico</u>) corretto anche in presenza di concorrenza e con effetti definitivi.
@@ -54,7 +54,6 @@ Sono <u>concorrenti</u>, sono <u>permanenti</u>.
 
 - **schema**, <u>intestazioni della tabella</u>, descrivono la struttura invariante nel tempo
 - **istanza**, i valori attuali che possono cambiare rapidamente, il <u>corpo di ogni tabella</u>
-
 ```mermaid
 flowchart TD
 	id(schema esterno) --> id1(schema logico)

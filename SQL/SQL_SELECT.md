@@ -94,6 +94,20 @@ SELECT colonna3, colonna4
 FROM tabella2
 ```
 
+Le $n$-uple possono essere raggruppate a singoli gruppetti, usando `GROUP BY`, ad esempio:
+```sql
+-- numero di figli di ciascun padre
+SELECT padre, COUNT(*) AS NumFigli
+FROM paternita
+GROUP BY padre
+```
+
+| Padre  | NumFigli |
+| ------ | -------- |
+| Sergio | 1        |
+| Luigi  | 2        |
+| Franco | 2        | 
+
 ## Interrogazione nidificata
 Il confronto tra attributo e risultato di sotto-interrogazione è possibile, l'attributo ha un solo valore. Le quantificazioni esistenziali sono il caso cardine. La forma piana e la forma nidificata possono essere combinate, c'è da dire che la forma nidificata è "meno dichiarativa" ma talvolta più leggibile.
 > [!example] Esempio

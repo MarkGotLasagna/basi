@@ -193,4 +193,3 @@ WHERE paese = 'Germania' AND
 | 25  | Frankenversand      | Peter Franken | Berliner Platz 43 | Munchen | 80805 | Germania | 
 
 ## example5
-`uniamo `

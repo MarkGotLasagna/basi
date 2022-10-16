@@ -17,22 +17,26 @@ Insieme di operatori:
 
 Con l'algebra relazionale lavoriamo con tabelle/relazioni e applichiamo operatori sulle stesse per produrre altre tabelle.
 
-### Operatori insiemistici
+### Operatori insiemistici ( $\cup, \cap, -$ )
 Le relazioni sono degli **insiemi**, con risultati relazioni.
 Posso fare l'unione $\cup$ di 2 relazioni con $n$-uple di entrambe? Sì, a condizione che le 2 relazioni siano definite sullo stesso insieme di attributi (non posso fare 15 $\cup$ 5).
 - *unione* $\cup$, unisce gli attributi delle tabelle, il risultato è un insieme di $n$-uple (relazione), i duplicati vengono eliminati
 - *intersezione* $\cap$, con le $n$-uple uguali tra entrambe le relazioni
 - *differenza* $-$
 
-### Ridenominazione
+> [!warning] Nota sulla compatibilità
+> La possibilità di operare con $\cup$ e $\cap$ sussiste **fintanto che le due relazioni in questione abbiano cardinalità uguale**.  Questo è dato dal fatto che l'intersezione è una unione con sottrazione; le due relazioni devono essere quindi compatibili per l'unione se vogliamo che l'intersezione sia possibile.
+
+### Ridenominazione ( $\rho_{a/b}(R)$ )
 Operatore monadico (su una tabella) che *modifica lo schema*, non l'istanza, cambiando il nome di 1 o più attributi.
+$$\mathrm{REN}_{newName\gets oldName}(Operando)$$
 
 > [!example] Ridenominare 2 tabelle
 > L'unione tra 2 tabelle con attributi "Madre" e "Padre" non è possibile siccome il nome degli attributi è diverso, possiamo tuttavia ridenominare questi
 > 
 > REN<sub>genitore$\gets$padre</sub>(Paternità) $\cup$ REN<sub>genitore$\gets$madre</sub>(Maternità)
 
-### Selezione
+### Selezione ( $\sigma_{\varphi}(R)$ )
 Operatore monadico (su una sola tabella) che produce un risultato con lo stesso schema dell'operando e contiene una *selezione* delle $n$-uple che soddisfano un *predicato* (VERO o FALSO).
 Semplicemente: prende una `condizione` e ritorna i risultati soddisfacenti la condizione, contenuti nella tabella `operando`.
 
@@ -45,7 +49,18 @@ dove $Condizione$ è una espressione booleana
 > [!example] Impiegati che guadagnano più di 50 e lavorano a 'Milano'
 > SEL<sub>stipendio > 50 AND filiale = 'Milano'</sub>(Impiegati)
 
-### Proiezione
+> [!warning] Nota sui valori `NULL`
+> Nell'algebra relazionale (quindi in `psql`) i valori `NULL` **non sono distinti l'uno dall'altro**. Questo significa che operazioni come $A \neq B$ dove $A=0$ e $B=\mathtt{NULL}$, restituiranno sempre $\mathtt{unknown}$ siccome `NULL` non è ben definito.
+> 
+| $A$             | $B$             | $(A \neq B)$       | $A\ \mathrm{IS\ DISTINCT\ FROM}\ B$ |
+| --------------- | --------------- | ------------------ | ----------------------------------- |
+| 0               | 0               | $\mathtt{false}$   | $\mathtt{false}$                    |
+| 0               | 1               | $\mathtt{true}$    | $\mathtt{true}$                     |
+| 0               | $\mathtt{NULL}$ | $\mathtt{unknown}$ | $\mathtt{true}$                     |
+| $\mathtt{NULL}$ | $\mathtt{NULL}$ | $\mathtt{unknown}$ | $\mathtt{false}$                    | 
+
+
+### Proiezione ( $\Pi_{a_1, \dotsc, a_n}(R)$ )
 Decomposizione verticale, operatore ortogonale.
 Anche lui operatore monadico, parametrico.
 Semplicemente: prende una `lista di attributi` riguardante a una tabella (`operando`) e restituisce solo quelli specificati.
@@ -62,11 +77,11 @@ Possiamo usare selezione e proiezione insieme, per restituire risultati di una s
 > [!example] Matricola e cognome degli impiegati che guadagnano più di 50
 > PROJ<sub>matricola,cognome</sub>(SEL<sub>stipendio > 50</sub>(Impiegati))
 
-Non possiamo correlare informazioni presenti in relazioni diverse, nè informazioni in $n$-upla diverse di una stessa relazione.
+Non possiamo correlare informazioni presenti in relazioni diverse, né informazioni in $n$-upla diverse di una stessa relazione.
 
 ### JOIN
 Permette di correlare dati in relazioni diverse.
-Cardinalita':
+Cardinalità:
 - il join di $R_1$ e $R_2$ contiene un numero di $n$-uple:
 	- compreso fra 0 e il prodotto di $|R_1|$ e $|R_2|$
 - se coinvolge una chiave di $R_2$ allora il numero di $n$-uple è:
@@ -79,27 +94,27 @@ $$\{t\ \mathrm{su}\ X_1X_2\ |\ \mathrm{esistono}\ t_1 \in R_1 \wedge t_2 \in R_2
 
 Per ogni riga che si trova nella tabella di sinistra, guardiamo quante di righe hanno un attributo in comune con la tabella di destra e uniamo nel caso in cui questa incidenza esista.
 
-#### JOIN NATURALE
+#### JOIN NATURALE ( $R \bowtie S$ )
 Immaginiamo di avere una due tabelle e volessimo unire le due, seguendo un criterio: `numero` deve essere contenuto in entrambe.
 Possiamo farlo con il **join naturale** dove i miei attributi coincidono su un attributo. Noi non dobbiamo fare nulla, il join e' automatico se l'attributo comune esiste.
 
 > [!example] JOIN NATURALE
 > 
-| numero | voto |
-| ------ | ---- |
+| <mark style="background: #FF5582A6;">numero</mark> | voto |
+| ------ |:---- |
 | 1      | 25   |
 | 2      | 13   |
 | 3      | 27   |
-| 4      | 28   | 
+| 4      | 28   |
 > 
-| numero | candidato     |
+| <mark style="background: #FF5582A6;">numero</mark> | candidato     |
 | ------ | ------------- |
 | 1      | mario rossi   |
 | 2      | nicola russo  |
 | 3      | mario bianchi |
 | 4      | remo neri     | 
 > 
-| numero | candidato    | voto |
+| <mark style="background: #FF5582A6;">numero</mark> | candidato    | voto |
 | ------ | ------------- | ---- |
 | 1      | mario rossi   | 25   |
 | 2      | nicola russo  | 13   |
@@ -113,20 +128,21 @@ Produce un risultato:
 #### JOIN COMPLETO
 Ogni $n$-upla contribuisce al risultato. Nessuna viene eliminata.
 Tuttavia se non troviamo attributi uguali, il join diventa *incompleto*.
+
 >[!example] JOIN COMPLETO tuttavia vuoto
 >
-> | impiegato | reparto |
+> | impiegato | <mark style="background: #FF5582A6;">reparto</mark> |
 > | --------- | ------- |
 > | Rossi     | A       |
 > | Neri      | B       |
 > | Binachi   | B       |
 >
-> | reparto | capo |
+> | <mark style="background: #FF5582A6;">reparto</mark> | capo |
 > | ------- | ---- |
 > | B       | Mori |
 > | C       | Bruni     |
 >
-> | impiegato | reparto | capo | 
+> | impiegato | <mark style="background: #FF5582A6;">reparto</mark> | capo | 
 > | --------- | ------- | ---- |
 
 #### JOIN ESTERNO
@@ -141,7 +157,7 @@ Estende con *valori NULL* le $n$-uple che verrebbero tagliate fuori da un join i
 > | --------- | ------- |
 > | Rossi     | A       |
 > | Neri      | B       |
-> | Binachi   | B       |
+> | Bianchi   | B       |
 >
 > | reparto | capo |
 > | ------- | ---- |
@@ -149,21 +165,21 @@ Estende con *valori NULL* le $n$-uple che verrebbero tagliate fuori da un join i
 > | C       | Bruni     |
 > $\mathrm{impiegati}\ \mathrm{JOIN}_{LEFT}\ \mathrm{reparti}$
 > 
-| impiegato | reparto | capo |
+| <mark style="background: #BBFABBA6;">impiegato</mark> | <mark style="background: #BBFABBA6;">reparto</mark> | capo |
 | --------- | ------- | ---- |
 | neri      | B       | mori |
 | bianchi   | B       | mori |
 | rossi     | A       | NULL | 
 > $\mathrm{impiegati}\ \mathrm{JOIN}_{RIGHT}\ \mathrm{reparti}$
 > 
-| impiegato | reparto | capo  |
+| impiegato | <mark style="background: #BBFABBA6;">reparto</mark> | <mark style="background: #BBFABBA6;">capo</mark>  |
 | --------- | ------- | ----- |
 | neri      | B       | mori  |
 | bianchi   | B       | mori  |
 | NULL      | C       | bruni | 
 > $\mathrm{impiegati}\ \mathrm{JOIN}_{FULL}\ \mathrm{reparti}$
 >
-| impiegato | reparto | capo  |
+| <mark style="background: #BBFABBA6;">impiegato</mark> | <mark style="background: #BBFABBA6;">reparto</mark> | <mark style="background: #BBFABBA6;">capo</mark>  |
 | --------- | ------- | ----- |
 | neri      | B       | mori  |
 | bianchi   | B       | mori  |
@@ -177,7 +193,7 @@ $$\mathrm{PROJ}_{X_1}(R_1\ \mathrm{JOIN}\ R_2)\subseteq R_1$$
 Se facessimo l'operazione inversa (prima due PROIEZIONI e poi il JOIN), otterremmo piu' $n$-uple di quelle di partenza. 
 
 $$(\mathrm{PROJ}_{X_1}(R))\ \mathrm{JOIN}\ (\mathrm{PROJ}_{X_2}(R)) \supseteq R$$
-#### PRODOTTO CARTESIANO
+#### PRODOTTO CARTESIANO ( $\times$ )
 Sarebbe un JOIN NATURALE su relazioni senza attributi in comune.
 Contiene sempre un numero di $n$-uple pari al prodotto delle cardinalita' degli operandi (tutte combinabili).
 
@@ -185,13 +201,13 @@ Contiene sempre un numero di $n$-uple pari al prodotto delle cardinalita' degli 
 
 Di solito viene susseguito con un SELECT se vogliamo dargli un senso:
 $$\mathrm{SEL}_{condizione}(R_1\ \mathrm{JOIN}\ R_2)$$
-L'operazione viene chiamata *theta-join*, JOIN con condizione:
+L'operazione viene chiamata *theta-join* ( $R\bowtie_{\theta}S$ ), JOIN con condizione:
 $$R_1\ \mathrm{JOIN}_{condizione}\ R_2$$
 Se l'operazione di confronto (condizione) nel theta-join e' sempre l'uguaglianza (=) allora di parla di *equi-join*:
 
 ![[Pasted image 20221001124510.png|500]]
 
-### VISTE
+### VISTE ( $:=$ )
 Sono rappresentazioni dei dati per *schema esterno*.
 - relazioni derivate, cui contenuto è funzione di altre relazioni;
 - relazioni di base, a contenuto autonomo.
@@ -204,7 +220,69 @@ Rimpiazzare pezzi grossi in un nome che mi dà significato, aiuta nella comprens
 - ciò che gli interessa;
 - ciò che è autorizzato a vedere.
 
-![[Pasted image 20221005115904.png]]
+$$nomeVista_{listaAttributi} := \mathrm{PROJ}_{attributi}(Operando)\  \mathrm{UNION}\ \cdots$$
+
+> [!example] Modello e prezzo di tutti i prodotti costruiti da un produttore
+> $tuttiProdotti(model,price) :=$
+> $\ \ \ \mathrm{PROJ}_{model,price}(PC)\ \mathrm{UNION}$
+> $\ \ \ \mathrm{PROJ}_{model,price}(LAPTOP)\ \mathrm{UNION}$
+> $\ \ \ \mathrm{PROJ}_{model,price}(PRINTER)$
+
+# Esempi
+
+`Impiegati`
+
+| Matricola | Cognome | Filiale | Stipendio |
+| --------- | ------- | ------- | --------- |
+| 7309      | Neri    | Napoli  | 55        |
+| 5998      | Neri    | Milano  | 64        |
+| 9553      | Rossi   | Roma    | 44        |
+| 5698      | Rossi   | Roma    | 64        | 
+
+> [!example] Impiegati che guadagnano piu' di 50 e lavorano a Milano
+> $\mathrm{SEL}_{stipendio > 50\ \mathrm{AND}\ Filiale='Milano'}(Impiegati)$
+
+> [!example]  Matricola e cognome di tutti gli impiegati
+> $\mathrm{PROJ}_{matricola, cognome}(Impiegati)$
+
+> [!example] Matricola e cognome degli impiegati che guadagnano piu' di 50
+> $\mathrm{PROJ}_{matricola, cognome}(\mathrm{SEL}_{stipendio > 50}(Impiegati))$
+
+---
+
+`Impiegati`
+
+| Matricola | Nome    | Eta | Stipendio |
+| --------- | ------- | --- | --------- |
+| 7309      | Rossi   | 34  | 45        |
+| 5998      | Bianchi | 37  | 38        |
+| 9553      | Neri    | 42  | 35        |
+| 5698      | Bruni   | 43  | 42        |
+| 4076      | Mori    | 45  | 50        |
+| 8123      | Lupi    | 46  | 60        | 
+
+`Supervisione`
+
+| Impiegato | Capo |
+| --------- | ---- |
+| 7309      | 5698 |
+| 5998      | 5698 |
+| 9553      | 4076 |
+| 5698      | 4076 |
+| 4076      | 8123 | 
+
+
+> [!example] Nome e stipendio dei capi degli impiegati che guadagnano piu' di 50
+> 	$\mathrm{PROJ}_{nome, stipendio}(Supervisione\ \mathrm{JOIN}_{capo = matricola}\ (\mathrm{SEL}_{stipendio > 50}(Impiegati)))$
+
+> [!example] Trovare gli impiegati che guadagnano più del proprio capo, mostrando matricola, nome e stipendio dell'impiegato e del capo
+> $\mathrm{PROJ}_{matricola, nome, stipendio, matricolaC, nomeC, stipendioC}$
+> $\ \ \ (\mathrm{SEL}_{stipendio > stipendioC}$
+> $\ \ \ \ \ \ (\mathrm{REN}_{matricolaC, nomeC, stipendioC \gets matricola, nome, stipendio}(Impiegati)$
+> $\ \ \ \ \ \ \ \mathrm{JOIN}_{matricolaC = capo}$
+> $\ \ \ \ \ \ (Supervisione\ \mathrm{JOIN}_{impiegato = matricola}\ Impiegati)))$
+
+
 
 ---
 up to: 10-05

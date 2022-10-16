@@ -212,5 +212,3 @@ WHERE paese = 'Germania' AND
 | --- | ------------------- | ------------- | ----------------- | ------- | ----- | -------- |
 | 1   | alfreds futterkiste | Maria Anders  | Obere Str. 57     | Berlin  | 12209 | Germania |
 | 25  | Frankenversand      | Peter Franken | Berliner Platz 43 | Munchen | 80805 | Germania | 
-
-## example5

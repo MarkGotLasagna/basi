@@ -15,14 +15,13 @@ Insieme di operatori:
 - che producono relazioni
 - possono essere composti
 
-Con l'algebra relazionale lavoriamo con tabelle/relazioni e applichiamo operatori sulle stesse per produrre altre tabelle.
+Con l'algebra relazionale lavoriamo su tabelle/relazioni e applichiamo strutture algebriche con semantiche ben fondate, per produrre altre tabelle.
 
 ### Operatori insiemistici ( $\cup, \cap, -$ )
-Le relazioni sono degli **insiemi**, con risultati relazioni.
-Posso fare l'unione $\cup$ di 2 relazioni con $n$-uple di entrambe? Sì, a condizione che le 2 relazioni siano definite sullo stesso insieme di attributi (non posso fare 15 $\cup$ 5).
-- *unione* $\cup$, unisce gli attributi delle tabelle, il risultato è un insieme di $n$-uple (relazione), i duplicati vengono eliminati
-- *intersezione* $\cap$, con le $n$-uple uguali tra entrambe le relazioni
-- *differenza* $-$
+Le relazioni sono degli **insiemi** di $n$-uple.
+- *unione* $A \cup B$, unisce tutti gli attributi delle tabelle, i duplicati vengono eliminati;
+- *intersezione* $A \cap B$, produce relazione di $n$-uple uguali tra entrambe le relazioni;
+- *differenza* $A - B$, relazione di $n$-uple non contenute in $B$.
 
 > [!warning] Nota sulla compatibilità
 > La possibilità di operare con $\cup$ e $\cap$ sussiste **fintanto che le due relazioni in questione abbiano cardinalità uguale**.  Questo è dato dal fatto che l'intersezione è una unione con sottrazione; le due relazioni devono essere quindi compatibili per l'unione se vogliamo che l'intersezione sia possibile.
@@ -30,6 +29,8 @@ Posso fare l'unione $\cup$ di 2 relazioni con $n$-uple di entrambe? Sì, a condi
 ### Ridenominazione ( $\rho_{a/b}(R)$ )
 Operatore monadico (su una tabella) che *modifica lo schema*, non l'istanza, cambiando il nome di 1 o più attributi.
 $$\mathrm{REN}_{newName\gets oldName}(Operando)$$
+$$\rho_{A_1, \dotsc, A_n \gets a_1, \dotsc, a_n}(R)$$
+Gli attributi $a_1, \dotsc, a_n$ assumono nuovo nome $A_1, \dotsc, A_n$ per la relazione $R$.
 
 > [!example] Ridenominare 2 tabelle
 > L'unione tra 2 tabelle con attributi "Madre" e "Padre" non è possibile siccome il nome degli attributi è diverso, possiamo tuttavia ridenominare questi
@@ -37,11 +38,10 @@ $$\mathrm{REN}_{newName\gets oldName}(Operando)$$
 > REN<sub>genitore$\gets$padre</sub>(Paternità) $\cup$ REN<sub>genitore$\gets$madre</sub>(Maternità)
 
 ### Selezione ( $\sigma_{\varphi}(R)$ )
-Operatore monadico (su una sola tabella) che produce un risultato con lo stesso schema dell'operando e contiene una *selezione* delle $n$-uple che soddisfano un *predicato* (VERO o FALSO).
-Semplicemente: prende una `condizione` e ritorna i risultati soddisfacenti la condizione, contenuti nella tabella `operando`.
-
+Operatore monadico (su una sola tabella) che produce un risultato con lo stesso schema dell'operando e contiene una *selezione* delle $n$-uple che soddisfano un *predicato* (`TRUE`, `FALSE`). Semplicemente: prende una condizione e ritorna i risultati soddisfacenti la condizione.
 $$\mathrm{SEL}_{Condizione}(\mathrm{Operando})$$
-dove $Condizione$ è una espressione booleana
+$$\sigma_{Condizione}(R)$$
+dove $Condizione$ è una formula proposizionale.
 
 > [!example] Impiegati che guadagnano più di 50
 > SEL<sub>stipendio > 50</sub>(Impiegati)
@@ -63,15 +63,14 @@ dove $Condizione$ è una espressione booleana
 ### Proiezione ( $\Pi_{a_1, \dotsc, a_n}(R)$ )
 Decomposizione verticale, operatore ortogonale.
 Anche lui operatore monadico, parametrico.
-Semplicemente: prende una `lista di attributi` riguardante a una tabella (`operando`) e restituisce solo quelli specificati.
+Semplicemente: prende una lista di attributi riguardante a una tabella e restituisce solo quelli specificati.
 
 $$\mathrm{PROJ}_{ListaAttributi}(\mathrm{Operando})$$
 > [!example] Cognome e filiale di tutti gli impiegati
 > PROJ<sub>cognome,nome</sub>(Impiegati)
 
-Una proiezione contiene al più tante $n$-uple quante l'operando e può contenerne di meno. 
+Una proiezione contiene al più tante $n$-uple quante l'operando, può contenerne di meno. 
 Se $X$ è una superchiave di $R$, allora $\mathrm{PROJ}_X(R)$ contiene esattamente tante $n$-uple quante $R$.
-
 Possiamo usare selezione e proiezione insieme, per restituire risultati di una selezione per delle colonne specifiche solo del SELECT:
 
 > [!example] Matricola e cognome degli impiegati che guadagnano più di 50
@@ -122,8 +121,8 @@ Possiamo farlo con il **join naturale** dove i miei attributi coincidono su un a
 | 4      | remo neri     | 28   | 
 
 Produce un risultato:
-- sull'unione degli attributi degli operandi
-- con $n$-uple costruite ciascuna a partire da una $n$-upla di ognuno degli operandi
+- sull'unione degli attributi degli operandi;
+- con $n$-uple costruite ciascuna a partire da una $n$-upla di ognuno degli operandi;
 
 #### JOIN COMPLETO
 Ogni $n$-upla contribuisce al risultato. Nessuna viene eliminata.
@@ -146,10 +145,10 @@ Tuttavia se non troviamo attributi uguali, il join diventa *incompleto*.
 > | --------- | ------- | ---- |
 
 #### JOIN ESTERNO
-Estende con *valori NULL* le $n$-uple che verrebbero tagliate fuori da un join interno, si può fare sulla sinistra, destra o completo: tutte le $n$-uple dell'argomento di sinistra vengono prese e per gli argomenti di destra, se non ci sono, vanno a NULL (*outer left join*).
-- *sinistro* mantiene tutte le $n$-uple del primo operando, estendendo con NULL se necessario;
+Estende con valori `NULL` le $n$-uple che verrebbero tagliate fuori da un join interno, si può fare sulla sinistra, destra o completo:
+- *sinistro* mantiene tutte le $n$-uple del primo operando;
 - *destro* del secondo operando;
-- *completo* su entrambi gli operandi
+- *completo* su entrambi gli operandi.
 
 > [!example] JOIN LEFT con le tabelle di prima
 > 
@@ -196,16 +195,63 @@ $$(\mathrm{PROJ}_{X_1}(R))\ \mathrm{JOIN}\ (\mathrm{PROJ}_{X_2}(R)) \supseteq R$
 #### PRODOTTO CARTESIANO ( $\times$ )
 Sarebbe un JOIN NATURALE su relazioni senza attributi in comune.
 Contiene sempre un numero di $n$-uple pari al prodotto delle cardinalita' degli operandi (tutte combinabili).
+> [!example] `Impiegati` $\mathrm{JOIN}$ `Reparti`
+`Impiegati`
+> 
+| Impiegato | Reparto |
+| --------- | ------- |
+| Rossi     | A       |
+| Neri      | B       |
+| Bianchi   | B       | 
+>
+`Reparti`
+>
+| Codice | Capo  |
+| ------ | ----- |
+| A      | Mori  |
+| B      | Bruni | 
+>
+`Impiegati` $\mathrm{JOIN}$ `Reparti`
+>
+| Impiegato | Reparto | Codice | Capo  |
+| --------- | ------- | ------ | ----- |
+| Rossi     | A       | A      | Mori  |
+| Rossi     | A       | B      | Bruni |
+| Neri      | B       | A      | Mori  |
+| Neri      | B       | B      | Bruni |
+| Bianchi   | B       | A      | Mori  |
+| Bianchi   | B       | B      | Bruni |
 
-![[Pasted image 20221001123517.png|500]]
 
 Di solito viene susseguito con un SELECT se vogliamo dargli un senso:
 $$\mathrm{SEL}_{condizione}(R_1\ \mathrm{JOIN}\ R_2)$$
 L'operazione viene chiamata *theta-join* ( $R\bowtie_{\theta}S$ ), JOIN con condizione:
 $$R_1\ \mathrm{JOIN}_{condizione}\ R_2$$
-Se l'operazione di confronto (condizione) nel theta-join e' sempre l'uguaglianza (=) allora di parla di *equi-join*:
+Se l'operazione di confronto (condizione) nel theta-join è sempre l'uguaglianza (=) allora si parla di *equi-join*:
 
-![[Pasted image 20221001124510.png|500]]
+> [!example] $\theta\mathrm{JOIN}$
+> `Impiegati`
+> 
+| Impiegato | Reparto |
+| --------- | ------- |
+| Rossi     | A       |
+| Neri      | B       |
+| Bianchi   | B       | 
+>
+`Reparti`
+>
+| Codice | Capo  |
+| ------ | ----- |
+| A      | Mori  |
+| B      | Bruni | 
+>
+`Impiegati` $\mathrm{JOIN}_{Reparto=Codice}$ `Reparti`
+>
+| Impiegato | Reparto | Codice | Capo  |
+| --------- | ------- | ------ | ----- |
+| Rossi     | A       | A      | Mori  |
+| Neri      | B       | B      | Bruni |
+| Bianchi   | B       | B      | Bruni | 
 
 ### VISTE ( $:=$ )
 Sono rappresentazioni dei dati per *schema esterno*.
@@ -228,7 +274,7 @@ $$nomeVista_{listaAttributi} := \mathrm{PROJ}_{attributi}(Operando)\  \mathrm{UN
 > $\ \ \ \mathrm{PROJ}_{model,price}(LAPTOP)\ \mathrm{UNION}$
 > $\ \ \ \mathrm{PROJ}_{model,price}(PRINTER)$
 
-# Esempi
+# Esempi esercizi
 
 `Impiegati`
 
@@ -282,7 +328,19 @@ $$nomeVista_{listaAttributi} := \mathrm{PROJ}_{attributi}(Operando)\  \mathrm{UN
 > $\ \ \ \ \ \ \ \mathrm{JOIN}_{matricolaC = capo}$
 > $\ \ \ \ \ \ (Supervisione\ \mathrm{JOIN}_{impiegato = matricola}\ Impiegati)))$
 
+# Esempi prova itinere
+- Dato lo schema di relazione $R(X)$, sotto quali condizioni l’espressione dell’algebra relazionale  $\sigma_{A=B}(R)$ è ben definita, cioè non causa un errore?
+  
+	  Nell'algebra relazionale il simbolo $=$ indica la clausola `WHERE` di `SQL`.
+	  Nessun errore si presenta fintanto che non siano presenti valori `NULL`.
 
+- Date due tabelle con schemi $R1(X1)$, $R2(X2)$, dove $X1 \cup X2 = \{A\}$, sapendo che $\#(r1) = n1$ e $\#(r2) = 0$ (cioè l’istanza di $R2$ è vuota), indicare le cardinalità delle seguenti espressioni dell’algebra relazionale:  
+	- $R1 \bowtie_{NAT} R2$ (join naturale)     -> 0
+	- $R1 \bowtie_{LEFT} R2$ (left outer join)  -> n
+	- $R1 \bowtie_{FULL} R2$ (full outer join)  -> n + 0
 
+- Fornire un esempio di una coppia di valori (per $A$ e $B$) per la quale i due predicati ($A \neq B)$ e $(A\ \mathtt{IS\ DISTINCT\ FROM}\ B)$ forniscono risultati diversi.
+	
+	Vedere tabella in alto.
 ---
 up to: 10-05

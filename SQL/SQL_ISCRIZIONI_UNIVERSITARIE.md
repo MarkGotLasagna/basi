@@ -118,3 +118,60 @@ WHERE I22.anno_iscrizione = 2022
 
 ORDER BY cognome, nome;
 ```
+
+---
+
+```sql
+-- estrarre i nomi dei corsi di laurea il cui manifesto comprende un insegnamento di informatica (ssd  uguale a INF/01 oppure ING-INF/05) come corso fondamentale
+SELECT DISTINCT c.nome
+FROM corsi_laurea c, insegnamenti i, manifesti m
+WHERE c.codice = m.lauera
+	AND m.insegnamento = i.codice
+	AND i.fondamentale
+	AND i.ssd IN ('INF/01', 'ING-INF/05')
+```
+
+```sql
+-- per ogni corso di laurea, estrarre le date di nascita dello studente piu giovane e dello studente pi`u vecchio iscritti a tale corso nell’anno 2012
+SELECT C.nome,
+	   MIN(S.data_nascita) AS data_nascita_di_matusa,
+	   MAX(S.data_nascita) AS data_nascita_di_beniamino
+FROM iscrizioni I, studenti S, corsi_laurea C
+WHERE I.studente = S.matricola
+	AND I.anno_iscrizione = 2012
+	AND C.codice = I.laurea
+GROUP BY C.nome
+```
+
+```sql
+-- estrarre l’elenco degli insegnamenti che compaiono come fondamentali in almeno tre corsi di laurea
+SELECT DISTINCT I.codice, I.nome
+FROM insegnamenti I, manifesti M1, menifesti M2, manifesti M3
+WHERE I.codice = M1.insegnamento
+	AND I.codice = M2.insegnamento
+	AND I.codice = M3.insegnamento
+	AND M1.fondamentale, M2.fondamentale, M3.fondamentale
+	AND M1.laurea < M2.laurea AND M2.laurea < M3.laurea
+```
+
+<center> oppure scritto meglio </center>
+
+```sql
+SELECT I.codice, I.nome
+FROM insegnamenti I, manifesti M
+WHERE I.codice = M.insegnamenti
+	AND M.fondamentale
+GROUP BY I.codice, I.nome
+HAVING COUNT(*) >= 3
+```
+
+```sql
+-- per ogni insegnamento, calcolare il numero (presunto) di studenti iscritti nell’anno 2012 che frequentano l’insegnamento; uno studente `e frequentante se l’insegnamento compare nel piano degli studi del corso al quale `e iscritto ed `e erogato nello stesso anno di corso dello studente
+SELECT INS.codice, INS.nome, COUNT(*) AS numero_frequentanti
+FROM iscrizioni ISC, manifesti MAN, insegnamenti INS
+WHERE ISC.laurea = MAN.laurea
+	AND INS.codice = MAN.insegnamento
+	AND ISC.anno_iscrizione = 2012
+	AND MAN.anno_corso = ISC.anno_corso
+GROUP BY INS.codice, INS.nome
+```

@@ -100,6 +100,36 @@ CREATE TABLE infrazioni (
 Ci sono casi in cui il DBMS si rifiuta di cancellare le tabelle nel caso in cui siano referenziate da altre tabelle da diverse, usiamo in quel caso la parola chiave `CASCADE`.
 `es.:` non posso cancellare `vigili` siccome nella tabella delle `infrazioni` c'è un vincolo di chiave esterna che ne fa indice. Usiamo in questo caso `CASCADE` e il vincolo di chiave esterna sparisce.
 
+## AGGIORNAMENTO DELL'ISTANZA
+`INSERT`, `DELETE`, `UPDATE` da una sola tabella per $0,1,n$ istanze, sulla base di una condizione coinvolgente anche altre relazioni.
+
+Per <u>inserire</u>:
+```sql
+INSERT INTO tabella(attributi)
+	VALUES (valori)
+```
+
+<center>oppure</center>
+
+```sql
+INSERT INTO tabella(attributi)
+	SELECT
+```
+
+Per <u>cancellare</u>:
+```sql
+DELETE FROM tabella
+	WHERE condizione -- senza questa, la tabella verrebbe svuotata
+```
+Se la politica di reazione per vincoli referenziali è specificata `CASCADE`, allora istanze di altre tabelle correlate vengono eliminate.
+
+Per <u>modificare</u>:
+```sql
+UPDATE tabella
+SET aatributo = espressione / SELECT / NULL / DEFAULT / ...
+	WHERE condizione
+```
+
 
 
 ---

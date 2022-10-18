@@ -101,19 +101,17 @@ SELECT colonna3, colonna4
 FROM tabella2
 ```
 
-Le <u>$n$-uple possono essere raggruppate</u> a singoli gruppetti, usando `GROUP BY`, ad esempio:
+Le <u>$n$-uple possono essere raggruppate</u> a singoli gruppetti, usando `GROUP BY` e specifichiamo le nostre condizioni con `HAVING`.
 ```sql
 -- numero di figli di ciascun padre
-SELECT padre, COUNT(*) AS NumFigli
-FROM paternita
-GROUP BY padre
+SELECT colonna
+FROM tabella
+WHERE condizione
+GROUP BY criterio
+HAVING condizione
 ```
 
-| Padre  | NumFigli |
-| ------ | -------- |
-| Sergio | 1        |
-| Luigi  | 2        |
-| Franco | 2        | 
+Se lavoriamo con gruppi di `NULL`, questi siccome non distinti verranno raggruppati
 
 ## Interrogazione nidificata
 Il confronto tra attributo e risultato di sotto-interrogazione è possibile, l'attributo ha un solo valore. Le quantificazioni esistenziali sono il caso cardine. La forma piana e la forma nidificata possono essere combinate, c'è da dire che la forma nidificata è "meno dichiarativa" ma talvolta più leggibile.

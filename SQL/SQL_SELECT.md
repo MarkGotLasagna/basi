@@ -27,7 +27,7 @@ Li dentro mettiamo tutto quello che ci interessa per estrarre i dati che ci inte
 	SELECT * FROM tabella;
 	```
 
-- Esiste un modo per il `SELECT` d'indicare solo <u>distinti</u> elementi della tabella usando `DISTINCT`
+- Esiste un modo per il `SELECT` d'indicare solo <u>distinti</u> elementi della tabella usando `DISTINCT`. Alternativamente può essere utilizzato per le funzioni aggregate in lista sotto.
 	```sql
 	SELECT DISTINCT colonna FROM tabella;
 	```
@@ -40,15 +40,15 @@ Li dentro mettiamo tutto quello che ci interessa per estrarre i dati che ci inte
 	  - `SUM()` ritorna la <u>somma dei valori</u> in una colonna numerica.
 	
 	```sql
-	SELECT MIN / MAX / AVG / COUNT / SUM (nome_colonna)
-	FROM nome_tabella
+	SELECT [MIN | MAX | AVG | COUNT | SUM] colonne
+	FROM tabelle
 	WHERE condizione;
 	```
 
 - Una colonna o tabella, puo' essere <u>rinominata</u> con la **parola chiave** `AS`.
 
 	```sql
-	SELECT nome_colonna AS variabile
+	SELECT colonna AS variabile
 	FROM tabella;
 	```
 
@@ -74,8 +74,8 @@ I record possono essere filtrati <u>specificando piu' condizioni</u>:
 	```sql
 	SELECT colonna1, colonna2, ...
 	FROM tabella
-	WHERE condizione1 AND / OR / NOT condizione2 
-		AND / OR / NOT condizione3, ... ;
+	WHERE condizione1 [AND | OR | NOT] condizione2 
+		[AND | OR | NOT] condizione3, ... ;
 	```
 
 I <u>risultati possono essere ordinati</u> usando `ORDER BY`.
@@ -84,7 +84,7 @@ Di default, gli elementi verranno ordinati in modo *ascendente* `ASC`, ma possia
 SELECT colonna1, colonna2
 FROM tabella
 WHERE clausola
-ORDER BY colonna ASC / DESC
+ORDER BY colonna [ASC | DESC]
 ```
 > [!warning] E i valori `NULL`?
 > In tutti i casi di `SELECT`, i valori nulli delle colonne vanno sempre da considerarsi. Nel caso di dafault, questi valori non sono distinti l'uno dall'altro.
@@ -96,12 +96,13 @@ Anche l'<u>intersezione</u> è possibile con `INTERSECT`.
 ```sql
 SELECT colonna1, colonna2
 FROM tabella1
-UNION [ALL] / EXCEPT [ALL] / INTERSECT
+UNION [[ALL] | EXCEPT [ALL] | INTERSECT]
 SELECT colonna3, colonna4
 FROM tabella2
 ```
 
 Le <u>$n$-uple possono essere raggruppate</u> a singoli gruppetti, usando `GROUP BY` e specifichiamo le nostre condizioni con `HAVING`.
+Se avessimo da utilizzare funzioni aggregate su attributi (come `SUM` oppure `COUNT`), utilizzeremmo `GROUP BY` per specificare in base a quale criterio raggruppare le $n$-uple.
 ```sql
 -- numero di figli di ciascun padre
 SELECT colonna
@@ -210,3 +211,29 @@ WHERE paese = 'Germania' AND
 | --- | ------------------- | ------------- | ----------------- | ------- | ----- | -------- |
 | 1   | alfreds futterkiste | Maria Anders  | Obere Str. 57     | Berlin  | 12209 | Germania |
 | 25  | Frankenversand      | Peter Franken | Berliner Platz 43 | Munchen | 80805 | Germania | 
+
+
+## example5
+`il numero di figli di ciascun padre`
+
+`paternita`
+
+| Padre  | Figlio  |
+| ------ | ------- |
+| Sergio | Franco  |
+| Luigi  | Olga    |
+| Luigi  | Filippo |
+| Franco | Andrea  |
+| Franco | Aldo    | 
+
+```sql
+SELECT Padre, COUNT(*) AS NumFigli
+FROM paternita
+GROUP BY Padre
+```
+
+| Padre  | NumFigli |
+| ------ | -------- |
+| Sergio | 1        |
+| Luigi  | 2        |
+| Franco | 2        | 

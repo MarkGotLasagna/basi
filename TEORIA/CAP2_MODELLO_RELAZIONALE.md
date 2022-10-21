@@ -1,3 +1,17 @@
+<center>Table of contents</center>
+
+- [[#Modelli logici dei dati]]
+	- [[#Modello relazionale]]
+		- [[#Relazione matematica]]
+		- [[#Tabelle e relazioni]]
+- [[#Vincoli d'integrità]]
+	- [[#Intrarelazionali]]
+		- [[#vincoli di $n$-upla]]
+		- [[#vincoli su valori (o dominio)]]
+		- [[#chiave]]
+			- [[#chiave primaria]]
+	- [[#Interrelazionali]]
+		- [[#integrità referenziale (di chiave esterna, foreign key)]]
 # Modelli logici dei dati
 #modelli #modello-relazionale #relazione-mate #ennupla 
 3 modelli logici tradizionali:
@@ -99,7 +113,7 @@ I vincoli corrispondono a proprietà del mondo reale modellato dalla base di dat
 ## Intrarelazionali
 Il vincolo riguarda *una sola* tabella/relazione e mi è sufficiente per verificare la veridicità del DB. I due vincoli non sono molto separati per quanto teoria, nei DBMS non c'è molta distinzione.
 
-### vincoli di $n$-upla 
+### Vincoli di $n$-upla 
 Controllo ogni singola $n$-upla. Indipendente una dalle altre.
 Ci dobbiamo immaginare tutti i valori possibili per il nostro dato: situazioni temporali, situazioni indefinite devono avere un comportamento da noi voluto.
 > [!example] Controllo se il voto è maggiore o uguale a 18 e sotto il 30.
@@ -108,10 +122,10 @@ Ci dobbiamo immaginare tutti i valori possibili per il nostro dato: situazioni t
 > (Voto = 30) AND NOT (Lode = "e lode")
 > ```
 
-### vincoli su valori (o dominio)
+### Vincoli su valori (o dominio)
 Controllo il valore.
 
-### chiave
+### Chiave
 Una **chiave** possiamo identificarla come un insieme di attributi per singola tabella/relazione, univoca, identificanti le $n$-uple di una relazione.
 Chiamiamo questo insieme di attributi $K$.
 Si chiama **superchiave** per $r$ se $r$ non contiene due $n$-uple distinte $t_1$ e $t_2$ con $t_1[K] = t_2[K]$.
@@ -159,7 +173,3 @@ Quel vincolo che serve per dire che da *questa* tabella, scrivo un valore conten
 Il valore dell'attributo `Vigile` in tabella `Infrazioni`, deve essere un valore contenuto in tabella `Vigili`. Quindi c'è un vincolo di chiave esterna che lega `Vigile` -> `Matricola`.
 
 Un vincolo di **integrità referenziale (foreign key)** fra gli attributi $X$ di una relazione $R_1$ e un'altra relazione $R_2$ impone ai valori su $X$ in $R_1$ di comparire come valori della chiave primaria di $R_2$.
-
----
-up to: 27-09
-seso pazo in unipr

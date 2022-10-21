@@ -1,3 +1,21 @@
+<center>Table of contents</center>
+
+- [[#Algebra e calcolo relazionale]]
+	- [[#Algebra relazionale]]
+		- [[#Operatori insiemistici ( $ cup, cap, -$ )]]
+		- [[#Ridenominazione ( $ rho_{a/b}(R)$ )]]
+		- [[#Selezione ( $ sigma_{ varphi}(R)$ )]]
+		- [[#Proiezione ( $ Pi_{a_1, dotsc, a_n}(R)$ )]]
+		- [[#JOIN]]
+			- [[#JOIN NATURALE ( $R bowtie S$ )]]
+			- [[#JOIN COMPLETO]]
+			- [[#JOIN ESTERNO]]
+			- [[#JOIN E PROIEZIONI]]
+			- [[#PRODOTTO CARTESIANO ( $ times$ )]]
+		- [[#VISTE ( $:=$ )]]
+- [[#Esempi esercizi]]
+- [[#Esempi prova itinere]]
+
 # Algebra e calcolo relazionale
 #algebra-relazionale #procedurali #ridenominazione #selezione #proiezione #join #viste 
 

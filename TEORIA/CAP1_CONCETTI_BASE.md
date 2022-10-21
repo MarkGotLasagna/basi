@@ -1,3 +1,13 @@
+<center>Table of contents</center>
+
+- [[#Concetti di base]]
+	- [[#Schema, istanze e viste]]
+	- [[#Modelli dei dati]]
+	- [[#Linguaggi per DATABASE]]
+		- [[#DDL (data definition language)]]
+		- [[#DML (data manipulation language)]]
+	- [[#Personaggi e interpreti]]
+
 # Concetti di base
 #database #dbms #transazione #schema #istanze #viste #modello-relazionale #entity-relationship #ddl #dml #amministratore-db 
 
@@ -35,7 +45,6 @@ Un insieme *indivisibile* (<u>atomico</u>) corretto anche in presenza di concorr
 es. se al nostro conto corrente fosse addebitata una somma, ma per un errore del DMBS questa venisse duplicata, non sarebbe una bella cosa
 Sono <u>concorrenti</u>, sono <u>permanenti</u>.
 
----
 ## Schema, istanze e viste
 `esempi di tabelle`
 
@@ -80,8 +89,6 @@ Una <u>vista</u> è l'aggancio tra due tabelle che hanno una relazione.
 	hanno scopo diverso, servono nelle fasi iniziali di progettazione del DBMS e servono più che altro alle persone per descrivere concetti del mondo reale
 	#entity-relationship (ER)
 
----
-
 ## Linguaggi per DATABASE
 - linguaggio testuale interattivo (==**SQL**==)
 - comandi SQL in linguaggio *ospite*
@@ -124,8 +131,3 @@ VALUES
 
 Le tecniche per fornire all'utente una funzione d'interesse, nella transazione, non è banale rispetto al DB.
 Di solito viene usato un linguaggio ad hoc per fornire funzioni.
-
-
-
----
-last revision: 23-09

@@ -1,4 +1,5 @@
-Table of contents:
+<center>Table of contents</center>
+
 - [[#Concetti base]]
 - [[#Interfaccia grafica]]
 - [[#Data Manipulation Language (DML)]]

@@ -5,6 +5,8 @@
 - [[#Data Manipulation Language (DML)]]
 	- [[#Modifica degli schemi]]
 	- [[#Transazione]]
+		- [[#Transaction Isolation Levels]]
+			- [[#Anomalie sui livelli]]
 - [[#Data Definition Language (DDL)]]
 	- [[#`SELECT`]]
 	- [[#`CREATE TABLE`]]
@@ -75,7 +77,9 @@ SET attributo = [ espressione | SELECT (); | NULL | DEFAULT | ... ]
 ### Transazione
 > [!todo] Questa voce dell'argomento verra' ripresa nei capitoli successivi: non contenuta negli argomenti della prova in itinere.
 
-Operazioni considerate indivisibili, corrette anche in presenza di concorrenza con effetti definitivi. Applichiamo la proprietà **ACID**:
+$$\mathrm{A\ C\ I\ D}$$
+
+Operazioni considerate indivisibili, corrette anche in presenza di concorrenza con effetti definitivi:
 - <u>A</u>tomicità, una sola, unico oggetto, se fallisce una parte allora fallisce l'intero tentativo;
 - <u>C</u>onsistenza;
 - <u>I</u>solamento, transazioni iniziate nel passato e che termineranno nel futuro, non vedo mai la transazione diversa dalla mia;
@@ -91,11 +95,25 @@ START TRANSACTION;
 COMMIT WORK;
 ```
 
-> [!warning] Esempio di uso di transazioni 
-> Leggiamo dati di una esecuzione parziale: <u>dirty read</u>.
-> Esempio in cui un utente comincia una transazione e decide poi di fare *rollback*.
-> 
-> Avviene invece un'<u>anomalia di concorrenza</u>, una *non-repeatable read* quando la proprietà di isolamento, che è quella di serializzabilità di transazioni (costoso per il sistema ad essere garantita sempre), viene violata.
+#### Transaction Isolation Levels
+##### Anomalie sui livelli
+- <u>dirty read</u>
+  Una transazione legge dati scritti da una transazione concorrente non ancora committed
+- <u>nonrepeatable read</u>
+  Una transazione rilegge dati precedentemente letti e trova che i dati sono stati modificati da un'altra
+- <u>phantom read</u>
+  Una transazione riesegue una query che soddisfa una condizione di ricerca e trova che la condizione è stata modificata causa un'altra transazione
+- <u>serialization anomaly</u>
+  Il risultato di una transazione o gruppo, è inconsistente rispetto alle transazioni eseguite una a una
+  
+| Isolation Level  | Dirty Read                       | Nonrepeatable Read | Phantom Read           | Serialization Anomaly |
+| ---------------- | -------------------------------- | ------------------ | ---------------------- | --------------------- |
+| Read uncommitted | Allowed, not in `psql` | Possible           | Possible               | Possible              |
+| Read committed   | Not possible                     | Possible           | Possible               | Possible              |
+| Repeatable read  | Not possible                     | Not possible       | Allowed, not in `psql` | Possible              |
+| Serializable     | Not possible                     | Not possible       | Not possible           | Not possible          | 
+
+In `psql` possiamo richiedere uno dei quattro *isolamenti di livello*, anche se ne vengono implementati solo 3 (Read uncommitted = Read Committed).
 
 ## Data Definition Language (DDL)
 ### `SELECT`

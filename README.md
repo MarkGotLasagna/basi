@@ -33,7 +33,7 @@ Tuttavia, se scaricate [Obsidian.md](https://obsidian.md/) e importate i file ne
 I file con nome `INDEX_.md` sono utili per generare i grafi, se usate Obsidian.md, vi conviene importare anche quelli.
 
 
-<img  src="PICS/graph_view.png"  alt="Alt text"  title="Optional title"  style="display: inline-block; margin: 0 auto; max-width: 300px; position: center">
+<img  src="PICS/graph_view.png"  alt="Alt text"  title="Optional title"  style="display: block; margin-left: auto ;margin-right: auto; width: 50%;  border-radius: 8px; ">
 
 ## Similar repos
 Repository di coetanei sono presenti, le uso io stesso perché alcune query SQL le perdo nella furia di scrivere tutto in modo esteticamente bello.

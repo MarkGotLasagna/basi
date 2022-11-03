@@ -7,7 +7,7 @@ Topic:
 - [[CAP3_CHEATSHEET]]
 - [[CAP4_SQL]]
 - [[CAP6_SQL_NEI_LINGUAGGI]]
-- 
+- [[SELECT]]
 
 SQL
-- [[SQL_INTRO_INDEX]]
+- [[SQL_INDEX]]

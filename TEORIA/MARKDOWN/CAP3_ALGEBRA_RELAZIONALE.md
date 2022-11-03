@@ -346,7 +346,7 @@ $$nomeVista_{listaAttributi} := \mathrm{PROJ}_{attributi}(Operando)\  \mathrm{UN
 > $\ \ \ \ \ \ \ \mathrm{JOIN}_{matricolaC = capo}$
 > $\ \ \ \ \ \ (Supervisione\ \mathrm{JOIN}_{impiegato = matricola}\ Impiegati)))$
 
-# Esempi prova itinere
+# Esempi estratti da prove in itinere
 - Dato lo schema di relazione $R(X)$, sotto quali condizioni l’espressione dell’algebra relazionale  $\sigma_{A=B}(R)$ è ben definita, cioè non causa un errore?
   
 	  Nell'algebra relazionale il simbolo $=$ indica la clausola `WHERE` di `SQL`.
@@ -369,9 +369,5 @@ $$nomeVista_{listaAttributi} := \mathrm{PROJ}_{attributi}(Operando)\  \mathrm{UN
 	- $R_1 \times R_2$ (prodotto cartesiano)     -> 0
 	- $R_1 \bowtie_{RIGHT} R_2$ (right outer join)  -> n<sub>2</sub>
 	- $R_1 \bowtie_{FULL} R_2$ (full outer join)       -> n<sub>2</sub> + 0
-
-
-
-
 ---
 up to: 10-05

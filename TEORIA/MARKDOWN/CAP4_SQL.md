@@ -117,7 +117,7 @@ In `psql` possiamo richiedere uno dei quattro *isolamenti di livello*, anche se 
 
 ## Data Definition Language (DDL)
 ### `SELECT`
-[[SQL_SELECT]] -> vedere PDF associato
+[[SELECT]] -> vedere PDF associato
 
 ### `CREATE TABLE`
 Per creare porzioni di schema usiamo l'istruzione `CREATE TABLE`:

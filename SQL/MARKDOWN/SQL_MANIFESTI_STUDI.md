@@ -1,14 +1,3 @@
-# SQL su schema manifesti degli studi
-[[schemi_db]]
-## corsi_laurea
-Creiamo all'interno del nostro client `sql` un database che possiamo chiamare come vogliamo:
-```sql
-CREATE DATABASE universita;
-USE universita;
-```
-
-Al suo interno creiamo una tabella, `corsi_laurea`, che e' la stessa tabella negli esempi SQL visti in precedenza:
-
 ![[Pasted image 20221007173155.png]]
 
 ```sql
@@ -24,7 +13,6 @@ CREATE TABLE corsi_laurea (
 --  CONSRAINT codice_pk PRIMARY KEY (codice)
 );
 ```
-
 
 La tabella puo' essere modificata con DML `INSERT INTO`:
 ```sql
@@ -52,6 +40,8 @@ FROM insegnamenti I, manifesti M
 WHERE I.codice = M.insegnamento
 ORDER BY nome ASC;
 ```
+
+<center>oppure</center>
 
 ```sql
 SELECT codice, nome
@@ -97,6 +87,10 @@ WHERE I22.studente = I21.studente
   AND I22.laurea = I21.laurea
   AND I22.anno_corso = I21.anno_corso + 1
   AND S.matricola = I22.studente
+
+SELECT *
+FROM proseguimento
+ORDER BY cognome, nome;
 ```
 
 ```sql
@@ -174,4 +168,16 @@ WHERE ISC.laurea = MAN.laurea
 	AND ISC.anno_iscrizione = 2012
 	AND MAN.anno_corso = ISC.anno_corso
 GROUP BY INS.codice, INS.nome
+```
+
+```sql
+-- per ogni studente iscritto nel 2021 al K-esimo anno di corso
+-- di un corso di laurea con N anni di corso, dove K < N
+-- iscriverlo nel 2022 allo stesso corso di laurea all'anno di corso K + 1
+INSERT INTO iscrizioni (studente, anno_iscrizione, laurea, data_iscrizione, anno_corso)
+    SELECT i.studente, 2022, i.laurea, current_date, i.anno_corso + 1
+    FROM iscrizioni i, corsi_laurea c
+    WHERE i.laurea = c.codice
+        AND i.anno_corso < c.anni_corso
+        AND i.anno_iscrizione = 2021
 ```

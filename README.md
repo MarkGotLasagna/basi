@@ -32,7 +32,7 @@ Tuttavia, se scaricate [Obsidian.md](https://obsidian.md/) e importate i file da
 
 I file a nome `_INDEX.md` sono utili per generare i grafi, se usate Obsidian.md vi conviene importare anche quelli.
 
-![[graph_view.png]]
+![Graph view of 'basi'](https://github.com/MarkGotLasagna/basi/blob/main/PICS/graph_view.png)
 
 ## Similar repos
 Repository di coetanei sono presenti, le uso io stesso perché alcune query SQL le perdo nella furia di scrivere tutto in modo esteticamente bello.

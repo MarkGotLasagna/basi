@@ -83,7 +83,7 @@ flowchart TB
 Per risolvere il conflitto d'indipendenza del linguaggio immerso utilizziamo il concetto di **cursore**: le $n$-uple vengono trasmesse una alla volta, gradualmente, al nostro programma.
 
 ```mermaid
-flowchart TB
+flowchart LR
 	subgraph Programma
 		a1(n-upla)
 	end

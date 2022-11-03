@@ -41,27 +41,28 @@ CREATE TABLE auto_coinvolte (
 
 ```sql
 -- creare vista relazione NoSinistri che elenchi tutti i proprietari che non sono mai stati coinvolti in sinistri (con nessuna auto posseduta)
-CREATE VIEW NoSinistri (codice_fiscale, nome, residenza) AS 
-
-SELECT P.*
-FROM proprietari P
-WHERE NOT EXISTS (SELECT *
-				  FROM auto A, auto_coinvolte AC)
+CREATE OR REPLACE VIEW no_sinistri AS
+	SELECT p.*
+	FROM proprietari p
+	WHERE NOT EXISTS (
+		SELECT *
+		FROM auto_coinvolte ac, auto a
+		WHERE ac.auto = a.targa
+			AND a.proprietario = p.codice_fiscale
+	);
 ```
 
 <center> oppure </center>
 
 ```sql
-SELECT P.*
-FROM proprietari P
-WHERE P.codice_fiscale NOT IN (SELECT A.proprietario
-				  FROM auto A, auto_coinvolte AC
-					  WHERE A.targa = AC.auto
-					  AND A.proprietario = P.codice_fiscale
-				  )
-				  WHERE A.targa = AC.auto
-					  AND A.proprietario = P.codice_fiscale
-				  );
+CREATE OR REPLACE VIEW no_sinistri AS
+	SELECT p.*
+	FROM proprietari p
+	WHERE p.codice_fiscale NOT IN (
+		SELECT a.proprietario
+		FROM auto_coinvolte ac, auto a
+		WHERE ac.auto = a.targa
+	);
 ```
 
 ```sql
@@ -109,10 +110,15 @@ FROM auto_coinvolte AC INNER JOIN auto A ON AC.auto = A.targa -- JOIN ESPLICITO
 GROUP BY A.marca
 ```
 
-Usando l'algebra relazionale estrarre i proprietari di almeno due automezzi che sono assicurati con compagnie distinte e sono stati entrambi coinvolti in sinistri
+```
+-- Usando l'algebra relazionale estrarre i proprietari di almeno due automezzi che sono assicurati con compagnie distinte e sono stati entrambi coinvolti in sinistri
+```
 
 $botto1 := P\ \mathrm{JOIN}_{P.codice_fiscale = A.proprietario}\ A\ \mathrm{JOIN}_{A.targa = AC.auto}$
 
 $botto2 := botto1$
 
-$\mathrm{PROJ}_{botto1.codice_fiscale}\ \{botto1\ \mathrm{JOIN}_{botto1.codice_fiscale = botto2.codice_fiscale AND}$
+$\mathrm{PROJ}_{botto1.codice_fiscale}(botto1$
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mathrm{JOIN}_{botto1.codice_fiscale = botto2.codice_fiscale\ AND}$ $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ _{botto1.targa\ =! botto2.targa\ AND}$
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ _{\ botto1.assicurazione\ =!\ botto2.assicurazione}$
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ botto2)$

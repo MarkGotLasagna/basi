@@ -1,4 +1,4 @@
-# Esempio SQL su tabella ISCRIZIONI UNIVERSITARIE
+# SQL su schema manifesti degli studi
 [[schemi_db]]
 ## corsi_laurea
 Creiamo all'interno del nostro client `sql` un database che possiamo chiamare come vogliamo:

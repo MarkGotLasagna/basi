@@ -1,4 +1,4 @@
-#sql #sql-embedded #prodedura
+#sql #sql-embedded #prodedura #sq
 <center> Table of contents </center>
 
 - [[#Procedura]]
@@ -126,3 +126,4 @@ execute commandName [into targetList]
 Semplici sono gli attacchi d'iniezione di query maliziose (*query injection*), che possiamo evitare applicando *barriere di sicurezza*, come quella del *privilegio minimo* per l'utente che si connette al DB.
 
 ## Call Level Interface
+kanji

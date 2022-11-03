@@ -19,4 +19,5 @@ La sintassi per `mariadb` e' pressoche' uguale a quella di `postgresql`.
 - 
 
 # ESEMPI
-- [[SQL_ISCRIZIONI_UNIVERSITARIE]]
+- [[SQL_MANIFESTI_STUDI]]
+- [[SQL_SINISTRI_STRADALI]]

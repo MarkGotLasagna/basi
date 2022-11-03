@@ -6,9 +6,12 @@ Contiene appunti presi durante le lezioni in presenza, lezioni registrare su Tea
 ## Tools
 
 **Text editors**
+
 	Obsidian.md (disponibile per tutte le piattaforme)
 	vim
+
 **DMBS**
+
 	postgresql (arch linux)
 
 ## Directory stucture

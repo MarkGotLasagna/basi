@@ -1,8 +1,8 @@
 # Basi di dati 2022/2023
 
 <div align=center>
-	<image>https://shields.io/badge/PostgreSQL-white?logo=postgresql&style=plastic</image>
-	<image>https://shields.io/badge/arch-white?logo=archlinux&style=plastic</image>
+	<image src=https://shields.io/badge/PostgreSQL-white?logo=postgresql&style=plastic></image>
+	<image src=https://shields.io/badge/arch-white?logo=archlinux&style=plastic></image>
 </div>
 
 del corso di Laurea in Informatica 'Ottobre 2022 - Gennaio 2023'.

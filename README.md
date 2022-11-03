@@ -28,12 +28,11 @@ Documents/Obsidian Vault/UNI/BASI
 
 **Le sottocartelle a nome `PDF` sono quelle contenenti i file esportati** da Obsidian.md: **sono i file che vi interessano** alla fine della fiera.
 
-Tuttavia, se scaricate [Obsidian.md](https://obsidian.md/) e importate i file nelle cartelle `MARKDOWN`, dovreste ottenere risultati migliori, in quanto noterete che, in alcuni `pdf` ci sono troncamenti di pagina non voluti (purtroppo l'unico modo per risolvere sarebbe aggiungere interruzioni di linea, ma non stanno bene esteticamente).
+Tuttavia, se scaricate [Obsidian.md](https://obsidian.md/) e importate i file dalle cartelle `MARKDOWN`, dovreste ottenere risultati migliori, in quanto noterete che, in alcuni `pdf` ci sono troncamenti di pagina non voluti (purtroppo l'unico modo per risolvere sarebbe aggiungere interruzioni di linea, ma non stanno bene esteticamente).
 
-I file con nome `INDEX_.md` sono utili per generare i grafi, se usate Obsidian.md, vi conviene importare anche quelli.
+I file a nome `_INDEX.md` sono utili per generare i grafi, se usate Obsidian.md vi conviene importare anche quelli.
 
-
-<img  src="PICS/graph_view.png"  alt="Alt text"  title="Optional title"  style="display: block; margin-left: auto ;margin-right: auto; width: 50%;  border-radius: 8px; ">
+![[graph_view.png]]
 
 ## Similar repos
 Repository di coetanei sono presenti, le uso io stesso perché alcune query SQL le perdo nella furia di scrivere tutto in modo esteticamente bello.

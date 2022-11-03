@@ -18,15 +18,17 @@ Contiene appunti presi durante le lezioni in presenza, lezioni registrare su Tea
 
 ```
 Documents/Obsidian Vault/UNI/BASI
-├── SQL (query di esempio ed esercizi visti a lezione) 
-│   └── PDF (per voi)
-└── TEORIA (appunti presi a lezione e non)
-    └── PDF (per voi)
+├── SQL
+│   ├── MARKDOWN
+│   └── PDF
+└── TEORIA
+    ├── MARKDOWN
+    └── PDF
 ```
 
 **Le sottocartelle a nome `PDF` sono quelle contenenti i file esportati** da Obsidian.md: **sono i file che vi interessano** alla fine della fiera.
 
-Tuttavia, se scaricate Obsidian.md e importate i file in `md` al suo interno, dovreste ottenere risultati migliori, in quanto noterete che, in alcuni `pdf` ci sono troncamenti di pagina non voluti (purtroppo l'unico modo per risolvere sarebbe aggiungere interruzioni di linea, ma non stanno bene esteticamente).
+Tuttavia, <u>se scaricate [Obsidian.md](https://obsidian.md/) e importate i file nelle cartelle `MARKDOWN`, dovreste ottenere risultati migliori</u>, in quanto noterete che, in alcuni `pdf` ci sono troncamenti di pagina non voluti (purtroppo l'unico modo per risolvere sarebbe aggiungere interruzioni di linea, ma non stanno bene esteticamente).
 
 ## Similar repos
 Repository di coetanei sono presenti, le uso io stesso perché alcune query SQL le perdo nella furia di scrivere tutto in modo esteticamente bello.

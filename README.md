@@ -1,6 +1,6 @@
 # Basi di dati 2022/2023
 
-![https://shields.io/badge/PostgreSQL-white?logo=postgresql&style=plastic]
+![shield-pgsql](https://shields.io/badge/PostgreSQL-white?logo=postgresql&style=plastic)
 
 del corso di Laurea in Informatica 'Ottobre 2022 - Gennaio 2023'.
 Contiene appunti presi durante le lezioni in presenza, lezioni registrare su Teams al seguente link d'invito (qhq0tun) anno 2021-2022, slide sul [drive WhatsApp](https://drive.google.com/drive/folders/1hdHk5s0ys5xMJSEa-XeIjJ0rjM3nY5jW).

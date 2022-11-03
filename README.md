@@ -1,18 +1,22 @@
 # Basi di dati 2022/2023
 
+https://shields.io/badge/PostgreSQL-white?logo=postgresql&style=plastic
+
 del corso di Laurea in Informatica 'Ottobre 2022 - Gennaio 2023'.
 Contiene appunti presi durante le lezioni in presenza, lezioni registrare su Teams al seguente link d'invito (qhq0tun) anno 2021-2022, slide sul [drive WhatsApp](https://drive.google.com/drive/folders/1hdHk5s0ys5xMJSEa-XeIjJ0rjM3nY5jW).
+
+Il corso si divide in 2 parti:
+- nozioni base + algebra relazionale + SQL \[Parziale]
+- schemi Entità-Relazione (ER) + teoria sulle transazioni + trigger \[Esame]
 
 ## Tools
 
 **Text editors**
-
-	Obsidian.md (disponibile per tutte le piattaforme)
-	vim
+- Obsidian.md (disponibile per tutte le piattaforme)
+- vim
 
 **DMBS**
-
-	postgresql (arch linux)
+- postgresql (arch linux)
 
 ## Directory stucture
 
@@ -39,4 +43,4 @@ Repository di coetanei sono presenti, le uso io stesso perché alcune query SQL 
 
 Mattia Merenda
 
-	https://github.com/merendamattia/BdD
+https://github.com/merendamattia/BdD

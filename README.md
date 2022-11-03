@@ -1,31 +1,32 @@
 # Basi di dati 2022/2023
 
-del corso di Laurea in Informatica
+del corso di Laurea in Informatica 'Ottobre 2022 - Gennaio 2023'.
+Contiene appunti presi durante le lezioni in presenza, lezioni registrare su Teams al seguente link d'invito (qhq0tun) anno 2021-2022, slide sul [drive WhatsApp](https://drive.google.com/drive/folders/1hdHk5s0ys5xMJSEa-XeIjJ0rjM3nY5jW).
 
-**Tools**
+## Tools
 
-- DBMS mariadb (postgres backend for arch linux)
-- Obsidian.md (note taking and export to PDF)
+**Text editors**
+	Obsidian.md (disponibile per tutte le piattaforme)
+	vim
+**DMBS**
+	postgresql (arch linux)
 
-**Directory structure**
+## Directory stucture
 
 ```
-.
-├── APPUNTI
-│   ├── cap1_concetti_base.md
-│   ├── cap2_modello_relazionale.md
-│   └── PDF
-│       ├── cap2_modello_relazionale.pdf
-│       └── concetti_base21-09.pdf
-├── BASI_INDEX.md
-├── README.md
-└── SQL
-    ├── PDF
-    │   └── SQL_SELECT.pdf
-    ├── SQL_INTRO_INDEX.md
-    └── SQL_SELECT.md
+Documents/Obsidian Vault/UNI/BASI
+├── SQL (query di esempio ed esercizi visti a lezione) 
+│   └── PDF (per voi)
+└── TEORIA (appunti presi a lezione e non)
+    └── PDF (per voi)
 ```
 
----
+**Le sottocartelle a nome `PDF` sono quelle contenenti i file esportati** da Obsidian.md: **sono i file che vi interessano** alla fine della fiera.
 
-I file `.md` non vi interessano, seguite le Directory `PDF`, li trovate tutto il necessario.
+Tuttavia, se scaricate Obsidian.md e importate i file in `md` al suo interno, dovreste ottenere risultati migliori, in quanto noterete che, in alcuni `pdf` ci sono troncamenti di pagina non voluti (purtroppo l'unico modo per risolvere sarebbe aggiungere interruzioni di linea, ma non stanno bene esteticamente).
+
+## Similar repos
+Repository di coetanei sono presenti, le uso io stesso perché alcune query SQL le perdo nella furia di scrivere tutto in modo esteticamente bello.
+
+Mattia Merenda
+	https://github.com/merendamattia/BdD

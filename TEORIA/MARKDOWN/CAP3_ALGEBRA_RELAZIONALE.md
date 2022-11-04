@@ -14,7 +14,7 @@
 			- [[#PRODOTTO CARTESIANO ( $ times$ )]]
 		- [[#VISTE ( $:=$ )]]
 - [[#Esempi esercizi]]
-- [[#Esempi prova itinere]]
+- [[#Esempi estratti da prove in itinere]]
 
 # Algebra e calcolo relazionale
 #algebra-relazionale #procedurali #ridenominazione #selezione #proiezione #join #viste 

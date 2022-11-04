@@ -35,7 +35,11 @@ Documents/Obsidian Vault/UNI/BASI
 
 **Le sottocartelle a nome `PDF` sono quelle contenenti i file esportati** da Obsidian.md: **sono i file che vi interessano** alla fine della fiera.
 
-Tuttavia, se scaricate [Obsidian.md](https://obsidian.md/) e importate i file dalle cartelle `MARKDOWN`, dovreste ottenere risultati migliori, in quanto noterete che, in alcuni `pdf` ci sono troncamenti di pagina non voluti (purtroppo l'unico modo per risolvere sarebbe aggiungere interruzioni di linea, ma non stanno bene esteticamente).
+Trovate **esempi di esercizi in prove di itinere**:
+- riguardo l'**algebra relazionale** nel file `CAP3_ALGEBRA_RELAZIONALE` (ultima pagina);
+- riguardo **esercizi** `SQL` nel file `CAP4_SQL` (ultima pagina).
+
+Se scaricate [Obsidian.md](https://obsidian.md/) e importate i file dalle cartelle `MARKDOWN`, dovreste ottenere risultati migliori, in quanto noterete che, in alcuni `pdf` ci sono troncamenti di pagina non voluti (purtroppo l'unico modo per risolvere sarebbe aggiungere interruzioni di linea, ma non stanno bene esteticamente).
 
 I file a nome `_INDEX.md` sono utili per generare i grafi, se usate Obsidian.md vi conviene importare anche quelli.
 
@@ -44,6 +48,4 @@ I file a nome `_INDEX.md` sono utili per generare i grafi, se usate Obsidian.md 
 ## Similar repos
 Repository di coetanei sono presenti, le uso io stesso perché alcune query SQL le perdo nella furia di scrivere tutto in modo esteticamente bello.
 
-Mattia Merenda
-
-https://github.com/merendamattia/BdD
+- Mattia Merenda > https://github.com/merendamattia/BdD

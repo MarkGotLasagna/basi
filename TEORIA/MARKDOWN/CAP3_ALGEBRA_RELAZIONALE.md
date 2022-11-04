@@ -369,5 +369,3 @@ $$nomeVista_{listaAttributi} := \mathrm{PROJ}_{attributi}(Operando)\  \mathrm{UN
 	- $R_1 \times R_2$ (prodotto cartesiano)     -> 0
 	- $R_1 \bowtie_{RIGHT} R_2$ (right outer join)  -> n<sub>2</sub>
 	- $R_1 \bowtie_{FULL} R_2$ (full outer join)       -> n<sub>2</sub> + 0
----
-up to: 10-05

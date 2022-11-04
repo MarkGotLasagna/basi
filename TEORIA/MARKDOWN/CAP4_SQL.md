@@ -4,13 +4,9 @@
 - [[#Interfaccia grafica]]
 - [[#Data Manipulation Language (DML)]]
 	- [[#Modifica degli schemi]]
-	- [[#Transazione]]
-		- [[#Transaction Isolation Levels]]
-			- [[#Anomalie sui livelli]]
 - [[#Data Definition Language (DDL)]]
 	- [[#`SELECT`]]
 	- [[#`CREATE TABLE`]]
-- [[#Controllo dell'accesso]]
 - [[#Esempi DDL e DML]]
 - [[#Estratti da esami passati]]
 
@@ -42,9 +38,7 @@ Per la GUI usiamo [`pgAdmin`](https://www.pgadmin.org/).
 Nell'interfaccia grafica possiamo fare JOIN tra *schemi* (collezione di tabelle), possiamo vedere gli utenti con accesso al DB, possiamo vedere le relazioni. Le operazioni sono molteplici ma equivalgono alle stesse operazioni possibili tramite linea di comando (useremo soltanto da linea di comando).
 >[!warning] L'interfaccia grafica a noi non interessa troppo siccome tutto quello che serve e' gia' incluso in linea di comando.
 
-
 ## Data Manipulation Language (DML)
-
 ### Modifica degli schemi
 Usiamo `INSERT`, `DELETE`, `UPDATE` da una sola tabella per $0,1,n$ istanze, sulla base di una condizione coinvolgente anche altre relazioni.
 
@@ -74,47 +68,6 @@ UPDATE nomeTabella
 SET attributo = [ espressione | SELECT (); | NULL | DEFAULT | ... ]
 	WHERE condizione;
 ```
-
-### Transazione
-> [!todo] Questa voce dell'argomento verra' ripresa nei capitoli successivi: non contenuta negli argomenti della prova in itinere.
-
-$$\mathrm{A\ C\ I\ D}$$
-
-Operazioni considerate indivisibili, corrette anche in presenza di concorrenza con effetti definitivi:
-- <u>A</u>tomicità, una sola, unico oggetto, se fallisce una parte allora fallisce l'intero tentativo;
-- <u>C</u>onsistenza;
-- <u>I</u>solamento, transazioni iniziate nel passato e che termineranno nel futuro, non vedo mai la transazione diversa dalla mia;
-- <u>D</u>urabilità.
-
-```sql
--- per cominciare la transazione
-START TRANSACTION;
--- START TRANSACTION ISOLATION LEVEL SERIALIZABLE;
--- applica la proprietà di serializzazione della teoria
-
--- operazioni da eseguire sulla base di dati
-COMMIT WORK;
-```
-
-#### Transaction Isolation Levels
-##### Anomalie sui livelli
-- <u>dirty read</u>
-  Una transazione legge dati scritti da una transazione concorrente non ancora committed
-- <u>nonrepeatable read</u>
-  Una transazione rilegge dati precedentemente letti e trova che i dati sono stati modificati da un'altra
-- <u>phantom read</u>
-  Una transazione riesegue una query che soddisfa una condizione di ricerca e trova che la condizione è stata modificata causa un'altra transazione
-- <u>serialization anomaly</u>
-  Il risultato di una transazione o gruppo, è inconsistente rispetto alle transazioni eseguite una a una
-  
-| Isolation Level  | Dirty Read                       | Nonrepeatable Read | Phantom Read           | Serialization Anomaly |
-| ---------------- | -------------------------------- | ------------------ | ---------------------- | --------------------- |
-| Read uncommitted | Allowed, not in `psql` | Possible           | Possible               | Possible              |
-| Read committed   | Not possible                     | Possible           | Possible               | Possible              |
-| Repeatable read  | Not possible                     | Not possible       | Allowed, not in `psql` | Possible              |
-| Serializable     | Not possible                     | Not possible       | Not possible           | Not possible          | 
-
-In `psql` possiamo richiedere uno dei quattro *isolamenti di livello*, anche se ne vengono implementati solo 3 (Read uncommitted = Read Committed).
 
 ## Data Definition Language (DDL)
 ### `SELECT`
@@ -211,39 +164,6 @@ In `psql` <u>non sono supportate</u>, perché non ci è garantita la loro effici
 
 La vista creata con `CREATE VIEW NomeVista`.
 Sono come normali relazioni.
-
-## Controllo dell'accesso
-Controllare l'accesso di chi ha permesso per DDL.
-In tutti i sistemi c'è un **amministratore** che nel caso di `psql` si chiama `postgres`. Sarebbe come l'account `root`, e può fare qualsiasi cosa sul DB. Per sicurezza è sempre meglio creare un utente che abbia privilegi minimi necessari per il suo lavoro.
-
-L'utente amministratore `_system` può dare **privilegi** ad altri utenti:
-- risorsa di riferimento;
-- utente concedente la risorsa;
-- l'utente ricevente la risorsa;
-- l'azione che viene permessa;
-- trasmissibilità del privilegio.
-
-Tipi di privilegi:
-- `INSERT` inserire dati
-- `UPDATE` permette modifica del contenuto
-- `DELETE` eliminare oggetti
-- `SELECT` permette risorsa
-- `REFERENCES` definizione di vincoli d'integrità referenziale, diritto se l'utente vuole creare chiave esterna
-- `USAGE` utilizzo in una definizione
-
-```sql
--- concessione
-GRANT < Privileges | All privileges > on Resource
-	TO Users [ WITH GRANT OPTION ]
-	-- per specificare se altri utenti possono trasmettere il privilegio
-```
-
-```sql
--- revoca
-REVOKE Privileges ON Resource FROM Users
-	[ RESTRICT | CASCADE ]
-	-- per specificare per altri utenti a cui trasmessi i privilegi
-```
 
 # Esempi DDL e DML
 ```sql

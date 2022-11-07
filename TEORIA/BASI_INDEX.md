@@ -9,7 +9,7 @@ Topic:
 - [[CAP6_SQL_NEI_LINGUAGGI]]
 - 
 - [[SELECT]]
-- [[CHEATSHEET]]
+- [[CHEATSHEET_ALGEBRA]]
 
 SQL
 - [[SQL_INDEX]]

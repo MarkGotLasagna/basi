@@ -77,7 +77,6 @@ dove $Condizione$ è una formula proposizionale.
 | 0               | $\mathtt{NULL}$ | $\mathtt{unknown}$ | $\mathtt{true}$                     |
 | $\mathtt{NULL}$ | $\mathtt{NULL}$ | $\mathtt{unknown}$ | $\mathtt{false}$                    | 
 
-
 ### Proiezione ( $\Pi_{a_1, \dotsc, a_n}(R)$ )
 Decomposizione verticale, operatore ortogonale.
 Anche lui operatore monadico, parametrico.

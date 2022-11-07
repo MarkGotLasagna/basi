@@ -178,6 +178,7 @@ INSERT INTO iscrizioni (studente, anno_iscrizione, laurea, data_iscrizione, anno
     SELECT i.studente, 2022, i.laurea, current_date, i.anno_corso + 1
     FROM iscrizioni i, corsi_laurea c
     WHERE i.laurea = c.codice
+	    -- nello schema manca l'attributo anni_corso
         AND i.anno_corso < c.anni_corso
         AND i.anno_iscrizione = 2021
 ```

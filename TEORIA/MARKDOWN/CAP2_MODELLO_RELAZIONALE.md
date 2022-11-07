@@ -12,6 +12,7 @@
 			- [[#chiave primaria]]
 	- [[#Interrelazionali]]
 		- [[#integrità referenziale (di chiave esterna, foreign key)]]
+
 # Modelli logici dei dati
 #modelli #modello-relazionale #relazione-mate #ennupla 
 3 modelli logici tradizionali:
@@ -66,11 +67,10 @@ $$r = \{r_1, \dots, r_n\}$$
 | ...    | ...      | ...         | 
 
 ### Relazione matematica
-$D_1 = \{a,b\}$
-$D_2 = \{x, y, z\}$
-Il prodotto cartesiano sarebbe $D_1 * D_2$
-Una relazione $r \subseteq D_1 * D_2$
-
+$$D_1 = \{a,b\}$$
+$$D_2 = \{x, y, z\}$$
+Il prodotto cartesiano sarebbe: $$D_1 * D_2$$
+Una relazione: $$r \subseteq D_1 * D_2$$
 > [!example] Esempio di tabella con nome "Partite"
 > 
 > $\mathtt{partite} \subseteq \mathtt{string} * \mathtt{string} * \mathtt{int} * \mathtt{int}$
@@ -124,11 +124,12 @@ Ci dobbiamo immaginare tutti i valori possibili per il nostro dato: situazioni t
 
 ### Vincoli su valori (o dominio)
 Controllo il valore.
+La distinzione fra vincoli di $n$-upla e di dominio e' sempre piu' sottile nei DBMS recenti, quindi d'ora in avanti tutti i vincoli che prenderemo in considerazione saranno di $n$-upla.
 
 ### Chiave
 Una **chiave** possiamo identificarla come un insieme di attributi per singola tabella/relazione, univoca, identificanti le $n$-uple di una relazione.
 Chiamiamo questo insieme di attributi $K$.
-Si chiama **superchiave** per $r$ se $r$ non contiene due $n$-uple distinte $t_1$ e $t_2$ con $t_1[K] = t_2[K]$.
+Si chiama **superchiave** per $r$ se $r$ non contiene due $n$-uple distinte $t_1$ e $t_2$ con $t_1[K] = t_2[K]$
 
 > [!example] Esempio di chiave
 > 
@@ -146,7 +147,9 @@ Nel caso di valori <u>NULL</u>, impedisce di usare chiavi, quindi da ricordare c
 
 #### chiave primaria
 Sulla quale non sono MAI ammessi valori nulli, su nessun attributo componente la **chiave primaria** possiamo consentire il valore nullo.
+
 La <u>sottolineatura</u> identifica questa chiave.
+Se piu' attributi sono sottolineati, insieme formano una chiave.
 
 > [!example] Esempio
 La `Matricola` e il `CodiceFiscale` possono fare chiave, pero' sara' primaria soltanto `Matricola` siccome uno studente potrebbe venire dall'estero e non avere il `CodiceFiscale`.
@@ -160,7 +163,9 @@ Quel vincolo che serve per dire che da *questa* tabella, scrivo un valore conten
 - in particolare, valori delle chiavi (primarie), usiamo quasi sempre quelle
 - le correlazioni debbono essere "coerenti"
 
-> [!example]
+La dicitura <sub>fk</sub> identifica questa chiave.
+
+> [!example] Esempio
 `Infrazioni`
 > 
 > 

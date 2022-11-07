@@ -40,33 +40,39 @@ Nell'interfaccia grafica possiamo fare JOIN tra *schemi* (collezione di tabelle)
 
 ## Data Manipulation Language (DML)
 ### Modifica degli schemi
-Usiamo `INSERT`, `DELETE`, `UPDATE` da una sola tabella per $0,1,n$ istanze, sulla base di una condizione coinvolgente anche altre relazioni.
+Usiamo `INSERT`, `DELETE`, `UPDATE`, `ALTER` da una sola tabella per $0,1,n$ istanze, sulla base di una condizione coinvolgente anche altre relazioni.
 
-Per <u>inserire</u> $n$-uple nello schema:
+Per <u>inserire</u> $n$-uple:
 ```sql
-INSERT INTO nomeTabella(attributo1, attributo2, ...)
+INSERT INTO nomeTabella(colonna1, colonna2, ...)
 	VALUES (valore1, valore2, ...);
 ```
 
 <center>oppure</center>
 
 ```sql
-INSERT INTO nomeTabella(attributi)
+INSERT INTO nomeTabella(nomeColonne)
 	SELECT ();
 ```
 
-Per <u>cancellarle</u>:
+Per <u>cancellare</u> $n$-uple:
 ```sql
 DELETE FROM nomeTabella
 	WHERE condizione; -- senza questa, la tabella verrebbe svuotata
 ```
 Se la politica di reazione per vincoli referenziali è specificata `CASCADE`, allora istanze di altre tabelle correlate vengono eliminate; significa che tutte le righe legate con chiave esterna, $n$-uple soddisfacenti il predicato della `DELETE`, verranno eliminate.
 
-Per <u>modificarle</u>:
+Per <u>modificare</u> $n$-uple:
 ```sql
 UPDATE nomeTabella
-SET attributo = [ espressione | SELECT (); | NULL | DEFAULT | ... ]
+SET nomeColonna = [ espressione | SELECT | NULL | DEFAULT | ... ]
 	WHERE condizione;
+```
+
+Per <u>alterare</u> tabelle:
+```sql
+ALTER TABLE nomeTabella
+	[ ADD | DROP | ALTER ] nomeColonna | nomeConstraint;
 ```
 
 ## Data Definition Language (DDL)

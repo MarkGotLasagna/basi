@@ -34,6 +34,7 @@ si parla d'*indipendenza logica* delle tabelle di base.
 - affidabilità, mettendo in gioco politiche per recuperare dati per malfunzionamenti, con gestione delle *transazioni*
 - efficienza, per spazio di memoria e tempo; DBMS con tante funzioni rischiano inefficienza
 - efficaci, quello che deve fare viene fatto? risolve i problemi? se sì allora è un buon DBMS per in nostri usi
+
 I *file system* estendono quelli tradizionali, fornendo più servizi in maniera integrata ("tutto o niente"). 
 Esiste all'interno dello stesso una porzione che contiene *descrizione centralizzata dei dati*, che può essere utilizzata dai vari programmi
 (catalogo o dizionario), che serve come indice.
@@ -80,7 +81,6 @@ Una <u>vista</u> è l'aggancio tra due tabelle che hanno una relazione.
 | basi di dati | piero rossi | n2   | 9:45 | T     | informatica         |
 | ...          | ...         | ...  | ...  | ...   | ...                 | 
 
-
 ## Modelli dei dati
 - modelli **logici**
 	sono effettivamente utilizzati dagli utenti e programmi per interfacciarsi col DBMS
@@ -97,7 +97,6 @@ Una <u>vista</u> è l'aggancio tra due tabelle che hanno una relazione.
 
 ### DDL (data definition language)
 per gli schemi 
-
 ```sql
 # creiamo una tabella nel database 'database_esempio'
 USE database_esempio;
@@ -121,7 +120,6 @@ VALUES
 ```
 
 ## Personaggi e interpreti
-
 - *progettisti* e realizzatori di DBMS
 - *progettisti della base di dati* e *amministratori* del DB
 - *progettisti* e *programmatori* di applicazioni

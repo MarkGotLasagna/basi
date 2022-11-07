@@ -1,26 +1,15 @@
 # SELECT_TEORIA
 
 ```sql
-# seleziona colonne dalla tabella
-
+-- seleziona colonne dalla tabella
 SELECT colonna1, colonna2, ...
-FROM nome_tabella;
+FROM nome_tabella
+WHERE condizioni;
 ```
 
 e' la sintassi del `SELECT` in sql.
-Serve a **estrapolare dati dal db che rispettano una condizione precisata**.
-Ma dove si trovano i criteri? Infatti nell'esempio sopra non ci sono, eccoli qui in basso:
-
-```sql
-# seleziona colonne dalla tabella rispettanti condizione
-
-SELECT colonna1, colonna2, ...
-FROM nome_tabella
-WHERE condizioni; -- i criteri vanno messi qui
-```
-
-le `condizioni` sono specificate dalla **clausola** `WHERE`.
-Li dentro mettiamo tutto quello che ci interessa per estrarre i dati che ci interessano.
+Serve a **estrapolare dati dal DB che rispettano una condizione precisata**.
+Le `condizioni` sono specificate dalla **clausola** `WHERE`.
 
 - Esiste un modo per il `SELECT` d'indicare <u>tutte le colonne</u> della tabella usando `*`
 	```sql
@@ -38,15 +27,13 @@ Li dentro mettiamo tutto quello che ci interessa per estrarre i dati che ci inte
 	  - `AVG()` ritorna il <u>valore medio</u> di una colonna numerica;
 	  - `COUNT()` ritorna il <u>numero di righe</u> che rispettano un criterio;
 	  - `SUM()` ritorna la <u>somma dei valori</u> in una colonna numerica.
-	
 	```sql
-	SELECT [MIN | MAX | AVG | COUNT | SUM] colonne
+	SELECT [ MIN | MAX | AVG | COUNT | SUM ] colonne
 	FROM tabelle
 	WHERE condizione;
 	```
 
 - Una colonna o tabella, puo' essere <u>rinominata</u> con la **parola chiave** `AS`.
-
 	```sql
 	SELECT colonna AS variabile
 	FROM tabella;
@@ -62,20 +49,26 @@ Li dentro mettiamo tutto quello che ci interessa per estrarre i dati che ci inte
 | >=        | maggiore di o uguale                |
 | <=        | minore di o uguale                  |
 | !=        | non uguale                          |
-| BETWEEN   | tra un certo range                  |
+| BETWEEN   | $\mathrm{a}$ BETWEEN $\mathrm{x}$ AND $\mathrm{y}$                  |
 | LIKE      | cerca per un pattern                |
 | IN        | specifica multipli valori possibili | 
+
+| string | LIKE | pattern | result |
+| ------ | ---- | ------- | ------ |
+| 'abc'  | LIKE | 'abc'   | true   |
+| 'abc'  | LIKE | 'a%'    | true   |
+| 'abc'  | LIKE | '\_b_'  | true   |
+| 'abc'  | LIKE | 'c'     | false  | 
 
 I record possono essere filtrati <u>specificando piu' condizioni</u>:
 - `AND` mostra un record *se tutte le condizioni* separate con esso vengono soddisfatte;
 - `OR` mostra record *se una qualsiasi delle condizioni* separate dallo stesso viene soddisfatta;
 - `NOT` mostra il record se il risultato della condizione e' "non vero".
-	
 	```sql
 	SELECT colonna1, colonna2, ...
 	FROM tabella
-	WHERE condizione1 [AND | OR | NOT] condizione2 
-		[AND | OR | NOT] condizione3, ... ;
+	WHERE condizione1 [ AND | OR | NOT ] condizione2 
+		[ AND | OR | NOT ] condizione3, ... ;
 	```
 
 I <u>risultati possono essere ordinati</u> usando `ORDER BY`.
@@ -84,10 +77,8 @@ Di default, gli elementi verranno ordinati in modo *ascendente* `ASC`, ma possia
 SELECT colonna1, colonna2
 FROM tabella
 WHERE clausola
-ORDER BY colonna [ASC | DESC]
+ORDER BY colonna [ ASC | DESC ]
 ```
-> [!warning] E i valori `NULL`?
-> In tutti i casi di `SELECT`, i valori nulli delle colonne vanno sempre da considerarsi. Nel caso di dafault, questi valori non sono distinti l'uno dall'altro.
 
 La `SELECT` di default non permette di fare unioni, <u>unire le colonne</u> per fornire una nuova tabella con le colonne scelte, serve un costrutto esplicito `UNION`. Se volessimo tutti i duplicati aggiungiamo anche la parola chiave `ALL`.
 La <u>differenza</u> viene implementata con `EXCEPT` e vengono come prima, eliminati i duplicati almeno che `ALL` non venga aggiunto.
@@ -96,15 +87,14 @@ Anche l'<u>intersezione</u> è possibile con `INTERSECT`.
 ```sql
 SELECT colonna1, colonna2
 FROM tabella1
-UNION [[ALL] | EXCEPT [ALL] | INTERSECT]
+UNION [ [ALL] | EXCEPT [ALL] | INTERSECT ]
 SELECT colonna3, colonna4
 FROM tabella2
 ```
 
-Le <u>$n$-uple possono essere raggruppate</u> a singoli gruppetti, usando `GROUP BY` e specifichiamo le nostre condizioni con `HAVING`.
+Le <u>n-uple possono essere raggruppate</u> a singoli gruppetti, usando `GROUP BY` e specifichiamo le nostre condizioni con `HAVING`.
 Se avessimo da utilizzare funzioni aggregate su attributi (come `SUM` oppure `COUNT`), utilizzeremmo `GROUP BY` per specificare in base a quale criterio raggruppare le $n$-uple.
 ```sql
--- numero di figli di ciascun padre
 SELECT colonna
 FROM tabella
 WHERE condizione

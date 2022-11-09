@@ -15,13 +15,13 @@ Il corso si divide in 2 parti:
 ## Tools
 
 **Text editors**
-- Obsidian.md (disponibile per tutte le piattaforme)
-- vim
+- `Obsidian.md` per prendere appunti in markdown
+- `vim`
 
 **DMBS**
-- postgresql (arch linux)
+- `postgresql` su arch linux
 
-## Directory stucture
+## Directory structure
 
 ```
 Documents/Obsidian Vault/UNI/BASI

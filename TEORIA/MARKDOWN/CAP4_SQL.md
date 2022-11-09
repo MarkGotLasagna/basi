@@ -9,6 +9,9 @@
 	- [[#`CREATE TABLE`]]
 - [[#Esempi DDL e DML]]
 - [[#Estratti da esami passati]]
+	- [[#Prova itinere 11-2022]]
+	- [[#Tema_A]]
+	- [[#Tema_B]]
 
 # Structured Query Language (SQL)
 #sql #pratica #comandi-sql #dml #ddl #transazione #sicurezza
@@ -34,9 +37,11 @@ ps aux | grep mysql
 ![[Pasted image 20221007171922.png]]
 
 ## Interfaccia grafica
+
+>[!warning] L'interfaccia grafica a noi non interessa troppo siccome tutto quello che serve e' gia' incluso in linea di comando.
+
 Per la GUI usiamo [`pgAdmin`](https://www.pgadmin.org/).
 Nell'interfaccia grafica possiamo fare JOIN tra *schemi* (collezione di tabelle), possiamo vedere gli utenti con accesso al DB, possiamo vedere le relazioni. Le operazioni sono molteplici ma equivalgono alle stesse operazioni possibili tramite linea di comando (useremo soltanto da linea di comando).
->[!warning] L'interfaccia grafica a noi non interessa troppo siccome tutto quello che serve e' gia' incluso in linea di comando.
 
 ## Data Manipulation Language (DML)
 ### Modifica degli schemi
@@ -218,6 +223,27 @@ UPDATE persone
 ```
 
 # Estratti da esami passati
+## Prova itinere 11-2022
+- Fornire una istanza della tabella $R(A,B)$ per la quale la query `SELECT COUNT(A), COUNT(B) FROM R` calcola due valori diversi.
+
+	| $A$    | $B$   |
+	| ------ | ----- |
+	| mario  | rossi | 
+	| `NULL` | neri |
+
+- Data la relazione $R(A,B,C)$, la query `SELECT COUNT(*), B*C AS PROD FROM R ORDER BY B*C` è errata; per quale motivo? Come deve essere corretta?
+	
+	Vedere file [[SELECT]]
+	
+	E' errata perché la query utilizza una funzione aggregata (`COUNT`) senza l'operatore `GROUP BY` per raccogliere i risultati.
+	
+	```sql
+	SELECT COUNT(*), B*C AS PROD
+	FROM R
+	GROUP BY B*C
+	ORDER BY B*C
+	```
+
 ## Tema_A
 Biblioteche (<u>codice</u>, nome, citta, indirizzo)
 Libri (<u>codice</u>, titolo, edizione, anno, pagine)

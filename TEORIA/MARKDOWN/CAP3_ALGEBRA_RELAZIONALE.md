@@ -68,6 +68,8 @@ dove $Condizione$ è una formula proposizionale.
 > SEL<sub>stipendio > 50 AND filiale = 'Milano'</sub>(Impiegati)
 
 > [!warning] Nota sui valori `NULL`
+> #NULL_VALUES
+> 
 > Nell'algebra relazionale (quindi in `psql`) i valori `NULL` **non sono distinti l'uno dall'altro**. Questo significa che operazioni come $A \neq B$ dove $A=0$ e $B=\mathtt{NULL}$, restituiranno sempre $\mathtt{unknown}$ siccome `NULL` non è ben definito.
 > 
 | $A$             | $B$             | $(A \neq B)$       | $A\ \mathrm{IS\ DISTINCT\ FROM}\ B$ |
@@ -358,7 +360,7 @@ $$nomeVista_{listaAttributi} := \mathrm{PROJ}_{attributi}(Operando)\  \mathrm{UN
 
 - Fornire un esempio di una coppia di valori (per $A$ e $B$) per la quale i due predicati ($A \neq B)$ e $(A\ \mathtt{IS\ DISTINCT\ FROM}\ B)$ forniscono risultati diversi.
 	
-	Vedere tabella in alto.
+	Vedere tabella #NULL_VALUES 
 
 - Date due tabelle con schemi $R_1(X_1)$, $R_2(X_2)$, sotto quali condizioni l’espressione dell’algebra relazionale $R1 \cap R2$ è ben definita, cioè non causa un errore?
 
@@ -368,3 +370,12 @@ $$nomeVista_{listaAttributi} := \mathrm{PROJ}_{attributi}(Operando)\  \mathrm{UN
 	- $R_1 \times R_2$ (prodotto cartesiano)     -> 0
 	- $R_1 \bowtie_{RIGHT} R_2$ (right outer join)  -> n<sub>2</sub>
 	- $R_1 \bowtie_{FULL} R_2$ (full outer join)       -> n<sub>2</sub> + 0
+
+- Date le relazioni $R(\underline{A},B^*,C)$ e $S(\underline{D},E,F^*)$, dove $\#R=n$ e $\#S=m$, quante ennuple compongono il risultato della query 
+  `SELECT * FROM R LEFT OUTER JOIN S ON A = D`?
+  
+	  La cardinalità corrisponde al numero di $n$-uple di $R$: $n$.
+
+- Cosa differenzia la proiezione dell'algebra relazionale rispetto a quella implementata in SQL?
+
+	La proiezione $\mathrm{PROJ}$ dell'algebra relazionale ha la caratteristica di eliminare di default, le $n$-uple duplicate. La sua implementazione in SQL invece richiede l'aggiunta della clausola `DISTINCT`.

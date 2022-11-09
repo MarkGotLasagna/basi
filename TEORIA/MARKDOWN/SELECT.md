@@ -93,7 +93,6 @@ FROM tabella2
 ```
 
 Le <u>n-uple possono essere raggruppate</u> a singoli gruppetti, usando `GROUP BY` e specifichiamo le nostre condizioni con `HAVING`.
-Se avessimo da utilizzare funzioni aggregate su attributi (come `SUM` oppure `COUNT`), utilizzeremmo `GROUP BY` per specificare in base a quale criterio raggruppare le $n$-uple.
 ```sql
 SELECT colonna
 FROM tabella
@@ -103,6 +102,9 @@ HAVING condizione
 ```
 
 Se lavoriamo con gruppi di `NULL`, questi siccome non distinti verranno raggruppati
+
+> [!warning] Attenzione alle funzioni aggregate
+> Nel momento in cui, funzioni aggregate come `COUNT`, `SUM`, `MIN`, `MAX` sono presenti nella query (argomento `SELECT`), dobbiamo assicurarci che le $n$-uple risultanti siano raggruppate con l'operatore `GROUP BY`, altrimenti il DBMS lancierà errore.
 
 ## Interrogazione nidificata
 Il confronto tra attributo e risultato di sotto-interrogazione è possibile, l'attributo ha un solo valore. Le quantificazioni esistenziali sono il caso cardine. La forma piana e la forma nidificata possono essere combinate, c'è da dire che la forma nidificata è "meno dichiarativa" ma talvolta più leggibile.

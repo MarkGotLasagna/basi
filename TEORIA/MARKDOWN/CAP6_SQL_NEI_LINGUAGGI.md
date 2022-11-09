@@ -140,12 +140,12 @@ int main() {
   int i;
 
   // connessione al DBMS a DB nominato 'zaffanella'
-  my_connection = PQconnectdb("host=127.0.0.1 dbname='zaffanella' "
-			      "user=zaffanella password='segreto'");
+  my_connection = PQconnectdb("host=127.0.0.1 dbname='nomeDB' "
+			      "user=nomeUtente password='password'");
   
   // verifico la connessione avvenuta o meno
   if (PQstatus(my_connection) == CONNECTION_OK)
-    printf("Connected to zaffanella.\n");
+    printf("Connected to nomeDB.\n");
   else {
     printf("Error while opening connection.\n");
     PQfinish(my_connection);
@@ -156,8 +156,8 @@ int main() {
 ```
 
 > [!example] Esempio in C++
-
 ```cpp
+// g++ -Wall -Wextra -I/usr/include/postgresql prova.cc -o prova -lpqxx -lpq
 #include <iostream>
 // la libreria C++ necessita della libreria C per funzionare
 // il termine tecnico è 'wrapper'
@@ -168,8 +168,8 @@ using namespace pqxx;
 
 int main() {
   try {
-    connection Conn("host=127.0.0.1 dbname=zaffanella "
-		    "user=zaffanella password=segreto");
+    connection Conn("host=127.0.0.1 dbname=nomeDB "
+		    "user=nomeUtente password=password");
     cout << "Connected to " << Conn.dbname() << endl;
     work Work(Conn);
 

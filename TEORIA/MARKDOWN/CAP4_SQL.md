@@ -224,14 +224,21 @@ UPDATE persone
 
 # Estratti da esami passati
 ## Prova itinere 11-2022
-- Fornire una istanza della tabella $R(A,B)$ per la quale la query `SELECT COUNT(A), COUNT(B) FROM R` calcola due valori diversi.
+- Fornire una istanza della tabella $R(A,B)$ per la quale la query 
+  `SELECT COUNT(A), COUNT(B) FROM R` 
+  calcola due valori diversi.
 
 	| $A$    | $B$   |
 	| ------ | ----- |
 	| mario  | rossi | 
 	| `NULL` | neri |
+	
+	NOTA: nella consegna i due attributi non sono stati indicati annullabili.
+	Tuttavia la risposta rimane valida.
 
-- Data la relazione $R(A,B,C)$, la query `SELECT COUNT(*), B*C AS PROD FROM R ORDER BY B*C` è errata; per quale motivo? Come deve essere corretta?
+- Data la relazione $R(A,B,C)$, la query 
+  `SELECT COUNT(*), B*C AS PROD FROM R ORDER BY B*C` è errata; 
+  per quale motivo? Come deve essere corretta?
 	
 	Vedere file [[SELECT]]
 	

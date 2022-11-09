@@ -304,14 +304,17 @@ $$nomeVista_{listaAttributi} := \mathrm{PROJ}_{attributi}(Operando)\  \mathrm{UN
 | 9553      | Rossi   | Roma    | 44        |
 | 5698      | Rossi   | Roma    | 64        | 
 
-> [!example] Impiegati che guadagnano piu' di 50 e lavorano a Milano
-> $\mathrm{SEL}_{stipendio > 50\ \mathrm{AND}\ Filiale='Milano'}(Impiegati)$
+- Impiegati che guadagnano piu' di 50 e lavorano a Milano
+  
+	$\mathrm{SEL}_{stipendio > 50\ \mathrm{AND}\ Filiale='Milano'}(Impiegati)$
 
-> [!example]  Matricola e cognome di tutti gli impiegati
-> $\mathrm{PROJ}_{matricola, cognome}(Impiegati)$
+- Matricola e cognome di tutti gli impiegati
+  
+	$\mathrm{PROJ}_{matricola, cognome}(Impiegati)$
 
-> [!example] Matricola e cognome degli impiegati che guadagnano piu' di 50
-> $\mathrm{PROJ}_{matricola, cognome}(\mathrm{SEL}_{stipendio > 50}(Impiegati))$
+- Matricola e cognome degli impiegati che guadagnano piu' di 50
+  
+	$\mathrm{PROJ}_{matricola, cognome}(\mathrm{SEL}_{stipendio > 50}(Impiegati))$
 
 ---
 
@@ -337,15 +340,17 @@ $$nomeVista_{listaAttributi} := \mathrm{PROJ}_{attributi}(Operando)\  \mathrm{UN
 | 4076      | 8123 | 
 
 
-> [!example] Nome e stipendio dei capi degli impiegati che guadagnano piu' di 50
-> 	$\mathrm{PROJ}_{nome, stipendio}(Supervisione\ \mathrm{JOIN}_{capo = matricola}\ (\mathrm{SEL}_{stipendio > 50}(Impiegati)))$
+- Nome e stipendio dei capi degli impiegati che guadagnano piu' di 50
+  
+	$\mathrm{PROJ}_{nome, stipendio}(Supervisione\ \mathrm{JOIN}_{capo = matricola}\ (\mathrm{SEL}_{stipendio > 50}(Impiegati)))$
 
-> [!example] Trovare gli impiegati che guadagnano più del proprio capo, mostrando matricola, nome e stipendio dell'impiegato e del capo
-> $\mathrm{PROJ}_{matricola, nome, stipendio, matricolaC, nomeC, stipendioC}$
-> $\ \ \ (\mathrm{SEL}_{stipendio > stipendioC}$
-> $\ \ \ \ \ \ (\mathrm{REN}_{matricolaC, nomeC, stipendioC \gets matricola, nome, stipendio}(Impiegati)$
-> $\ \ \ \ \ \ \ \mathrm{JOIN}_{matricolaC = capo}$
-> $\ \ \ \ \ \ (Supervisione\ \mathrm{JOIN}_{impiegato = matricola}\ Impiegati)))$
+- Trovare gli impiegati che guadagnano più del proprio capo, mostrando matricola, nome e stipendio dell'impiegato e del capo
+  
+	$\mathrm{PROJ}_{matricola, nome, stipendio, matricolaC, nomeC, stipendioC}$
+	$\ \ \ (\mathrm{SEL}_{stipendio > stipendioC}$
+	$\ \ \ \ \ \ (\mathrm{REN}_{matricolaC, nomeC, stipendioC \gets matricola, nome, stipendio}(Impiegati)$
+	$\ \ \ \ \ \ \ \mathrm{JOIN}_{matricolaC = capo}$
+	$\ \ \ \ \ \ (Supervisione\ \mathrm{JOIN}_{impiegato = matricola}\ Impiegati)))$
 
 # Esempi estratti da prove in itinere
 - Dato lo schema di relazione $R(X)$, sotto quali condizioni l’espressione dell’algebra relazionale  $\sigma_{A=B}(R)$ è ben definita, cioè non causa un errore?

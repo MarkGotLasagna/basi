@@ -53,6 +53,9 @@ CONSTRAINT nomeVariabile CHECK ([ condizione ])
 > ```
 
 ### ASSERTION
+
+> [!error] Le `ASSERTION` non sono implementate in `PostgreSQL`, ma possiamo emularle utilizzando `TRIGGER` con `CHECK` per controllare prima di ogni inserimento se il vincolo e' rispettato.
+
 I vincoli possono essere specificati a livello di schema.
 Nel caso in cui volessimo assicurarci che una condizione venga soddisfatta su un'intera tabella, prima ancora di prendere atto nel modificarla, utilizziamo un'*asserzione*.
 ```sql
@@ -64,8 +67,6 @@ CREATE ASSERTION almenoUno
 	CHECK (1 <= (SELECT COUNT(*)
 				 FROM Impiegati));
 ```
-
-> [!error] Le `ASSERTION` non sono implementate in `PostgreSQL`, ma possiamo emularle utilizzando `TRIGGER` con `CHECK` per controllare prima di ogni inserimento se il vincolo e' rispettato.
 
 # Viste
 Una *vista* e' il prodotto di una query che abbiamo eseguito.

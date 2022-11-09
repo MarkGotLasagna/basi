@@ -1,11 +1,6 @@
-#sql #sql-embedded #prodedura #sq
+#sql #sql-embedded #prodedura
 <center> Table of contents </center>
 
-- [[#Procedura]]
-- [[#Linguaggi SQL]]
-	- [[#Linguaggio immerso]]
-	- [[#SQL dinamico]]
- - [[#Call Level Interface]]
 
 # Introduzione
 SQL non basta solo così com'è: servono dei modi per aggiungere funzionalità necessarie:
@@ -117,13 +112,76 @@ prepare CommandName from SQLstatement
 ```
 
 ```sql
--- e poi eseguire
+-- e poi eseguiamo
 execute commandName [into targetList]
 					[using parameterList]
 ```
 
-*DynamicSQL* è anche un problema riguardo la sicurezza del DBMS.
+*DynamicSQL* è un <u>problema riguardo la sicurezza</u> del DBMS.
 Semplici sono gli attacchi d'iniezione di query maliziose (*query injection*), che possiamo evitare applicando *barriere di sicurezza*, come quella del *privilegio minimo* per l'utente che si connette al DB.
 
-## Call Level Interface
-kanji
+## Call Level Interface (CLI)
+Sono interfacce che permettono l'invio di query SQL al DBMS.
+Sono diventate standard, anche se troppo tardi, e quindi i sistemi si sono fatti i propri standard (Oracle, Microsoft, ...).
+- indipendenza dal DBMS
+	se guardiamo tuttavia le piccolezze/pregi di ciascuno, la standardizzazione non ci permette di utilizzarli, perché appunto è uno standard;
+- accesso permesso a più basi di dati;
+
+> [!example] Esempio in C
+```c
+// gcc -Wall -Wextra -I/usr/include/postgresql -c prova.c -o prova.o
+// gcc -o prova prova.o -lpq
+// libreria CLI del C (libpq-dev)
+#include "libpq-fe.h"
+
+int main() {
+  PGconn* my_connection;
+  PGresult* result;
+  int i;
+
+  // connessione al DBMS a DB nominato 'zaffanella'
+  my_connection = PQconnectdb("host=127.0.0.1 dbname='zaffanella' "
+			      "user=zaffanella password='segreto'");
+  
+  // verifico la connessione avvenuta o meno
+  if (PQstatus(my_connection) == CONNECTION_OK)
+    printf("Connected to zaffanella.\n");
+  else {
+    printf("Error while opening connection.\n");
+    PQfinish(my_connection);
+    return -1;
+  }
+  
+  // ...
+```
+
+> [!example] Esempio in C++
+
+```cpp
+#include <iostream>
+// la libreria C++ necessita della libreria C per funzionare
+// il termine tecnico è 'wrapper'
+#include <pqxx/pqxx>
+
+using namespace std;
+using namespace pqxx;
+
+int main() {
+  try {
+    connection Conn("host=127.0.0.1 dbname=zaffanella "
+		    "user=zaffanella password=segreto");
+    cout << "Connected to " << Conn.dbname() << endl;
+    work Work(Conn);
+
+    // ...
+
+    Work.commit();
+  }
+  catch (const exception& e) {
+    cerr << "Exception caught." << endl;
+    cerr << e.what() << endl;
+    return 1;
+  }
+  return 0;
+}
+```

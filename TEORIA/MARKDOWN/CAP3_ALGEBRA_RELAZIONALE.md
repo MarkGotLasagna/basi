@@ -351,36 +351,3 @@ $$nomeVista_{listaAttributi} := \mathrm{PROJ}_{attributi}(Operando)\  \mathrm{UN
 	$\ \ \ \ \ \ (\mathrm{REN}_{matricolaC, nomeC, stipendioC \gets matricola, nome, stipendio}(Impiegati)$
 	$\ \ \ \ \ \ \ \mathrm{JOIN}_{matricolaC = capo}$
 	$\ \ \ \ \ \ (Supervisione\ \mathrm{JOIN}_{impiegato = matricola}\ Impiegati)))$
-
-# Esempi estratti da prove in itinere
-- Dato lo schema di relazione $R(X)$, sotto quali condizioni l’espressione dell’algebra relazionale  $\sigma_{A=B}(R)$ è ben definita, cioè non causa un errore?
-  
-	  Nell'algebra relazionale il simbolo $=$ indica la clausola `WHERE` di `SQL`.
-	  Nessun errore si presenta fintanto che non siano presenti valori `NULL`.
-
-- Date due tabelle con schemi $R_1(X_1)$, $R_2(X_2)$, dove $X_1 \cup X_2 = \{A\}$, sapendo che $\#(r_1) = n$ e $\#(r_2) = 0$ (cioè l’istanza di $R2$ è vuota), indicare le cardinalità delle seguenti espressioni dell’algebra relazionale:  
-	- $R1 \bowtie_{NAT} R2$ (join naturale)     -> 0
-	- $R1 \bowtie_{LEFT} R2$ (left outer join)  -> n
-	- $R1 \bowtie_{FULL} R2$ (full outer join)  -> n + 0
-
-- Fornire un esempio di una coppia di valori (per $A$ e $B$) per la quale i due predicati ($A \neq B)$ e $(A\ \mathtt{IS\ DISTINCT\ FROM}\ B)$ forniscono risultati diversi.
-	
-	Vedere tabella #NULL_VALUES 
-
-- Date due tabelle con schemi $R_1(X_1)$, $R_2(X_2)$, sotto quali condizioni l’espressione dell’algebra relazionale $R1 \cap R2$ è ben definita, cioè non causa un errore?
-
-	Non causa errore fintanto che le due relazioni abbiano la stessa cardinalità.
-
-- Date due tabelle con schemi $R_1(X_1)$, $R_2(X_2)$, dove $X_1 \cap X_2 = \emptyset$, sapendo che $\#(r_1)=0$ e $\#(r_2)=n_2$ (cioè l'istanza di $R_1$ è vuota), indicare le cardinalità delle seguenti espressioni dell'algebra relazionale:
-	- $R_1 \times R_2$ (prodotto cartesiano)     -> 0
-	- $R_1 \bowtie_{RIGHT} R_2$ (right outer join)  -> n<sub>2</sub>
-	- $R_1 \bowtie_{FULL} R_2$ (full outer join)       -> n<sub>2</sub> + 0
-
-- Date le relazioni $R(\underline{A},B^*,C)$ e $S(\underline{D},E,F^*)$, dove $\#R=n$ e $\#S=m$, quante ennuple compongono il risultato della query 
-  `SELECT * FROM R LEFT OUTER JOIN S ON A = D`?
-  
-	  La cardinalità corrisponde al numero di $n$-uple di $R$: $n$.
-
-- Cosa differenzia la proiezione dell'algebra relazionale rispetto a quella implementata in SQL?
-
-	La proiezione $\mathrm{PROJ}$ dell'algebra relazionale ha la caratteristica di eliminare di default, le $n$-uple duplicate. La sua implementazione in SQL invece richiede l'aggiunta della clausola `DISTINCT`.

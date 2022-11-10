@@ -25,6 +25,9 @@ Il corso si divide in 2 parti:
 
 ```
 Documents/Obsidian Vault/UNI/BASI
+├── ESAMI
+│   ├── MARKDOWN
+│   └── PDF
 ├── SQL
 │   ├── MARKDOWN
 │   └── PDF
@@ -33,13 +36,12 @@ Documents/Obsidian Vault/UNI/BASI
     └── PDF
 ```
 
-**Le sottocartelle a nome `PDF` sono quelle contenenti i file esportati** da Obsidian.md: **sono i file che vi interessano** alla fine della fiera.
+**Le sottocartelle a nome `PDF` sono quelle contenenti i file esportati** da Obsidian.md: **sono i file che vi interessano** alla fine della fiera:
+- **appunti** di teoria presi a lezione e non, nella cartella /TEORIA;
+- **esercizi SQL**, nella cartella /SQL;
+- **esempi di esercizi in prove d'itinere** ed **esami** passati, nella cartella /ESAMI.
 
-Trovate **esempi di esercizi in prove di itinere**:
-- riguardo l'**algebra relazionale** nel file `CAP3_ALGEBRA_RELAZIONALE` (ultima pagina);
-- riguardo **esercizi** `SQL` nel file `CAP4_SQL` (ultima pagina).
-
-Se scaricate [Obsidian.md](https://obsidian.md/) e importate i file dalle cartelle `MARKDOWN`, dovreste ottenere risultati migliori, in quanto noterete che, in alcuni `pdf` ci sono troncamenti di pagina non voluti (purtroppo l'unico modo per risolvere sarebbe aggiungere interruzioni di linea, ma non stanno bene esteticamente).
+Se scaricate [Obsidian.md](https://obsidian.md/) e importate i file dalle cartelle `MARKDOWN`, dovreste ottenere risultati migliori, in quanto noterete che, in alcuni `.pdf` ci sono troncamenti di pagina non voluti (purtroppo l'unico modo per risolvere sarebbe aggiungere interruzioni di linea, ma non stanno bene esteticamente).
 
 I file a nome `_INDEX.md` sono utili per generare i grafi, se usate Obsidian.md vi conviene importare anche quelli.
 

@@ -10,8 +10,11 @@
 - [[#Esempi DDL e DML]]
 - [[#Estratti da esami passati]]
 	- [[#Prova itinere 11-2022]]
-	- [[#Tema_A]]
-	- [[#Tema_B]]
+		- [[#Tema_A]]
+		- [[#Domande a risposta aperta]]
+	- [[#Prova itinere 2021]]
+		- [[#Tema_A]]
+		- [[#Tema_B]]
 
 # Structured Query Language (SQL)
 #sql #pratica #comandi-sql #dml #ddl #transazione #sicurezza
@@ -224,6 +227,54 @@ UPDATE persone
 
 # Estratti da esami passati
 ## Prova itinere 11-2022
+
+> [!todo] Da completare, mancanti:
+> - 2 query tema A
+> - tema B
+
+### Tema_A
+
+$\mathtt{TESSERE\_FEDELTA}$(<u>numero</u>, data_emissione, cognome, nome)
+$\mathtt{PRODOTTI}$(<u>codice</u>, categoria, descrizione, prezzo_unitario)
+$\mathtt{SCONTRINI}$(<u>codice</u>, data, cassa, progr, tessera<sub>fk</sub><sup>*</sup>)
+$\mathtt{RIGHE\_SCONTRINI}$(<u>scontrino</u><sub>fk</sub>, <u>progr_riga</u>, prodotto<sub>fk</sub>, quantita)
+$\mathtt{PAGAMENTI\_ELETTRONICI}$(<u>scontrino</u><sub>fk</sub>, tipo_carta, numero_carta)
+
+- Scrivere l'istruzione DDL per la definizione della relazione $\mathtt{RIGHE\_SCONTRINI}$; la quantità acquistata deve essere un numero compreso tra 0.01 e 10.00 (precisione centesimo di unità).
+	```sql
+	CREATE TABLE righe_scontrini (
+		scontrino INTEGER NOT NULL,
+		prog_riga INTEGER NOT NULL,
+		prodotto INTEGER NOT NULL,
+		quantita NUMERIC(2,2) NOT NULL,
+		PRIMARY KEY (scontrino , pro_riga)
+		FOREIGN KEY (scontrino) REFERENCES scontrini (codice) ,
+		FOREIGN KEY (prodotto) REFERENCES prodotti (codice),
+		CHECK (quantita BETWEEN 0.01 AND 10.00)
+	);
+	```
+
+- Modificare la relazione $\mathtt{PRODOTTI}$ per aumentare del 10% i prezzi dei prodotti di categoria "alta gastronomia".
+
+	  ```sql
+	  UPDATE prodotti
+		  SET prezzo_unitario = prezzo_unitario * 1.1
+		  WHERE categoria = 'alta gastronomia' ;
+	   ```
+
+- Estrarre l'elenco delle tessere fedeltà per le quali non è stato registrato nessuno scontrino negli ultimi 30 giorni, ordinandole per cognome e nome.
+  
+	```sql
+	SELECT ts.codice , ts.cognome , ts.cognome
+	FROM tessere_fedelta ts
+	WHERE ts.codice NOT IN ( SELECT s.tessera
+							 FROM scontrini s
+						     WHERE current_date = current_data < 30 )
+	ORDER BY ts.cognome , ts.nome
+	```
+
+
+### Domande a risposta aperta
 - Fornire una istanza della tabella $R(A,B)$ per la quale la query 
   `SELECT COUNT(A), COUNT(B) FROM R` 
   calcola due valori diversi.
@@ -251,13 +302,15 @@ UPDATE persone
 	ORDER BY B*C
 	```
 
-## Tema_A
-Biblioteche (<u>codice</u>, nome, citta, indirizzo)
-Libri (<u>codice</u>, titolo, edizione, anno, pagine)
-Autori (<u>codice</u>, nome, cognome, anno_nascita, biografia)
-Autori_libri (<u>libro</u><sub>fk</sub>, <u>autore</u><sub>fk</sub>)
-Copie_libri (<u>seriale</u>, libro<sub>fk</sub>, biblioteca<sub>fk</sub>, collocazione)
-Prestiti (<u>codice</u>, data_inizio, data_fine_prevista, data_fine_effettiva*, copia_libro<sub>fk</sub>)
+## Prova itinere 2021
+### Tema_A
+
+$\mathtt{BIBLIOTECHE}$(<u>codice</u>, nome, citta, indirizzo)
+$\mathtt{LIBRI}$(<u>codice</u>, titolo, edizione, anno, pagine)
+$\mathtt{AUTORI}$(<u>codice</u>, nome, cognome, anno_nascita, biografia)
+$\mathtt{AUTORI\_LIBRI}$(<u>libro</u><sub>fk</sub>, <u>autore</u><sub>fk</sub>)
+$\mathtt{COPIE\_LIBRI}$(<u>seriale</u>, libro<sub>fk</sub>, biblioteca<sub>fk</sub>, collocazione)
+$\mathtt{PRESTITI}$(<u>codice</u>, data_inizio, data_fine_prevista, data_fine_effettiva*, copia_libro<sub>fk</sub>)
 
 1. Scrivere l’istruzione DDL per la definizione della relazione autori_libri includendo, oltre ai vincoli indicati nello schema, il vincolo che impone che per ogni libro non vi possano essere più autori con la stessa posizione (ordine sequenza) nella sequenza degli autori.
     ```sql
@@ -325,13 +378,14 @@ Prestiti (<u>codice</u>, data_inizio, data_fine_prevista, data_fine_effettiva*, 
 	);
     ```
 
-## Tema_B
-Biblioteche (<u>codice</u>, nome, citta, indirizzo)
-Libri (<u>codice</u>, titolo, edizione, anno, pagine)
-Autori (<u>codice</u>, nome, cognome, anno_nascita, biografia)
-Autori_libri (<u>libro</u><sub>fk</sub>, <u>autore</u><sub>fk</sub>)
-Copie_libri (<u>seriale</u>, libro<sub>fk</sub>, biblioteca<sub>fk</sub>, collocazione)
-Prestiti (<u>codice</u>, data_inizio, data_fine_prevista, data_fine_effettiva*, copia_libro<sub>fk</sub>)
+### Tema_B
+
+$\mathtt{BIBLIOTECHE}$(<u>codice</u>, nome, citta, indirizzo)
+$\mathtt{LIBRI}$(<u>codice</u>, titolo, edizione, anno, pagine)
+$\mathtt{AUTORI}$(<u>codice</u>, nome, cognome, anno_nascita, biografia)
+$\mathtt{AUTORI\_LIBRI}$(<u>libro</u><sub>fk</sub>, <u>autore</u><sub>fk</sub>)
+$\mathtt{COPIE\_LIBRI}$(<u>seriale</u>, libro<sub>fk</sub>, biblioteca<sub>fk</sub>, collocazione)
+$\mathtt{PRESTITI}$(<u>codice</u>, data_inizio, data_fine_prevista, data_fine_effettiva*, copia_libro<sub>fk</sub>)
 
 1. Scrivere l’istruzione DDL per la definizione della relazione copie libri includendo, oltre ai vincoli indicati nello schema, il vincolo che impone che ogni biblioteca non possa avere più copie dello stesso libro.
    

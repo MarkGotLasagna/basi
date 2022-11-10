@@ -37,9 +37,9 @@ Documents/Obsidian Vault/UNI/BASI
 ```
 
 **Le sottocartelle a nome `PDF` sono quelle contenenti i file esportati** da Obsidian.md: **sono i file che vi interessano** alla fine della fiera:
-- **appunti** di teoria presi a lezione e non, nella cartella /TEORIA;
-- **esercizi SQL**, nella cartella /SQL;
-- **esempi di esercizi in prove d'itinere** ed **esami** passati, nella cartella /ESAMI.
+- **appunti** di teoria presi a lezione e non, nella cartella `TEORIA`;
+- **esercizi SQL**, nella cartella `SQL`;
+- **esempi di esercizi in prove d'itinere** ed **esami** passati, nella cartella `ESAMI`.
 
 Se scaricate [Obsidian.md](https://obsidian.md/) e importate i file dalle cartelle `MARKDOWN`, dovreste ottenere risultati migliori, in quanto noterete che, in alcuni `.pdf` ci sono troncamenti di pagina non voluti (purtroppo l'unico modo per risolvere sarebbe aggiungere interruzioni di linea, ma non stanno bene esteticamente).
 

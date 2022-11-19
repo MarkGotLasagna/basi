@@ -1,5 +1,3 @@
-#sql #comandi-sql #pratica #vincoli #viste 
-
 <center>Table of contents</center>
 
 - [[#Vincoli in SQL]]
@@ -13,6 +11,8 @@
 		- [[#Anomalie sui livelli]]
 
 # Vincoli in SQL
+#sql #comandi-sql #pratica #vincoli #viste 
+
 I tipi di dato (domini) sono un modo per dividere il numero di rappresentazioni che il nostro dato puo' assumere. Tuttavia nella vita reale sono necessari *vincoli* piu' forti: non esiste in SQL un modo per esprimere un dato in riguardo a numeri positivi (improvvisamente la nostra confezione di pasta vale -3€).
 
 ## Vincoli d'integrita' generici

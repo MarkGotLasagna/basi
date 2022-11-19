@@ -1,7 +1,3 @@
-> [!todo] Da completare, mancanti:
-> - 2 query tema A
-> - tema B
-
 # Tema_A
 
 $\mathtt{TESSERE\_FEDELTA}$(<u>numero</u>, data_emissione, cognome, nome)
@@ -42,8 +38,6 @@ $\mathtt{PAGAMENTI\_ELETTRONICI}$(<u>scontrino</u><sub>fk</sub>, tipo_carta, num
 						     WHERE current_date = current_data < 30 )
 	ORDER BY ts.cognome , ts.nome
 	```
-
-# Tema_B
 
 # Domande a risposta aperta
 

@@ -1,8 +1,15 @@
-#sql #sql-embedded #prodedura
 <center> Table of contents </center>
 
+- [[#Introduzione]]
+	- [[#Procedura]]
+	- [[#Linguaggi SQL]]
+		- [[#Linguaggio immerso]]
+		- [[#SQL dinamico]]
+	- [[#Call Level Interface (CLI)]]
 
 # Introduzione
+#sql #sql-embedded #prodedura
+
 SQL non basta solo così com'è: servono dei modi per aggiungere funzionalità necessarie:
 - input, scelta utente e parametri;
 - output, dati non relazionali o presentazioni complesse;

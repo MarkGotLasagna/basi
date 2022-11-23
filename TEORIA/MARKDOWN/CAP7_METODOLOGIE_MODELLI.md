@@ -120,7 +120,7 @@ Possono essere composti, nel senso che una medesima entità o relationship prese
 >Puo' essere omessa. Non e' necessario dargli un nome in quanto il concetto e' esplicato dal nome delle entita' coinvolte.
 
 >[!note] Nomenclatura delle associazioni `molti a molti`
->Deve sempre essere precissato un nome.
+>Deve sempre essere precisato un nome.
 
 Coppia di valori associati a ogni entità che partecipa a una relationship.
 Specificano il numero minimo e massimo di occorrenze delle relationship cui ciascuna occorrenza di un'entità può partecipare.

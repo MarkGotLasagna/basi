@@ -40,3 +40,46 @@ create trigger TriggerName
 ```
 
 Grazie ai trigger possiamo definire vincoli di reazione, per esempio: le asserzioni non sono presenti come operazioni in postgreSQL ma possiamo imitarle con i trigger.
+
+### Semantica
+La schedule di esecuzione segue l'ordine:
+- `before statement`;
+- per ogni tupla sul quale viene eseguito:
+	- `before row`
+	- operazione
+	- `after row`
+- `after statement`
+
+Alcuni sistemi forniscono modo di definire un ordine prioritario sui trigger, in postgreSQL è il *nome* del trigger che specifica l'ordine (`aaaa` prima di `aa`).
+
+### Estensioni
+- eventi temporali attivano i trigger (definiti da utente);
+- combinazione di condizioni di verità;
+- `instead of` per non eseguire l'azione attivante il trigger, ma un'altra;
+- modalità d'esecuzione separata, per gestire la transazione separatamente nel caso ci siano problemi;
+- priorità definite da utente (nome del trigger per ordinare);
+- insieme di regole, la possibilità di attivare/disabilitare un insieme di trigger.
+
+### Proprietà regole attive
+- terminazione, studiando l'interazione delle regole di attivazione;
+- confluenza;
+- comportamento osservabile, se il comportamento rimane lo stesso allo siamo a posto.
+  
+```mermaid
+flowchart TD
+	r1 <--> r2
+	r1 <--> r3
+	r2 <--> r4
+	r3 <--> r4
+```
+
+### Applicazioni
+Servizi interni:
+- controllo e manutenzione delle integrità dei *constraint*;
+- replicazione delle operazioni;
+- gestione delle viste:
+	- materializzate, ovvero quelle pre-calcolate nel trigger dopo un aggiornamento di tuple;
+	- virtuali, ottimizzazione delle query;
+
+Servizi esterni al DBMS codificati da utente:
+- descrizione delle dinamiche del DB 

@@ -34,3 +34,14 @@ Mostrare lo schema concettuale per la base di dati di una sezione di una associa
 
 # Schema E-R completo
 ![[Pasted image 20221119165537.png]]
+## Traduzione in linguaggio logico-relazionale
+$\mathtt{GS}$ (<u>Nome</u>)
+$\mathtt{MotiviSospensione}$ (<u>Nome</u>, Durata)
+$\mathtt{Donatori}$ (<u>Tessera</u>, CF (UNIQUE), Nome, Cognome, Email,
+	GS_Nome<sub>fk</sub>, MotivoSospensione<sub>fk</sub>\*, DataInizioSospensione\*)
+$\mathtt{M}$ (Volontari<sub>fk</sub>)
+$\mathtt{I}$ (Volontari<sub>fk</sub>)
+$\mathtt{GD}$ (<u>Data</u>, OraInizio, OraFine, 
+	Medico<sub>fk</sub>, Infermiere1<sub>fk</sub>, Infermiere2<sub>fk</sub>, Infermiere3<sub>fk</sub>)
+$\mathtt{Convocazioni}$ (<u>Giornata</u><sub>fk</sub>, <u>Donatore</u><sub>fk</sub>, Tipo)
+$\mathtt{Donazioni}$ (<u>ID</u>, Quantità, Peso, \[Giornata, Donatore<sub>fk</sub>(Convocazioni)])

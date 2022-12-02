@@ -62,7 +62,7 @@ $\mathtt{PAGAMENTI\_ELETTRONICI}$(<u>scontrino</u><sub>fk</sub>, tipo_carta, num
   `SELECT COUNT(*), B*C AS PROD FROM R ORDER BY B*C` è errata; 
   per quale motivo? Come deve essere corretta?
 	
-	Vedere file [[SELECT]]
+	Vedere file [[CHEATSHEET_SELECT]]
 	
 	E' errata perché la query utilizza una funzione aggregata (`COUNT`) senza l'operatore `GROUP BY` per raccogliere i risultati.
 	

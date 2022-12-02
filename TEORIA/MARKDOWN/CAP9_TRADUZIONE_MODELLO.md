@@ -1,4 +1,4 @@
-# Tradurre che lo schema E-R in modello logico-relazionale
+# Tradurre lo schema E-R in modello logico-relazionale
 
 Le due *entità* diventano delle relazioni sugli stessi attributi, le *associazioni* (non tutte) diventano tabelle/relazioni sulle entità coinvolte e se hanno degli attributi, ce li mettiamo.
 

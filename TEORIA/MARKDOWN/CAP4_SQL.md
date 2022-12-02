@@ -78,7 +78,7 @@ ALTER TABLE nomeTabella
 
 ## Data Definition Language (DDL)
 ### `SELECT`
-[[SELECT]] -> vedere PDF associato
+[[CHEATSHEET_SELECT]] -> vedere PDF associato
 
 ### `CREATE TABLE`
 Per creare porzioni di schema usiamo l'istruzione `CREATE TABLE`:

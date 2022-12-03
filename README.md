@@ -48,7 +48,7 @@ Se scaricate [Obsidian.md](https://obsidian.md/) e importate i file dalle cartel
 I file a nome `_INDEX.md` sono utili per generare i grafi, se usate Obsidian.md vi conviene importare anche quelli.
 
 <p align="center">
-  <img src="/PICS/graph_view.png" alt="Graph view">
+  <img src="/PICS/graph_view.png" width="50%" alt="Graph view">
 </p>
 
 

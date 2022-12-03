@@ -14,7 +14,7 @@ Una transazione la descriviamo come:
 ```mermaid
 flowchart LR
 	a("active") --> b("partially committed") --> c("committed")
-	a --> d("failed") --> e("aborted")
+	a --> d("failed") --> e("aborted");
 	b --> d
 ```
 Stabiliamo le terminologie delle transazioni:

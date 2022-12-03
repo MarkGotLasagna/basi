@@ -47,7 +47,10 @@ Se scaricate [Obsidian.md](https://obsidian.md/) e importate i file dalle cartel
 
 I file a nome `_INDEX.md` sono utili per generare i grafi, se usate Obsidian.md vi conviene importare anche quelli.
 
-![Graph view of 'basi'](https://github.com/MarkGotLasagna/basi/blob/main/PICS/graph_view.png)
+<p align="center">
+  <img src="/PICS/graph_view.png" alt="Graph view">
+</p>
+
 
 ## Similar repos
 Repository di coetanei sono presenti, le uso io stesso perché alcune query SQL le perdo nella furia di scrivere tutto in modo esteticamente bello.

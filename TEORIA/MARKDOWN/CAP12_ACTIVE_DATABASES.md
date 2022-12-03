@@ -1,7 +1,17 @@
-$\mathtt{NOTE}$
-Sulle slide edizione in inglese del '99.
 
----
+<center>Table of contents</center>
+
+- [[#Active Databases]]
+	- [[#Event-condition-action (ECA)]]
+	- [[#Granularity & execution mode]]
+		- [[#Granularity]]
+		- [[#Execution mode]]
+	- [[#Trigger]]
+		- [[#Semantica]]
+		- [[#Estensioni]]
+		- [[#Proprietà regole attive]]
+		- [[#Applicazioni]]
+
 # Active Databases
 I database possono reagire facendo qualcosa di più rispetto a quello richiesto dall'utente, mandano in esecuzione delle *regole di produzione* ('business rules' in marketing).
 

@@ -28,10 +28,14 @@ Il corso si divide in 2 parti:
 ```
 Documents/Obsidian Vault/UNI/BASI
 ├── ESAMI
+│   ├── MARKDOWN
 │   └── PDF
+├── PICS
 ├── SQL
+│   ├── MARKDOWN
 │   └── PDF
 └── TEORIA
+    ├── MARKDOWN
     └── PDF
 ```
 

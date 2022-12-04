@@ -28,13 +28,10 @@ Il corso si divide in 2 parti:
 ```
 Documents/Obsidian Vault/UNI/BASI
 ├── ESAMI
-│   ├── MARKDOWN
 │   └── PDF
 ├── SQL
-│   ├── MARKDOWN
 │   └── PDF
 └── TEORIA
-    ├── MARKDOWN
     └── PDF
 ```
 
@@ -42,10 +39,6 @@ Documents/Obsidian Vault/UNI/BASI
 - **appunti** di teoria presi a lezione e non, nella cartella `TEORIA`;
 - **esercizi SQL**, nella cartella `SQL`;
 - **esempi di esercizi in prove d'itinere** ed **esami** passati, nella cartella `ESAMI`.
-
-Se scaricate [Obsidian.md](https://obsidian.md/) e importate i file dalle cartelle `MARKDOWN`, dovreste ottenere risultati migliori, in quanto noterete che, in alcuni `.pdf` ci sono troncamenti di pagina non voluti (purtroppo l'unico modo per risolvere sarebbe aggiungere interruzioni di linea, ma non stanno bene esteticamente).
-
-I file a nome `_INDEX.md` sono utili per generare i grafi, se usate Obsidian.md vi conviene importare anche quelli. Sappiate pero' che le immagini non ci saranno, siccome sono screenshot salvati localmente e la cartella che li contiene non e' ordinata.
 
 Per installare soltanto i file PDF localmente:
 ```

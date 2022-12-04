@@ -51,7 +51,7 @@ I file a nome `_INDEX.md` sono utili per generare i grafi, se usate Obsidian.md 
   <img src="/PICS/graph_view.png" width="50%" alt="Graph view">
 </p>
 
-Trovate l'insieme degli snippets CSS all'interno della repo [.dots](https://github.com/MarkGotLasagna/.dots/tree/main/Documents/Obsidian%20Vault/.obsidian/snippets).
+Trovate l'insieme degli snippets CSS all'interno della repo [.dots](https://github.com/MarkGotLasagna/.dots).
 Lista di plugins utilizzati:
 ```
 Documents/Obsidian Vault/.obsidian/plugins

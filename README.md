@@ -59,14 +59,16 @@ git clone --filter=blob:none --depth 1 --sparse https://github.com/MarkGotLasagn
 Trovate l'insieme degli snippets CSS all'interno della repo [.dots](https://github.com/MarkGotLasagna/.dots).
 Lista di plugins utilizzati:
 ```
-Documents/Obsidian Vault/.obsidian/plugins
+/home/maruko/Documents/Obsidian Vault/.obsidian/plugins
 ├── cm-editor-syntax-highlight-obsidian
 ├── cmenu-plugin
 ├── highlightr-plugin
 ├── obsidian-admonition
+├── obsidian-dynamic-toc
 ├── obsidian-emoji-toolbar
 ├── obsidian-functionplot
 ├── obsidian-icon-folder
+├── obsidian-icons-plugin
 ├── obsidian-languagetool-plugin
 ├── obsidian-pandoc
 ├── obsidian-tikzjax

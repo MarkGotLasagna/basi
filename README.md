@@ -40,7 +40,7 @@ Documents/Obsidian Vault/UNI/BASI
 - **esercizi SQL**, nella cartella `SQL`;
 - **esempi di esercizi in prove d'itinere** ed **esami** passati, nella cartella `ESAMI`.
 
-Per installare soltanto i file PDF localmente:
+Per installare soltanto i file PDF:
 ```
 git clone --filter=blob:none --depth 1 --sparse https://github.com/MarkGotLasagna/basi && \
     cd basi && \

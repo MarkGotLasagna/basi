@@ -45,7 +45,15 @@ Documents/Obsidian Vault/UNI/BASI
 
 Se scaricate [Obsidian.md](https://obsidian.md/) e importate i file dalle cartelle `MARKDOWN`, dovreste ottenere risultati migliori, in quanto noterete che, in alcuni `.pdf` ci sono troncamenti di pagina non voluti (purtroppo l'unico modo per risolvere sarebbe aggiungere interruzioni di linea, ma non stanno bene esteticamente).
 
-I file a nome `_INDEX.md` sono utili per generare i grafi, se usate Obsidian.md vi conviene importare anche quelli.
+I file a nome `_INDEX.md` sono utili per generare i grafi, se usate Obsidian.md vi conviene importare anche quelli. Sappiate pero' che le immagini non ci saranno, siccome sono screenshot salvati localmente e la cartella che li contiene non e' ordinata.
+
+Per installare soltanto i file PDF localmente:
+```
+git clone --filter=blob:none --depth 1 --sparse https://github.com/MarkGotLasagna/basi && \
+    cd basi && \
+    git sparse-checkout init --cone && \
+    git sparse-checkout set ESAMI/PDF SQL/PDF TEORIA/PDF
+```
 
 <p align="center">
   <img src="/PICS/graph_view.png" width="50%" alt="Graph view">

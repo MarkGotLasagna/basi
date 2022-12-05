@@ -84,6 +84,7 @@ Repository di coetanei sono presenti, le uso io stesso perché alcune query SQL 
 
 <p align="center" style="border-radius:25px;">
   <img src="/PICS/tip-jar-paypal.jpg" width="25%" alt="PayPal QR">
+  <img src="/PICS/tip-ko_fi.png" width="25%" alt="Ko-fi pic">
 </p>
 
 Gli appunti sono **gratuiti**. Ritengo che l'*informazione debba essere gratuita, per tutti*.

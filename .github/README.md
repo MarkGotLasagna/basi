@@ -3,8 +3,7 @@
 <div align=center>
 	<image src=https://shields.io/badge/PostgreSQL-white?logo=postgresql&style=plastic></image>
 	<image src=https://shields.io/badge/arch-white?logo=archlinux&style=plastic></image>
-    </br>
-    <image src=https://img.shields.io/github/stars/MarkGotLasagna/basi?style=social></image>
+    	<image src=https://img.shields.io/github/stars/MarkGotLasagna/basi?style=social></image>
 </div>
 
 del corso di Laurea in Informatica 'Ottobre 2022 - Gennaio 2023'.

@@ -76,9 +76,3 @@ Lista di plugins utilizzati:
 Repository di coetanei sono presenti, le uso io stesso perché alcune query SQL le perdo nella furia di scrivere tutto in modo esteticamente bello.
 
 - Mattia Merenda > https://github.com/merendamattia/BdD
-
-## Funding
-
-<p align="center" style="border-radius:25px;">
-  <img src="/PICS/full.png.png" width="50%" alt="PayPal QR"></br>
-</p>

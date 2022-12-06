@@ -1,9 +1,11 @@
 # Basi di dati 2022/2023
 
 <div align=center>
+	<image src=/PICS/basi_default.png width=75%></image></br></br>
 	<image src=https://shields.io/badge/PostgreSQL-white?logo=postgresql&style=plastic></image>
 	<image src=https://shields.io/badge/arch-white?logo=archlinux&style=plastic></image>
     	<image src=https://img.shields.io/github/stars/MarkGotLasagna/basi?style=social></image>
+	</br></br>
 </div>
 
 del corso di Laurea in Informatica 'Ottobre 2022 - Gennaio 2023'.
@@ -50,10 +52,6 @@ git clone --filter=blob:none --depth 1 --sparse https://github.com/MarkGotLasagn
     git sparse-checkout init --cone && \
     git sparse-checkout set ESAMI/PDF SQL/PDF TEORIA/PDF
 ```
-
-<p align="center">
-  <img src="/PICS/graph_view.png" width="50%" alt="Graph view">
-</p>
 
 Trovate l'insieme degli snippets CSS all'interno della repo [.dots](https://github.com/MarkGotLasagna/.dots).
 Lista di plugins utilizzati:

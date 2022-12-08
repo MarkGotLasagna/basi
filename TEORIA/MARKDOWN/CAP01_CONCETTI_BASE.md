@@ -1,19 +1,10 @@
-<center>Table of contents</center>
-
-- [[#Concetti di base]]
-	- [[#Schema, istanze e viste]]
-	- [[#Modelli dei dati]]
-	- [[#Linguaggi per DATABASE]]
-		- [[#DDL (data definition language)]]
-		- [[#DML (data manipulation language)]]
-	- [[#Personaggi e interpreti]]
-
+```toc
+```
 # Concetti di base
-#database #dbms #transazione #schema #istanze #viste #modello-relazionale #entity-relationship #ddl #dml #amministratore-db 
 
-<center> Che cosa e' una <mark> Basi di dati</mark> ? </center>
+Che cosa e' una ==Basi di Dati== (DB)?
 
-Un insieme organizzato di dati utilizzati per il supporto allo svolgimento delle attività di un ente, gestiti da un DBMS (database management systems). Un sistema è qualcosa di complicato, non è semplicemente uno strumento ma sono tante funzioni unite.
+Un insieme organizzato di dati utilizzati per il supporto allo svolgimento delle attività di un ente, gestiti da un DBMS. Un sistema è qualcosa di complicato, non è semplicemente uno strumento ma sono tante funzioni unite.
 
 Le basi di dati hanno alcune caratteristiche, una di queste è che sono *grandi*, parliamo di dati transazionali, dati decisionali, dati scientifici che raggiungono centinaia di Terabyte a volte.
 es. basi di dati bancari, a transazioni sicure
@@ -23,12 +14,12 @@ Le basi di dati devono essere *persistenti*.
 Sono *condivise*, più persone-processi condividono gli stessi dati.
 
 Il modo di rappresentare i dati esternamente è diverso da quello interno, per poter mantenere l'*indipendenza dei dati* (<u>modello dei dati</u>).
-Esistono modelli diversi di dati, ma ci occuperemo solamente del #modello-relazionale.
+Esistono modelli diversi di dati, ma ci occuperemo solamente del modello relazionale.
 
 Si parla d'*indipendenza fisica* per tutti i DBMS,
 si parla d'*indipendenza logica* delle tabelle di base.
 
-<center> Che cosa e' un <mark> DBMS</mark> ?</center>
+Che cosa e' un ==Database Management System== (DBMS)?
 
 - privatezza
 - affidabilità, mettendo in gioco politiche per recuperare dati per malfunzionamenti, con gestione delle *transazioni*
@@ -39,7 +30,7 @@ I *file system* estendono quelli tradizionali, fornendo più servizi in maniera 
 Esiste all'interno dello stesso una porzione che contiene *descrizione centralizzata dei dati*, che può essere utilizzata dai vari programmi
 (catalogo o dizionario), che serve come indice.
 
-<center> Che cosa e' una <mark> Transazione</mark> ?</center>
+Che cosa e' una ==Transazione==?
 
 O vanno tutte a buon fine, oppure vengono riprese.
 Un insieme *indivisibile* (<u>atomico</u>) corretto anche in presenza di concorrenza e con effetti definitivi.
@@ -47,15 +38,15 @@ es. se al nostro conto corrente fosse addebitata una somma, ma per un errore del
 Sono <u>concorrenti</u>, sono <u>permanenti</u>.
 
 ## Schema, istanze e viste
-`esempi di tabelle`
-
+> [!example] Esempi di alcune tabelle
+> 
 | insegnamento | docente     | aula | ora   |
 | ------------ | ----------- | ---- | ----- |
 | analisi      | luigi neri  | n1   | 8:00  |
 | basi di dati | piero rossi | n2   | 9:45  |
 | fondamenti   | luigi rossi | n1   | 10:00 |
 | ...          | ...         | ...  | ...   | 
-
+>
 | aula | piano | dipartimento        |
 | ---- | ----- | ------------------- |
 | n1   | T     | scienze matematiche |
@@ -64,17 +55,10 @@ Sono <u>concorrenti</u>, sono <u>permanenti</u>.
 
 - **schema**, <u>intestazioni della tabella</u>, descrivono la struttura invariante nel tempo
 - **istanza**, i valori attuali che possono cambiare rapidamente, il <u>corpo di ogni tabella</u>
-```mermaid
-flowchart TD
-	id(schema esterno) --> id1(schema logico)
-	id1 --> id2(schema interno)
-	id2 --> database[(database)]
-	style database fill:#FFFFFF,color:black
-```
-Una <u>vista</u> è l'aggancio tra due tabelle che hanno una relazione.
+- **vista** è l'<u>aggancio tra due tabelle</u> che hanno una relazione.
 
-`esempio di vista`
-
+> [!example] Un esempio di vista usando le tabelle viste sopra
+> 
 | insegnamento | docente     | aula | ora  | piano | dipartimento        |
 | ------------ | ----------- | ---- | ---- | ----- | ------------------- |
 | analisi      | luigi neri  | n1   | 8:00 | T     | scienze matematiche |
@@ -83,11 +67,16 @@ Una <u>vista</u> è l'aggancio tra due tabelle che hanno una relazione.
 
 ## Modelli dei dati
 - modelli **logici**
-	sono effettivamente utilizzati dagli utenti e programmi per interfacciarsi col DBMS
-	#modello-relazionale
+	sono effettivamente utilizzati dagli utenti e programmi per interfacciarsi col DBMS, modello relazionale
 - modelli **concettuali**
-	hanno scopo diverso, servono nelle fasi iniziali di progettazione del DBMS e servono più che altro alle persone per descrivere concetti del mondo reale
-	#entity-relationship (ER)
+	hanno scopo diverso, servono nelle fasi iniziali di progettazione del DBMS e servono più che altro alle persone per descrivere concetti del mondo reale, Entity-Relationship (ER)
+
+```mermaid
+flowchart LR
+	id(Schema esterno) --> id1(Schema logico)
+	id1 --> id2(Schema interno)
+	id2 --> database[(Database)]
+```
 
 ## Linguaggi per DATABASE
 - linguaggio testuale interattivo (==**SQL**==)

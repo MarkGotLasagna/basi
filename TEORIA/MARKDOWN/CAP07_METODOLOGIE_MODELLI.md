@@ -1,17 +1,5 @@
-<center>Table of contents</center>
-
-- [[#Preoccuparci della modellazione]]
-- [[#Progettazione di DB]]
-	- [[#Progettazione]]
-		- [[#Modello dei dati]]
-			- [[#Modello Entity-Relationship (E-R)]]
-				- [[#Entità]]
-				- [[#Relationship]]
-				- [[#Attributo]]
-				- [[#Cardinalità]]
-				- [[#Identificatori]]
-				- [[#Generalizzazioni]]
-
+```toc
+```
 # Preoccuparci della modellazione
 L'idea è che in una fase iniziale di progetto, lo schema logico dei dati sia troppo dettagliato: è quello che diamo in mani a chi deve implementare il DB quando noi stiamo ancora decidendo se costruire o meno la casa. Serve del tempo prima che la bozza si avvicini alla soluzione.
 
@@ -53,7 +41,9 @@ flowchart TD
 I risultati delle varie fasi di progettazione sono schemi di *modelli di dati*; usiamo la rappresentazione grafica. Capiremo come fare, in modo dettagliato, lo **schema concettuale**, con un linguaggio standard che sarà quello del libro di testo.
 
 ### Modello dei dati
+
 ![[Pasted image 20221111091944.png|350]]
+
 Sarebbe l'insieme di costrutti che consentono di definire i dati e come si comportano. Questi costrutti sono le *tabelle*, gli *attributi*, i *vincoli*, tutto quello che compone una DB.
 - **schema**
 	  come sono strutturati i miei dati, aspetto intensionale;
@@ -98,13 +88,16 @@ Legami logici tra 2 o più insiemi di [[#Entità]] nell'applicazione d'interesse
 ![[Pasted image 20221111094955.png|400]]
 
 ![[Pasted image 20221111095516.png|350]]
+
 Non possono esistere due occorrenze di `Esame` per uno solo `Studente - Corso`.
 Possiamo però *promuovere* per permetterlo.
 
 ![[Pasted image 20221111100236.png|400]]
+
 La stessa copia di entità può essere collegata da più relazioni, tenendo sempre conto che una volta creata, una tupla non può essere ripetuta.
 
 ![[Pasted image 20221111100432.png|400]]
+
 Associazioni ternarie esistono ma sono rare e spesso complicano la situazione.
 
 ##### Attributo
@@ -112,9 +105,11 @@ Sarebbe una proprietà elementare dell'entità su cui stiamo ragionando.
 Associa a ogni occorrenza di entità o relationship un valore appartenente a un insieme detto *dominio* dell'attributo.
 
 ![[Pasted image 20221111110746.png|350]]
+
 Possono essere composti, nel senso che una medesima entità o relationship presenta affinità nel loro significato/uso.
 
 ![[Pasted image 20221111110944.png|350]]
+
 ##### Cardinalità
 >[!note] Nomenclatura delle associazioni `1 a molti`
 >Puo' essere omessa. Non e' necessario dargli un nome in quanto il concetto e' esplicato dal nome delle entita' coinvolte.
@@ -129,33 +124,38 @@ Specificano il numero minimo e massimo di occorrenze delle relationship cui cias
 - $N$ per massima, nessun limite.
 
 ![[Pasted image 20221118084727.png|400]]
+
 I **tipi di relationship** sono:
 - *uno a uno* (molto rare);
 - *uno a molti*;
+  
 	![[Pasted image 20221118085016.png|400]]
+
 - *molti a molti*.
+  
 	![[Pasted image 20221118085035.png|400]]
 
 ##### Identificatori
 Per identificare univocamente, le occorrenze di un'entità.
 - **Interno**
 	attributi dell'entità
-	
+
 	![[Pasted image 20221118085337.png|350]]
+
 - **esterno**
 	attributi + entità esterne attraverso relationship
-	
+
 	![[Pasted image 20221118085412.png|350]]
 
 ##### Generalizzazioni
 Si dice **totale** se ogni occorrenza dell'entita' genitore e' una occorrenza di almeno una delle entita' figlie, altrimenti e' **parziale**.
-> <u>Generalizzazione totale</u> esclusiva
-> Tutte le `Persone` sono `Uomo` e `Donna`, una persona e' o `Uomo` o `Donna`.
-> 
-![[Pasted image 20221120001724.png|350]]
+- <u>Generalizzazione totale</u> esclusiva
+  Tutte le `Persone` sono `Uomo` e `Donna`, una persona e' o `Uomo` o `Donna`.
+  
+ ![[Pasted image 20221120001724.png|350]]
 
-> <u>Generalizzazione parziale</u> esclusiva
-> Ogni `Professionista` ha una sola professione principale, ma esistono anche altre professioni.
-> 
-> ![[Pasted image 20221120002119.png]]
+- <u>Generalizzazione parziale</u> esclusiva
+  Ogni `Professionista` ha una sola professione principale, ma esistono anche altre professioni.
+  
+![[Pasted image 20221120002119.png]]
 

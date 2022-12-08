@@ -1,20 +1,6 @@
-<center>Table of contents</center>
-
-- [[#Modelli logici dei dati]]
-	- [[#Modello relazionale]]
-		- [[#Relazione matematica]]
-		- [[#Tabelle e relazioni]]
-- [[#Vincoli d'integrità]]
-	- [[#Intrarelazionali]]
-		- [[#vincoli di $n$-upla]]
-		- [[#vincoli su valori (o dominio)]]
-		- [[#chiave]]
-			- [[#chiave primaria]]
-	- [[#Interrelazionali]]
-		- [[#integrità referenziale (di chiave esterna, foreign key)]]
-
+```toc
+```
 # Modelli logici dei dati
-#modelli #modello-relazionale #relazione-mate #ennupla 
 3 modelli logici tradizionali:
 - gerarchico, con puntatori come un albero
 - reticolare, un grafo
@@ -99,7 +85,6 @@ Una *tabella* rappresenta una relazione (nel modello logico relazionale teorico)
 - i valori di ogni colonna sono tra loro omogenei, sono valori del dominio (un numero non è una stringa)
 
 # Vincoli d'integrità
-#vincoli #chiavi 
 Un *vincolo d'integrità* deve essere una proprietà di tutte le basi di dati, che deve essere rispettata. La base di dati viene presa per il suo intero e verificato che il vincolo restituisca VERO, ovvero sia corretta.
 Il compito del DBMS è quello di fare controlli in maniera più o meno efficiente, perché controllare tutto il DB è lento.
 
@@ -145,7 +130,7 @@ Si chiama **superchiave** per $r$ se $r$ non contiene due $n$-uple distinte $t_1
 L'esistenza delle chiavi garantisce l'accessibilità a ciascun dato della base di dati; le chiavi permettono di correlare i dati in relazioni diverse (modello relazionale basato su valori).
 Nel caso di valori <u>NULL</u>, impedisce di usare chiavi, quindi da ricordare che una chiave non può avere questo valore.
 
-#### chiave primaria
+#### Chiave primaria
 Sulla quale non sono MAI ammessi valori nulli, su nessun attributo componente la **chiave primaria** possiamo consentire il valore nullo.
 
 La <u>sottolineatura</u> identifica questa chiave.
@@ -157,7 +142,7 @@ La `Matricola` e il `CodiceFiscale` possono fare chiave, pero' sara' primaria so
 ## Interrelazionali
 Guardiamo *diverse* tabelle per verificare la veridicità.
 
-### integrità referenziale (di chiave esterna, foreign key)
+### Integrità referenziale (chiave esterna, foreign key)
 Quel vincolo che serve per dire che da *questa* tabella, scrivo un valore contenente in *un'altra* tabella.
 - informazioni in relazioni diverse sono correlate attraverso valori comuni
 - in particolare, valori delle chiavi (primarie), usiamo quasi sempre quelle

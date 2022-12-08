@@ -1,17 +1,5 @@
-
-<center>Table of contents</center>
-
-- [[#Active Databases]]
-	- [[#Event-condition-action (ECA)]]
-	- [[#Granularity & execution mode]]
-		- [[#Granularity]]
-		- [[#Execution mode]]
-	- [[#Trigger]]
-		- [[#Semantica]]
-		- [[#Estensioni]]
-		- [[#Proprietà regole attive]]
-		- [[#Applicazioni]]
-
+```toc
+```
 # Active Databases
 I database possono reagire facendo qualcosa di più rispetto a quello richiesto dall'utente, mandano in esecuzione delle *regole di produzione* ('business rules' in marketing).
 
@@ -76,13 +64,12 @@ Alcuni sistemi forniscono modo di definire un ordine prioritario sui trigger, in
 - comportamento osservabile, se il comportamento rimane lo stesso allo siamo a posto.
   
 ```mermaid
-flowchart TD
+flowchart LR
 	r1 <--> r2
 	r1 <--> r3
 	r2 <--> r4
 	r3 <--> r4
 ```
-
 ### Applicazioni
 Servizi interni:
 - controllo e manutenzione delle integrità dei *constraint*;

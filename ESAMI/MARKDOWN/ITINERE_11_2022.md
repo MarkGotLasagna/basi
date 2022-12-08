@@ -49,7 +49,7 @@ $\mathtt{PAGAMENTI\_ELETTRONICI}$(<u>scontrino</u><sub>fk</sub>, tipo_carta, num
 - Fornire una istanza della tabella $R(A,B)$ per la quale la query 
   `SELECT COUNT(A), COUNT(B) FROM R` 
   calcola due valori diversi.
-
+  
 	| $A$    | $B$   |
 	| ------ | ----- |
 	| mario  | rossi | 

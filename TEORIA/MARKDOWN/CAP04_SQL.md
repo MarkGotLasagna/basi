@@ -1,17 +1,6 @@
-<center>Table of contents</center>
-
-- [[#Concetti base]]
-- [[#Interfaccia grafica]]
-- [[#Data Manipulation Language (DML)]]
-	- [[#Modifica degli schemi]]
-- [[#Data Definition Language (DDL)]]
-	- [[#`SELECT`]]
-	- [[#`CREATE TABLE`]]
-- [[#Esempi DDL e DML]]
-
+```toc
+```
 # Structured Query Language (SQL)
-#sql #pratica #comandi-sql #dml #ddl #transazione #sicurezza
-
 ## Concetti base
 
 Linguaggio che contiene sia <u>DML</u>(che lavora solo su istanza) sia <u>DDL</u>.

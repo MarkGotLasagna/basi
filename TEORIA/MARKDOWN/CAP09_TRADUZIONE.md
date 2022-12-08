@@ -1,13 +1,5 @@
-
-<center>Table of contents</center>
-
-- [[#Come tradurre lo schema E-R in schema Logico Relazionale]]
-	- [[#Molti a molti ($N, N$)]]
-	- [[#Uno a molti ($1, N$)]]
-		- [[#con identificatore esterno]]
-	- [[#Uno a uno ($1, 1$)]]
-- [[#Esempio di traduzione]]
-
+```toc
+```
 # Come tradurre lo schema E-R in schema Logico Relazionale
 
 Le *entità* diventano delle relazioni sugli stessi attributi, le *associazioni* (non tutte) diventano tabelle/relazioni sulle entità coinvolte e se hanno degli attributi, questi vengono inseriti.
@@ -60,7 +52,7 @@ Quindi l'associazione viene eliminata e i nostri attributi inseriti nel lato mol
 - $0$ allora il valore nullo(\*) è *ammesso*;
 - $1$ allora il valore nullo(\*) *non è ammesso*.
 
-### con identificatore esterno
+### Con identificatore esterno
 
 ![[Pasted image 20221130121531.png|400]]
 
@@ -86,7 +78,9 @@ Codifichiamo con `UNIQUE` su `Direttore`, forzando l'associazione ad $1,1$.
 ![[Pasted image 20221130122406.png|400]]
 
 # Esempio di traduzione
+
 ![[Pasted image 20221130122633.png|450]]
+
 $\mathtt{Impiegato}$ (<u>Codice</u>, Cognome, Dipartiemento, Sede, Data\*)
 $\mathtt{Dipartimento}$ (<u>Nome</u>, <u>Città</u>, Telefono, Direttore\*)
 $\mathtt{Sede}$ (<u>Città</u>, Via, CAP)

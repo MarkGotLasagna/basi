@@ -1,24 +1,6 @@
-<center>Table of contents</center>
-
-- [[#Algebra e calcolo relazionale]]
-	- [[#Algebra relazionale]]
-		- [[#Operatori insiemistici ( $ cup, cap, -$ )]]
-		- [[#Ridenominazione ( $ rho_{a/b}(R)$ )]]
-		- [[#Selezione ( $ sigma_{ varphi}(R)$ )]]
-		- [[#Proiezione ( $ Pi_{a_1, dotsc, a_n}(R)$ )]]
-		- [[#JOIN]]
-			- [[#JOIN NATURALE ( $R bowtie S$ )]]
-			- [[#JOIN COMPLETO]]
-			- [[#JOIN ESTERNO]]
-			- [[#JOIN E PROIEZIONI]]
-			- [[#PRODOTTO CARTESIANO ( $ times$ )]]
-		- [[#VISTE ( $:=$ )]]
-- [[#Esempi esercizi]]
-- [[#Esempi estratti da prove in itinere]]
-
+```toc
+```
 # Algebra e calcolo relazionale
-#algebra-relazionale #procedurali #ridenominazione #selezione #proiezione #join #viste 
-
 I linguaggi possono essere distinti in:
 - *dichiarativi*, specificano le proprietà del risultato("che cosa")
 	- calcolo relazionale
@@ -68,7 +50,6 @@ dove $Condizione$ è una formula proposizionale.
 > SEL<sub>stipendio > 50 AND filiale = 'Milano'</sub>(Impiegati)
 
 > [!warning] Nota sui valori `NULL`
-> #NULL_VALUES
 > 
 > Nell'algebra relazionale (quindi in `psql`) i valori `NULL` **non sono distinti l'uno dall'altro**. Questo significa che operazioni come $A \neq B$ dove $A=0$ e $B=\mathtt{NULL}$, restituiranno sempre $\mathtt{unknown}$ siccome `NULL` non è ben definito.
 > 

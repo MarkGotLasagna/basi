@@ -31,7 +31,6 @@ Documents/Obsidian Vault/UNI/BASI
 ├── ESAMI
 │   ├── MARKDOWN
 │   └── PDF
-├── PICS
 ├── SQL
 │   ├── MARKDOWN
 │   └── PDF

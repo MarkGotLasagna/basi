@@ -71,6 +71,15 @@ Lista di plugins utilizzati:
 └── table-editor-obsidian
 ```
 
+## Contributing
+Chiunque puo' *contribuire* al progetto.
+Per farlo chiedo di usare gli stessi strumenti da me utlizzati (in particolare `Obsidian.md`):
+- modifiche sintattiche;
+- modifiche semantiche;
+- modifiche estetiche (quali aggiunta di immagini, formattazione, ecc.).
+
+Se non siete familiari con GitHub, vi consiglio i DOCs ufficiali: [About forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks) e [About pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
+
 ## Similar repos
 Repository di coetanei sono presenti, le uso io stesso perché alcune query SQL le perdo nella furia di scrivere tutto in modo esteticamente bello.
 

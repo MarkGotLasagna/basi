@@ -118,3 +118,5 @@ VALUES
 
 Le tecniche per fornire all'utente una funzione d'interesse, nella transazione, non è banale rispetto al DB.
 Di solito viene usato un linguaggio ad hoc per fornire funzioni.
+
+Ciao, questo e' un test!

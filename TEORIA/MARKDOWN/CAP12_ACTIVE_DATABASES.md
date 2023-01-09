@@ -22,38 +22,33 @@ Quando va in esecuzione il mio trigger rispetto la transazione?
 - *deferred* soltanto se facciamo il commit (maggior parte dei DBMS non li supporta).
 
 ## Trigger
->[!example] sintassi in Oracle
 ```sql
-create trigger TriggerName
-	-- Mode: before, after
-	-- Event: insert, update, delete
-	Mode Event{, Event}
-	on TargetTable
-	-- Reference: introduce variabili
-	[[ referencing Reference ]
-		-- specifica la granularità
-		[ for each row ]
-		[ when SQLPredicate ]]
-		-- PL/SQLBlock
+CREATE [ OR REPLACE ] TRIGGER nomeTrigger 
+{ BEFORE | AFTER } { INSERT | UPDATE | DELETE } ON nomeTabella
+	[ NOT DEFERRABLE | -- execution mode
+		[ DEFERRABLE ] [ INITIALLY IMMEDIATE | INITIALLY DEFERRED] ]
+	[ FOR [ EACH ] { ROW | STATEMENT } ] -- granularita'
+	[ WHEN ( condizione ) ]
+	EXECUTE { FUNCTION | PROCEDURE } nomeFunzione ( argomenti )
 ```
 
-Grazie ai trigger possiamo definire vincoli di reazione, per esempio: le asserzioni non sono presenti come operazioni in postgreSQL ma possiamo imitarle con i trigger.
+Grazie ai trigger possiamo definire vincoli di reazione, per esempio: le asserzioni non sono presenti come operazioni in PostgreSQL ma possiamo imitarle con i trigger.
 
 ### Semantica
-La schedule di esecuzione segue l'ordine:
-- `before statement`;
+La schedule di esecuzione di un trigger, segue l'ordine:
+- `BEFORE` statement;
 - per ogni tupla sul quale viene eseguito:
-	- `before row`
+	- `BEFORE` row
 	- operazione
-	- `after row`
-- `after statement`
+	- `AFTER` row
+- `AFTER` statement
 
-Alcuni sistemi forniscono modo di definire un ordine prioritario sui trigger, in postgreSQL è il *nome* del trigger che specifica l'ordine (`aaaa` prima di `aa`).
+Alcuni sistemi forniscono modo di definire un ordine prioritario sui trigger, in PostgreSQL è il *nome* del trigger che specifica l'ordine (`aaaa` prima di `aa`).
 
 ### Estensioni
 - eventi temporali attivano i trigger (definiti da utente);
 - combinazione di condizioni di verità;
-- `instead of` per non eseguire l'azione attivante il trigger, ma un'altra;
+- `INSTEAD OF` per non eseguire l'azione attivante il trigger, ma un'altra;
 - modalità d'esecuzione separata, per gestire la transazione separatamente nel caso ci siano problemi;
 - priorità definite da utente (nome del trigger per ordinare);
 - insieme di regole, la possibilità di attivare/disabilitare un insieme di trigger.
@@ -79,4 +74,23 @@ Servizi interni:
 	- virtuali, ottimizzazione delle query;
 
 Servizi esterni al DBMS codificati da utente:
-- descrizione delle dinamiche del DB 
+- descrizione delle dinamiche del DB
+
+#### Esempi
+- Eseguire la funzione `check_account_update()` 
+  ogni qual volta la colonna `balance` della tabella `accounts` sta per essere aggiornata
+  (NOTA: per la `UPDATE` e' possibile specificare la colonna con `ON`)
+  ```sql
+  CREATE OR REPLACE TRIGGER check_update
+	  BEFORE UPDATE OF balance ON accounts
+	  FOR EACH ROW
+	  EXECUTE FUNCTION chack_account_update();
+  ```
+- Controllare la correttezza di `CF` (codice fiscale) della tabella `anagrafica`,
+  all'inserimento di nuove tuple, eseguendo la funzione `controllo_CF()`
+  ```sql
+  CREATE OR REPLACE TRIGGER controllo_CF
+	  BEFORE INSERT ON anagrafica
+	  FOR EACH ROW
+	  EXECUTE FUNCTION controllo_CF();
+  ```

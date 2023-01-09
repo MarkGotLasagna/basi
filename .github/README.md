@@ -1,9 +1,9 @@
 # Basi di dati 2022/2023
 
 <div align=center>
-	<image src=/PICS/basi_default.png width=75%></image></br></br>
+	<image src=/.pics/basi_default.png width=75%></image></br></br>
 	<image src=https://shields.io/badge/PostgreSQL-white?logo=postgresql&style=plastic></image>
-	<image src=https://shields.io/badge/arch-white?logo=archlinux&style=plastic></image>
+	<image src=https://shields.io/badge/arch-white?logo=archlinux&style=plastic></image></br>
     	<image src=https://img.shields.io/github/stars/MarkGotLasagna/basi?style=social></image>
 	</br></br>
 </div>
@@ -28,7 +28,6 @@ Il corso si divide in 2 parti:
 
 ```
 Documents/Obsidian Vault/UNI/BASI
-.
 ├── ESAMI
 │   ├── MARKDOWN
 │   └── PDF
@@ -61,6 +60,7 @@ Lista di plugins utilizzati:
 ├── cmenu-plugin
 ├── highlightr-plugin
 ├── obsidian-admonition
+├── obsidian-code-block-enhancer
 ├── obsidian-dynamic-toc
 ├── obsidian-emoji-toolbar
 ├── obsidian-functionplot
@@ -78,6 +78,6 @@ Seguite la pagina [Wiki](https://github.com/MarkGotLasagna/basi/wiki)!
 Se non siete familiari con GitHub, vi consiglio i DOCs ufficiali: [About forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks) e [About pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
 
 ## Similar repos
-Repository di coetanei sono presenti, le uso io stesso perché alcune query SQL le perdo nella furia di scrivere tutto in modo esteticamente bello.
+Repository di coetanei sono presenti, le uso io stesso perché molte query SQL le perdo nella furia di scrivere tutto in modo esteticamente bello.
 
 - Mattia Merenda > https://github.com/merendamattia/BdD

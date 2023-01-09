@@ -21,3 +21,7 @@
 	- $R_1 \times R_2$ (prodotto cartesiano)     -> 0
 	- $R_1 \bowtie_{RIGHT} R_2$ (right outer join)  -> n<sub>2</sub>
 	- $R_1 \bowtie_{FULL} R_2$ (full outer join)       -> n<sub>2</sub> + 0
+
+# Esempi estratti da prove d'esame
+- Definire il concetto di granularita' dei TRIGGER.
+  Quando parliamo di **granularita'**, parliamo dei momenti possibili in cui un TRIGGER puo' essere eseguito: a *livello di riga* (row-level) quando esegue per ogni tupla distinta, a *livello di statement* (statement-level) quando esegue una sola volta, in risposta all'evento che lo ha scatenato.

@@ -15,6 +15,7 @@ Il DBMS da me utilizzato e' [mariadb](https://wiki.archlinux.org/title/MariaDB),
 La sintassi per `mariadb` e' pressoche' uguale a quella di `postgresql`.
 
 # ESEMPI
+- [[UNI/BASI/SQL/README]]
 - [[ESEMPI_SCHEMI_DB]]
 	- [[SQL_MANIFESTI_STUDI]]
 	- [[SQL_SINISTRI_STRADALI]]

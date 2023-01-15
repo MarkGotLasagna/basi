@@ -2,6 +2,7 @@
 - con __E-R__ si indica esercizi di progettazione E-R, con relativa traduzione in schema logico-relazionale;
 - con __ESAME__ si indica esami passati;
 - con __ITINERE__ si indica i parziali passati, svolti nel primo semestre;
+- con __ORALE__ si intende l'interrogazione orale, svolta qual'ora il voto complessivo sia >25.
 
 
 Nel file [MISC.md](./PDF/MISC.pdf) trovate esercizi di prove orfane, che non hanno un assegnamento a nessuna prova ma che sono state chieste, in passato.

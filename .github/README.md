@@ -1,10 +1,10 @@
 # Basi di dati 2022/2023
 
 <div align=center>
-	<image src=/.pics/basi_default.png width=50%></image></br></br>
+	<image src=/.pics/basi_default.png width=50%></image></br>
 	<image src=https://shields.io/badge/PostgreSQL-white?logo=postgresql&style=plastic></image>
-	<image src=https://shields.io/badge/arch-white?logo=archlinux&style=plastic></image></br>
-    	<image src=https://img.shields.io/github/stars/MarkGotLasagna/basi?style=social></image>
+	<image src=https://shields.io/badge/arch-white?logo=archlinux&style=plastic></image>
+    <image src=https://img.shields.io/github/stars/MarkGotLasagna/basi?style=social></image>
 	</br></br>
 </div>
 

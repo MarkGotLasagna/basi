@@ -4,7 +4,6 @@
 	<image src=/.pics/basi_default.png width=50%></image></br>
 	<image src=https://shields.io/badge/PostgreSQL-white?logo=postgresql&style=plastic></image>
 	<image src=https://shields.io/badge/arch-white?logo=archlinux&style=plastic></image>
-    <image src=https://img.shields.io/github/stars/MarkGotLasagna/basi?style=social></image>
 	</br></br>
 </div>
 
@@ -13,12 +12,14 @@ Contiene appunti presi durante le lezioni in presenza, lezioni registrare su Tea
 
 Il corso si divide in 2 parti:
 - nozioni base + algebra relazionale + SQL \[Itinere]
-- schemi Entità-Relazione (ER) + teoria sulle transazioni + trigger \[Esame]
+- schemi Entità-Relazione (ER) + trigger + teoria sulle transazioni \[Esame]
 
+E' previsto un esame orale per voti post-esame maggiori di 25.
 ## Tools 
 
 **Text editors**
 - `Obsidian.md` per prendere appunti in markdown ed esportare in PDF
+- `Visual Studio Code` per annotare codice SQL
 - `vim` per modifiche rapide
 
 **DBMS**
@@ -27,7 +28,7 @@ Il corso si divide in 2 parti:
 ## Directory structure
 
 ```
-Documents/Obsidian Vault/UNI/BASI
+.
 ├── ESAMI
 │   ├── MARKDOWN
 │   └── PDF
@@ -39,38 +40,24 @@ Documents/Obsidian Vault/UNI/BASI
     └── PDF
 ```
 
-**Le sottocartelle a nome `PDF` sono quelle contenenti i file esportati** da Obsidian.md: **sono i file che vi interessano** alla fine della fiera:
+**Le sottocartelle a nome `PDF` sono quelle contenenti i file esportati** da Obsidian.md:
 - **appunti** di teoria presi a lezione e non, nella cartella `TEORIA`;
 - **esercizi SQL**, nella cartella `SQL`;
 - **esempi di esercizi in prove d'itinere** ed **esami** passati, nella cartella `ESAMI`.
 
-Per installare soltanto i file PDF:
+Per _installare soltanto i file PDF_:
 ```
 git clone --filter=blob:none --depth 1 --sparse https://github.com/MarkGotLasagna/basi && \
     cd basi && \
     git sparse-checkout init --cone && \
     git sparse-checkout set ESAMI/PDF SQL/PDF TEORIA/PDF
 ```
+Per _aggiornare_ le vostre copie:
+```
+git pull --rebase
+```
 
 Trovate l'insieme degli snippets CSS all'interno della repo [.dots](https://github.com/MarkGotLasagna/.dots).
-Lista di plugins utilizzati:
-```
-/home/maruko/Documents/Obsidian Vault/.obsidian/plugins
-├── cm-editor-syntax-highlight-obsidian
-├── cmenu-plugin
-├── highlightr-plugin
-├── obsidian-admonition
-├── obsidian-code-block-enhancer
-├── obsidian-dynamic-toc
-├── obsidian-emoji-toolbar
-├── obsidian-functionplot
-├── obsidian-icon-folder
-├── obsidian-icons-plugin
-├── obsidian-languagetool-plugin
-├── obsidian-pandoc
-├── obsidian-tikzjax
-└── table-editor-obsidian
-```
 
 ## Contributing
 Seguite la pagina [Wiki](https://github.com/MarkGotLasagna/basi/wiki)!

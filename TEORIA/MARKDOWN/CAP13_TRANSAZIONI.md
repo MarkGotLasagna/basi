@@ -50,7 +50,7 @@ Se ho un conflitto l'ordine di sequenza potrebbe influire il risultato.
 > [!nota] Dire che c'è un *conflitto* <u>non equivale</u> a dire che c'è di sicuro un *problema*: potrebbero esserci complicanze, ma queste potrebbero non essere influenti sul risultato
 > Per esempio: una `write(Q)` della transazione $T_1$ scrive $0$, `write(Q)` di $T_2$ scrive anche lei $0$, il risultato sarà a prescindere $0$.
 
-### Conflict serialization
+### Conflict serialization  (CSR)
 Uno schedule $S$ potrebbe non essere seriale, ma se riusciamo a trasformarlo in $S'$ con scambio d'istruzioni non in conflitto, allora questo sarà **equivalente rispetto ai conflitti**. Lo schedule diventa *seriale*.
 > [!example] Schedule di transazioni $T_1$ e $T_2$ serializzabile rispetto ai conflitti
 > Lo schedule non è seriale (sinistra), ma può diventarlo con uno scambio d'istruzioni (destra).
@@ -131,7 +131,7 @@ I classici problemi relativi all'uso di lock, e quindi al blocco di risorse, son
 - **starvation**
   una transazione $T$ sta aspettando `X-lock` su un oggetto mentre una sequenza di altre istruzioni richiedenti `S-lock` vengono eseguite sullo stesso oggetto; sulla stessa transazione viene continuamente fatto rollback a causa deadlock. Il *manager controllore di concorrenza* può essere modellato per evitare starvation.
 
-### Two-Phase Locking Protocol
+### Two-Phase Locking Protocol (2PL)
 Questo protocollo di locking assicura (quasi sempre) che gli schedule siano serializzabili in base ai conflitti. Ci sono 2 fasi:
 - *growing phase*
   in questa fase una transazione $T$ può ottenere locks come può non rilasciarli;

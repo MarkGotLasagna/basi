@@ -53,18 +53,17 @@ dove $Condizione$ è una formula proposizionale.
 > 
 > Nell'algebra relazionale (quindi in `psql`) i valori `NULL` **non sono distinti l'uno dall'altro**. Questo significa che operazioni come $A \neq B$ dove $A=0$ e $B=\mathtt{NULL}$, restituiranno sempre $\mathtt{unknown}$ siccome `NULL` non è ben definito.
 > 
-| $A$             | $B$             | $(A \neq B)$       | $A\ \mathrm{IS\ DISTINCT\ FROM}\ B$ |
-| --------------- | --------------- | ------------------ | ----------------------------------- |
-| 0               | 0               | $\mathtt{false}$   | $\mathtt{false}$                    |
-| 0               | 1               | $\mathtt{true}$    | $\mathtt{true}$                     |
-| 0               | $\mathtt{NULL}$ | $\mathtt{unknown}$ | $\mathtt{true}$                     |
-| $\mathtt{NULL}$ | $\mathtt{NULL}$ | $\mathtt{unknown}$ | $\mathtt{false}$                    | 
+> | $A$             | $B$             | $(A \neq B)$       | $A\ \mathrm{IS\ DISTINCT\ FROM}\ B$ |
+> | --------------- | --------------- | ------------------ | ----------------------------------- |
+> | 0               | 0               | $\mathtt{false}$   | $\mathtt{false}$                    |
+> | 0               | 1               | $\mathtt{true}$    | $\mathtt{true}$                     |
+> | 0               | $\mathtt{NULL}$ | $\mathtt{unknown}$ | $\mathtt{true}$                 |
+> | $\mathtt{NULL}$ | $\mathtt{NULL}$ | $\mathtt{unknown}$ | $\mathtt{false}$                    | 
 
 ### Proiezione ( $\Pi_{a_1, \dotsc, a_n}(R)$ )
 Decomposizione verticale, operatore ortogonale.
 Anche lui operatore monadico, parametrico.
 Semplicemente: prende una lista di attributi riguardante a una tabella e restituisce solo quelli specificati.
-
 $$\mathrm{PROJ}_{ListaAttributi}(\mathrm{Operando})$$
 > [!example] Cognome e filiale di tutti gli impiegati
 > PROJ<sub>cognome,nome</sub>(Impiegati)
@@ -99,26 +98,26 @@ Possiamo farlo con il **join naturale** dove i miei attributi coincidono su un a
 
 > [!example] JOIN NATURALE
 > 
-| <mark style="background: #FF5582A6;">numero</mark> | voto |
-| ------ |:---- |
-| 1      | 25   |
-| 2      | 13   |
-| 3      | 27   |
-| 4      | 28   |
+> | <mark style="background: #FF5582A6;">numero</mark> | voto |
+> | ------ |:---- |
+> | 1      | 25   |
+> | 2      | 13   |
+> | 3      | 27   |
+> | 4      | 28   |
 > 
-| <mark style="background: #FF5582A6;">numero</mark> | candidato     |
-| ------ | ------------- |
-| 1      | mario rossi   |
-| 2      | nicola russo  |
-| 3      | mario bianchi |
-| 4      | remo neri     | 
+> | <mark style="background: #FF5582A6;">numero</mark> | candidato     |
+> | ------ | ------------- |
+> | 1      | mario rossi   |
+> | 2      | nicola russo  |
+> | 3      | mario bianchi |
+> | 4      | remo neri     | 
 > 
-| <mark style="background: #FF5582A6;">numero</mark> | candidato    | voto |
-| ------ | ------------- | ---- |
-| 1      | mario rossi   | 25   |
-| 2      | nicola russo  | 13   |
-| 3      | mario bianchi | 27   |
-| 4      | remo neri     | 28   | 
+> | <mark style="background: #FF5582A6;">numero</mark> | candidato    | voto |
+> | ------ | ------------- | ---- |
+> | 1      | mario rossi   | 25   |
+> | 2      | nicola russo  | 13   |
+> | 3      | mario bianchi | 27   |
+> | 4      | remo neri     | 28   | 
 
 Produce un risultato:
 - sull'unione degli attributi degli operandi;
@@ -164,26 +163,26 @@ Estende con valori `NULL` le $n$-uple che verrebbero tagliate fuori da un join i
 > | C       | Bruni     |
 > $\mathrm{impiegati}\ \mathrm{JOIN}_{LEFT}\ \mathrm{reparti}$
 > 
-| <mark style="background: #BBFABBA6;">impiegato</mark> | <mark style="background: #BBFABBA6;">reparto</mark> | capo |
-| --------- | ------- | ---- |
-| neri      | B       | mori |
-| bianchi   | B       | mori |
-| rossi     | A       | NULL | 
+> | <mark style="background: #BBFABBA6;">impiegato</mark> | <mark style="background: #BBFABBA6;">reparto</mark> | capo |
+> | --------- | ------- | ---- |
+> | neri      | B       | mori |
+> | bianchi   | B       | mori |
+> | rossi     | A       | NULL | 
 > $\mathrm{impiegati}\ \mathrm{JOIN}_{RIGHT}\ \mathrm{reparti}$
 > 
-| impiegato | <mark style="background: #BBFABBA6;">reparto</mark> | <mark style="background: #BBFABBA6;">capo</mark>  |
-| --------- | ------- | ----- |
-| neri      | B       | mori  |
-| bianchi   | B       | mori  |
-| NULL      | C       | bruni | 
+> | impiegato | <mark style="background: #BBFABBA6;">reparto</mark> | <mark style="background: #BBFABBA6;">capo</mark>  |
+> | --------- | ------- | ----- |
+> | neri      | B       | mori  |
+> | bianchi   | B       | mori  |
+> | NULL      | C       | bruni | 
 > $\mathrm{impiegati}\ \mathrm{JOIN}_{FULL}\ \mathrm{reparti}$
 >
-| <mark style="background: #BBFABBA6;">impiegato</mark> | <mark style="background: #BBFABBA6;">reparto</mark> | <mark style="background: #BBFABBA6;">capo</mark>  |
-| --------- | ------- | ----- |
-| neri      | B       | mori  |
-| bianchi   | B       | mori  |
-| rossi     | A       | NULL  |
-| NULL      | C       | bruni | 
+> | <mark style="background: #BBFABBA6;">impiegato</mark> | <mark style="background: #BBFABBA6;">reparto</mark> | <mark style="background: #BBFABBA6;">capo</mark>  |
+> | --------- | ------- | ----- |
+> | neri      | B       | mori  |
+> | bianchi   | B       | mori  |
+> | rossi     | A       | NULL  |
+> | NULL      | C       | bruni | 
 
 #### JOIN E PROIEZIONI
 Se prendessimo due tabelle e facessimo INNER JOIN (JOIN NATURALE), con una successiva PROIEZIONE, non e' detto che si ritorni alla tabella originale. Quando il JOIN non e' completo, allora accade.
@@ -198,29 +197,29 @@ Contiene sempre un numero di $n$-uple pari al prodotto delle cardinalita' degli 
 > [!example] `Impiegati` $\mathrm{JOIN}$ `Reparti`
 `Impiegati`
 > 
-| Impiegato | Reparto |
-| --------- | ------- |
-| Rossi     | A       |
-| Neri      | B       |
-| Bianchi   | B       | 
+> | Impiegato | Reparto |
+> | --------- | ------- |
+> | Rossi     | A       |
+> | Neri      | B       |
+> | Bianchi   | B       | 
 >
-`Reparti`
+> `Reparti`
 >
-| Codice | Capo  |
-| ------ | ----- |
-| A      | Mori  |
-| B      | Bruni | 
+> | Codice | Capo  |
+> | ------ | ----- |
+> | A      | Mori  |
+> | B      | Bruni | 
 >
-`Impiegati` $\mathrm{JOIN}$ `Reparti`
+> `Impiegati` $\mathrm{JOIN}$ `Reparti`
 >
-| Impiegato | Reparto | Codice | Capo  |
-| --------- | ------- | ------ | ----- |
-| Rossi     | A       | A      | Mori  |
-| Rossi     | A       | B      | Bruni |
-| Neri      | B       | A      | Mori  |
-| Neri      | B       | B      | Bruni |
-| Bianchi   | B       | A      | Mori  |
-| Bianchi   | B       | B      | Bruni |
+> | Impiegato | Reparto | Codice | Capo  |
+> | --------- | ------- | ------ | ----- |
+> | Rossi     | A       | A      | Mori  |
+> | Rossi     | A       | B      | Bruni |
+> | Neri      | B       | A      | Mori  |
+> | Neri      | B       | B      | Bruni |
+> | Bianchi   | B       | A      | Mori  |
+> | Bianchi   | B       | B      | Bruni |
 
 
 Di solito viene susseguito con un SELECT se vogliamo dargli un senso:
@@ -232,26 +231,26 @@ Se l'operazione di confronto (condizione) nel theta-join è sempre l'uguaglianza
 > [!example] $\theta\mathrm{JOIN}$
 > `Impiegati`
 > 
-| Impiegato | Reparto |
-| --------- | ------- |
-| Rossi     | A       |
-| Neri      | B       |
-| Bianchi   | B       | 
+> | Impiegato | Reparto |
+> | --------- | ------- |
+> | Rossi     | A       |
+> | Neri      | B       |
+> | Bianchi   | B       | 
 >
-`Reparti`
+> `Reparti`
 >
-| Codice | Capo  |
-| ------ | ----- |
-| A      | Mori  |
-| B      | Bruni | 
+> | Codice | Capo  |
+> | ------ | ----- |
+> | A      | Mori  |
+> | B      | Bruni | 
 >
-`Impiegati` $\mathrm{JOIN}_{Reparto=Codice}$ `Reparti`
+> `Impiegati` $\mathrm{JOIN}_{Reparto=Codice}$ `Reparti`
 >
-| Impiegato | Reparto | Codice | Capo  |
-| --------- | ------- | ------ | ----- |
-| Rossi     | A       | A      | Mori  |
-| Neri      | B       | B      | Bruni |
-| Bianchi   | B       | B      | Bruni | 
+> | Impiegato | Reparto | Codice | Capo  |
+> | --------- | ------- | ------ | ----- |
+> | Rossi     | A       | A      | Mori  |
+> | Neri      | B       | B      | Bruni |
+> | Bianchi   | B       | B      | Bruni | 
 
 ### VISTE ( $:=$ )
 Sono rappresentazioni dei dati per *schema esterno*.

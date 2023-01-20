@@ -27,30 +27,31 @@ su insieme di attributi $X$, è una funzione che associa a ciascun attributo $A$
 **Base di dati**
 insieme di relazioni:
 $$r = \{r_1, \dots, r_n\}$$
-> [!example] Esempio relazione su unico attributo
+> [!example] Esempio di relazione su unico attributo
 > 
-| matricola |  /   | 
-| --------- | --- |
-| 6554      |   /  |
-| 3456      |    / |
+> | matricola |  /   | 
+> | --------- | --- |
+> | 6554      |   /  |
+> | 3456      |    / |
 
 > [!example] Esempio di struttura nidificata
+> 
 > Le strutture nidificate non sono consentite nel modello ER
 > 
-| numero | data       | totale | quantità | descrizione |
-| ------ | ---------- | ------ | -------- | ----------- |
-| 1235   | 12/10/2002 | 39,20  | 3        | coperti     |
-|        |            |        | 2        | antipasti   |
-|        |            |        | 3        | primi       | 
+> | numero | data       | totale | quantità | descrizione |
+> | ------ | ---------- | ------ | -------- | ----------- |
+> | 1235   | 12/10/2002 | 39,20  | 3        | coperti     |
+> |        |            |        | 2        | antipasti   |
+> |        |            |        | 3        | primi       | 
 > vengono piuttosto separate in 2 tabelle
 > 
-> | numero | data | totale |
-| ------ | ---- | ------ |
-| ...    | ...  | ...    | 
+> | numero | data     | totale      |
+> | ------ | -------- | ----------- |
+> | ...    | ...      | ...         |
 > 
 > | numero | quantità | descrizione |
-| ------ | -------- | ----------- |
-| ...    | ...      | ...         | 
+> | ------ | -------- | ----------- |
+> | ...    | ...      | ...         |
 
 ### Relazione matematica
 $$D_1 = \{a,b\}$$
@@ -59,14 +60,14 @@ Il prodotto cartesiano sarebbe: $$D_1 * D_2$$
 Una relazione: $$r \subseteq D_1 * D_2$$
 > [!example] Esempio di tabella con nome "Partite"
 > 
-> $\mathtt{partite} \subseteq \mathtt{string} * \mathtt{string} * \mathtt{int} * \mathtt{int}$
+> $$\mathtt{partite} \subseteq \mathtt{string} * \mathtt{string} * \mathtt{int} * \mathtt{int}$$
 > 
-| casa  | fuori | reticasa | retifuori |
-| ----- | ----- | -------- | --------- |
-| Juve  | Lazio | 3        | 1         |
-| Lazio | Milan | 2        | 0         |
-| Juve  | Roma  | 0        | 2         |
-| Roma  | Milan | 0        | 1         |
+> | casa  | fuori | reticasa | retifuori |
+> | ----- | ----- | -------- | --------- |
+> | Juve  | Lazio | 3        | 1         |
+> | Lazio | Milan | 2        | 0         |
+> | Juve  | Roma  | 0        | 2         |
+> | Roma  | Milan | 0        | 1         |
 
 La $n$-upla della tabella non la pensiamo come valore massimo $\infty$.
 
@@ -96,7 +97,7 @@ Utilità:
 I vincoli corrispondono a proprietà del mondo reale modellato dalla base di dati. A uno schema associamo un insieme di vincoli e consideriamo *corrette* le istanze che soddisfano tutti i vincoli.
 
 ## Intrarelazionali
-Il vincolo riguarda *una sola* tabella/relazione e mi è sufficiente per verificare la veridicità del DB. I due vincoli non sono molto separati per quanto teoria, nei DBMS non c'è molta distinzione.
+Il vincolo riguarda *una sola* tabella/relazione ed è sufficiente per verificare la veridicità del DB. I due vincoli non sono molto separati per quanto teoria, nei DBMS non c'è molta distinzione.
 
 ### Vincoli di $n$-upla 
 Controllo ogni singola $n$-upla. Indipendente una dalle altre.
@@ -121,8 +122,7 @@ Si chiama **superchiave** per $r$ se $r$ non contiene due $n$-uple distinte $t_1
 > | <u>Matricola</u> | Congome | Nome | Corso | Nascita |
 > | --------- | ------- | ---- | ----- | ------- |
 > 
-> - Non esistono due persone con lo stesso numero `Matricola`, quindi questa sarà la nostra chiave.
->   
+> - Non esistono due persone con lo stesso numero `Matricola`, quindi questa sarà la nostra chiave.  
 > - `Congome`, `Nome`, `Nascita` potrebbe essere una chiave fintanto che non esista una persona che ha tutti e quanti gli stessi valori:
 > 	- è superchiave
 > 	- minimale
@@ -133,7 +133,7 @@ Nel caso di valori <u>NULL</u>, impedisce di usare chiavi, quindi da ricordare c
 #### Chiave primaria
 Sulla quale non sono MAI ammessi valori nulli, su nessun attributo componente la **chiave primaria** possiamo consentire il valore nullo.
 
-La <u>sottolineatura</u> identifica questa chiave.
+La sottolineatura <u>___</u> identifica questa chiave.
 Se piu' attributi sono sottolineati, insieme formano una chiave.
 
 > [!example] Esempio
@@ -151,15 +151,16 @@ Quel vincolo che serve per dire che da *questa* tabella, scrivo un valore conten
 La dicitura <sub>fk</sub> identifica questa chiave.
 
 > [!example] Esempio
-`Infrazioni`
 > 
+> `Infrazioni`
 > 
-| Codice | Data | Vigile | Prov | Numero | 
-| ------ | ---- | ------ | ---- | ------ |
-`Vigili`
+> | Codice | Data | Vigile | Prov | Numero | 
+> | ------ | ---- | ------ | ---- | ------ |
+> `Vigili`
 > 
-| Matricola | Cognome | Nome | 
-| --------- | ------- | ---- |
-Il valore dell'attributo `Vigile` in tabella `Infrazioni`, deve essere un valore contenuto in tabella `Vigili`. Quindi c'è un vincolo di chiave esterna che lega `Vigile` -> `Matricola`.
+> | Matricola | Cognome | Nome | 
+> | --------- | ------- | ---- |
+> 
+> Il valore dell'attributo `Vigile` in tabella `Infrazioni`, deve essere un valore contenuto in tabella `Vigili`. Quindi c'è un vincolo di chiave esterna che lega `Vigile` -> `Matricola`.
 
 Un vincolo di **integrità referenziale (foreign key)** fra gli attributi $X$ di una relazione $R_1$ e un'altra relazione $R_2$ impone ai valori su $X$ in $R_1$ di comparire come valori della chiave primaria di $R_2$.

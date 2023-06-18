@@ -1,7 +1,10 @@
 # Basi di dati 2022/2023
-
+```
+⚠️ La repository è stata archiviata, per giunta, nessuna pull request, issue o altro può essere eseguito.
+❗ La possibilità di copiare la repository persisterà indefinitamente (vedere i comandi sotto citati).
+```
 <div align=center>
-	<image src=/.pics/basi_default.png width=50%></image></br>
+	<image src=/.pics/basi_default.png width=30%></image></br>
 	<image src=https://shields.io/badge/PostgreSQL-white?logo=postgresql&style=plastic></image>
 	<image src=https://shields.io/badge/arch-white?logo=archlinux&style=plastic></image>
 	</br></br>
